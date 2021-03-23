@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dandy": "node -r esm index.js",
+		"rx": "node -r esm rxjs.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
@@ -15,6 +16,7 @@
 		"chalk": "^4.1.0",
 		"esm": "^3.2.25",
 		"meow": "^9.0.0",
-		"puppeteer": "^8.0.0"
+		"puppeteer": "^8.0.0",
+		"wmde-fundraising-frontend-content": "wmde/fundraising-frontend-content"
 	}
 }
