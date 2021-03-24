@@ -3,11 +3,12 @@ import createDandy from '../src/dandy';
 import observer from '../src/observer';
 
 ( async () => {
-	const dandy = await createDandy( config.test_url );
+	let dandy = await createDandy( config.test_url );
 
 	config.pages.forEach( page => {
-		dandy.goToPage( page.url )
-			.elementDoesNotExist( '.404' )
+		dandy = dandy.goToPage( page.url )
+			.captureScreenshot( `pages/${ page.name }.png` )
+			.checkElementDoesNotExist( '.page-not-found' );
 	} );
 
 	dandy.subscribe( observer );

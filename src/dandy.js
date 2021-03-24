@@ -28,7 +28,7 @@ function goToPage( path ) {
 	} );
 }
 
-function screenshot( filename ) {
+function captureScreenshot( filename ) {
 	const inputObservable = this;
 	return createObservable( outputObservable => {
 		const fullFilePath = `${ config.screenshots_directory }/${ filename }`;
@@ -61,7 +61,7 @@ function waitForElement( selector, options ) {
 	} );
 }
 
-function elementExists( selector ) {
+function checkElementExists( selector ) {
 	const inputObservable = this;
 	return createObservable( outputObservable => {
 		inputObservable.subscribe( createSubscriber( outputObservable, async () => {
@@ -83,7 +83,7 @@ function elementExists( selector ) {
 	} );
 }
 
-function elementDoesNotExist( selector ) {
+function checkElementDoesNotExist( selector ) {
 	const inputObservable = this;
 	return createObservable( outputObservable => {
 		inputObservable.subscribe( createSubscriber( outputObservable, async () => {
@@ -172,6 +172,20 @@ function blur( selector ) {
 	} );
 }
 
+function delay( milliseconds ) {
+	const inputObservable = this;
+	return createObservable( outputObservable => {
+		inputObservable.subscribe( createSubscriber( outputObservable, async () => {
+			try {
+				logger.log( `Waiting for (${ milliseconds })` );
+				await new Promise( resolve => setTimeout( resolve, milliseconds ) );
+			} catch( error ) {
+				outputObservable.error( error );
+			}
+		} ) );
+	} );
+}
+
 /**
  * This is a utility function and is used because all observables
  * have the same methods for passing errors and completions through the chain
@@ -192,13 +206,14 @@ function createObservable( subscribe ) {
 	return {
 		subscribe,
 		goToPage,
-		screenshot,
+		captureScreenshot,
 		waitForElement,
-		elementExists,
-		elementDoesNotExist,
+		checkElementExists,
+		checkElementDoesNotExist,
 		setInputText,
 		click,
-		blur
+		blur,
+		delay
 	};
 }
 
