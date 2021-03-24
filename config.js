@@ -2,6 +2,7 @@ export default {
 	base_url: 'https://spenden.wikimedia.de',
 	test_url: 'https://test-spenden-2.wikimedia.de',
 	screenshots_directory: './screenshots',
+	tests_directory: './tests',
 	pages: [
 		{
 			name: 'Donation',

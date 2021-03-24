@@ -4,6 +4,10 @@ const log = message => {
 	logWithTime( message );
 }
 
+const logBold = message => {
+	logWithTime( chalk.bold( message ) );
+}
+
 const logSuccess = message => {
 	logWithTime( chalk.green( message ) );
 }
@@ -25,6 +29,7 @@ const currentTime = () => {
 
 export default {
 	log,
+	logBold,
 	logSuccess,
 	logError,
 }
