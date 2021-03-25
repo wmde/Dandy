@@ -1,5 +1,5 @@
-import config from '../config';
 import createDandy from '../src/dandy';
+import config from '../config/global';
 import observer from '../src/observer';
 
 ( async () => {

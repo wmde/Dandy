@@ -23,8 +23,8 @@ const logWithTime = message => {
 const currentTime = () => {
 	let currentDate = new Date();
 	return currentDate.getHours().toString().padStart( 2, '0' )
-		+ ":" + currentDate.getMinutes().toString().padStart( 2, '0' )
-		+ ":" + currentDate.getSeconds().toString().padStart( 2, '0' );
+		+ ':' + currentDate.getMinutes().toString().padStart( 2, '0' )
+		+ ':' + currentDate.getSeconds().toString().padStart( 2, '0' );
 }
 
 export default {

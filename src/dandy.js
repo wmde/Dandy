@@ -2,7 +2,7 @@ import { promises as fs } from 'fs';
 import { dirname } from 'path';
 import puppeteer from 'puppeteer';
 import logger from './logger';
-import config from '../config';
+import config from '../config/global';
 
 let baseUrl = '';
 let browser = null;
@@ -16,7 +16,7 @@ function goToPage( path ) {
 	const inputObservable = this;
 	return createObservable( outputObservable => {
 		const fullPath = url( path );
-		inputObservable.subscribe( createSubscriber( outputObservable, async () => {
+		inputObservable.subscribe( createObserver( outputObservable, async () => {
 			try {
 				logger.log( `Loading page (${ fullPath })` );
 				await page.goto( fullPath );
@@ -32,7 +32,7 @@ function captureScreenshot( filename ) {
 	const inputObservable = this;
 	return createObservable( outputObservable => {
 		const fullFilePath = `${ config.screenshots_directory }/${ filename }`;
-		inputObservable.subscribe( createSubscriber( outputObservable, async () => {
+		inputObservable.subscribe( createObserver( outputObservable, async () => {
 			try {
 				logger.log( `Taking screenshot (${ filename })` );
 				await fs.mkdir( dirname( fullFilePath ), { recursive: true } );
@@ -48,7 +48,7 @@ function captureScreenshot( filename ) {
 function waitForElement( selector, options ) {
 	const inputObservable = this;
 	return createObservable( outputObservable => {
-		inputObservable.subscribe( createSubscriber( outputObservable, async () => {
+		inputObservable.subscribe( createObserver( outputObservable, async () => {
 			try {
 				logger.log( `Waiting for element (${ selector })` );
 				await page.waitForSelector( selector, options );
@@ -64,7 +64,7 @@ function waitForElement( selector, options ) {
 function checkElementExists( selector ) {
 	const inputObservable = this;
 	return createObservable( outputObservable => {
-		inputObservable.subscribe( createSubscriber( outputObservable, async () => {
+		inputObservable.subscribe( createObserver( outputObservable, async () => {
 			try {
 				logger.log( `Looking for element (${ selector })` );
 				const exists = await page.$( selector ) !== null;
@@ -86,7 +86,7 @@ function checkElementExists( selector ) {
 function checkElementDoesNotExist( selector ) {
 	const inputObservable = this;
 	return createObservable( outputObservable => {
-		inputObservable.subscribe( createSubscriber( outputObservable, async () => {
+		inputObservable.subscribe( createObserver( outputObservable, async () => {
 			try {
 				logger.log( `Making sure element (${ selector }) does not exist` );
 				const exists = await page.$( selector ) !== null;
@@ -105,10 +105,31 @@ function checkElementDoesNotExist( selector ) {
 	} );
 }
 
+function checkElementContainsText( selector, text ) {
+	const inputObservable = this;
+	return createObservable( outputObservable => {
+		inputObservable.subscribe( createObserver( outputObservable, async () => {
+			logger.log( `Checking that text in (${ selector }) is equal to (${ text })` );
+			try {
+				const elementText = await page.$eval( selector, element => element.innerText );
+
+				if( elementText === text ) {
+					logger.logSuccess( `Text in (${ selector }) is equal to (${ text })` );
+					await outputObservable.next();
+				} else {
+					outputObservable.error( `Text in ${ selector } (${ elementText }) is not equal to (${ text })` );
+				}
+			} catch( error ) {
+				outputObservable.error( error );
+			}
+		} ) );
+	} );
+}
+
 function setInputText( selector, value ) {
 	const inputObservable = this;
 	return createObservable( outputObservable => {
-		inputObservable.subscribe( createSubscriber( outputObservable, async () => {
+		inputObservable.subscribe( createObserver( outputObservable, async () => {
 			try {
 				logger.log( `Setting (${ selector }) value to (${ value })` );
 				const exists = await page.$( selector ) !== null;
@@ -130,7 +151,7 @@ function setInputText( selector, value ) {
 function click( selector ) {
 	const inputObservable = this;
 	return createObservable( outputObservable => {
-		inputObservable.subscribe( createSubscriber( outputObservable, async () => {
+		inputObservable.subscribe( createObserver( outputObservable, async () => {
 			try {
 				logger.log( `Clicking (${ selector })` );
 				const exists = await page.$( selector ) !== null;
@@ -152,7 +173,7 @@ function click( selector ) {
 function blur( selector ) {
 	const inputObservable = this;
 	return createObservable( outputObservable => {
-		inputObservable.subscribe( createSubscriber( outputObservable, async () => {
+		inputObservable.subscribe( createObserver( outputObservable, async () => {
 			try {
 				logger.log( `Clicking (${ selector })` );
 				const element = await page.$( selector );
@@ -175,7 +196,7 @@ function blur( selector ) {
 function delay( milliseconds ) {
 	const inputObservable = this;
 	return createObservable( outputObservable => {
-		inputObservable.subscribe( createSubscriber( outputObservable, async () => {
+		inputObservable.subscribe( createObserver( outputObservable, async () => {
 			try {
 				logger.log( `Waiting for (${ milliseconds })` );
 				await new Promise( resolve => setTimeout( resolve, milliseconds ) );
@@ -187,14 +208,14 @@ function delay( milliseconds ) {
 }
 
 /**
- * This is a utility function and is used because all observables
+ * This is a utility function and is used because all observers
  * have the same methods for passing errors and completions through the chain
  *
  * @param observable
  * @param next
  * @returns {{next: (function(): Promise<void>), error: (function(*=): *), complete: (function(): *)}}
  */
-function createSubscriber( observable, next ) {
+function createObserver( observable, next ) {
 	return {
 		next: next,
 		error: error => observable.error( error ),
@@ -210,6 +231,7 @@ function createObservable( subscribe ) {
 		waitForElement,
 		checkElementExists,
 		checkElementDoesNotExist,
+		checkElementContainsText,
 		setInputText,
 		click,
 		blur,

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import meow from 'meow';
 import { extname, basename } from 'path';
-import config from './config';
+import config from './config/global';
 import runTest from './src/run_test';
 import logger from './src/logger';
 
@@ -31,7 +31,7 @@ const cli = meow( `
 
 	for( let index = 0; index < files.length; index++ ) {
 		logger.logBold( `Running: ${ files[ index ] }` );
-		const output = await runTest( `node -r esm ${ config.tests_directory }/${ files[ index ] }` );
+		const output = await runTest( `${ config.tests_directory }/${ files[ index ] }` );
 		console.log( output );
 	}
 } )();
