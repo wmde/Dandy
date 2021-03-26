@@ -1,4 +1,7 @@
 export default {
+	address_page: {
+		selector: '.address-page'
+	},
 	fields: {
 		amount: {
 			name: 'amount-grp',
@@ -108,12 +111,45 @@ export default {
 					label_selector: '#payment-sub .control-label',
 				},
 			}
+		},
+		address_type: {
+			name: 'address_type',
+			radios: {
+				full: {
+					selector: '[name="addressTypeProvisional"][value="full"]'
+				},
+				email: {
+					selector: '[name="addressTypeProvisional"][value="email"]'
+				},
+				anonymous: {
+					selector: '[name="addressTypeProvisional"][value="anonymous"]'
+				},
+			}
 		}
 	},
 	buttons: {
 		next: {
 			language_item: '',
 			selector: '#next'
+		},
+		submit: {
+			selector: '#submit-btn'
+		},
+		address_change: {
+			selector: '#address-change-button'
+		}
+	},
+	success: {
+		donation: {
+			payment_notice: {
+				selector: '.payment-notice',
+				language_items: {
+					bank_transfer: 'donation_confirmation_payment_bank_transfer',
+				},
+			},
+			bank_data: {
+				selector: '#bank-data',
+			}
 		}
 	}
 }
