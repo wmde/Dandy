@@ -1,17 +1,17 @@
 import createDandy from '../src/dandy';
-import observer from '../src/observer';
 import config from '../config/global';
+import loadPageAcceptCookies from './utility/load-page-accept-cookies';
 
 ( async () => {
 
-	const dandy = await createDandy( config.test_url );
+	const dandy = await createDandy( config.test_url, { headless: false } );
+	await loadPageAcceptCookies( dandy, '/' );
 
-	dandy.goToPage( '/' )
-		.waitForElement( '#app' )
+	dandy.delay( 1000 )
 		.click( 'button#next' )
-		.checkElementExists( '.amount-wrapper + .help' )
+		.waitForElement( '.amount-wrapper + .help' )
 		.checkElementExists( '.payment-section fieldset:last-child .help' )
 		.captureScreenshot( 'donation/payment-error.png' )
-		.run( observer );
+		.run();
 
 } )();

@@ -1,5 +1,4 @@
 import createDandy from '../src/dandy';
-import observer from '../src/observer';
 import config from '../config/global';
 import formConfig from '../config/forms'
 
@@ -34,5 +33,5 @@ import formConfig from '../config/forms'
 		.checkElementExists( amountRadios.three_hundred.selector )
 		.checkElementContainsText( amountRadios.three_hundred.label_selector, '300€' )
 
-		.subscribe( observer );
+		.run();
 } )();

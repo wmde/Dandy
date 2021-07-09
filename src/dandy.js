@@ -149,7 +149,7 @@ class Dandy {
 	}
 
 	async run() {
-		this.browser = await puppeteer.launch( /*{ headless: false }*/ );
+		this.browser = await puppeteer.launch( this.options );
 		this.page = await this.browser.newPage();
 		await this.page.setViewport( { width: 1800, height: 1200 } );
 
@@ -158,9 +158,11 @@ class Dandy {
 				await this.actions[i]();
 			} catch( e ) {
 				logger.logError( e );
-				throw new Error( e );
+				break;
 			}
 		}
+
+		await this.browser.close();
 	}
 }
 

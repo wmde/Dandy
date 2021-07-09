@@ -1,5 +1,4 @@
 import createDandy from '../src/dandy';
-import observer from '../src/observer';
 import config from '../config/global';
 import formConfig from '../config/forms'
 import messages from 'wmde-fundraising-frontend-content/i18n/de_DE/messages/messages_laika.json';
@@ -30,5 +29,5 @@ import messages from 'wmde-fundraising-frontend-content/i18n/de_DE/messages/mess
 
 		.checkElementExists( formConfig.success.donation.bank_data.selector )
 
-		.subscribe( observer );
+		.run();
 } )();
