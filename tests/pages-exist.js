@@ -1,6 +1,5 @@
 import createDandy from '../src/dandy';
 import config from '../config/global';
-import observer from '../src/observer';
 
 ( async () => {
 	let dandy = await createDandy( config.test_url );
@@ -11,6 +10,6 @@ import observer from '../src/observer';
 			.checkElementDoesNotExist( '.page-not-found' );
 	} );
 
-	dandy.subscribe( observer );
+	dandy.run();
 } )();
 

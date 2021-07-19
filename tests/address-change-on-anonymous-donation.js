@@ -1,5 +1,4 @@
 import createDandy from '../src/dandy';
-import observer from '../src/observer';
 import config from '../config/global';
 import formConfig from '../config/forms'
 
@@ -23,5 +22,5 @@ import formConfig from '../config/forms'
 
 		.checkElementExists( formConfig.buttons.address_change.selector )
 
-		.subscribe( observer );
+		.run();
 } )();

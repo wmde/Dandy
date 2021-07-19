@@ -1,5 +1,4 @@
 import createDandy from '../src/dandy';
-import observer from '../src/observer';
 import config from '../config/global';
 import formConfig from '../config/forms'
 import messages from 'wmde-fundraising-frontend-content/i18n/de_DE/messages/paymentTypes.json';
@@ -25,5 +24,5 @@ import messages from 'wmde-fundraising-frontend-content/i18n/de_DE/messages/paym
 		.checkElementExists( paymentRadios.sofort.selector )
 		.checkElementContainsText( paymentRadios.sofort.label_selector, messages[ paymentRadios.sofort.language_item ] )
 
-		.subscribe( observer );
+		.run();
 } )();
