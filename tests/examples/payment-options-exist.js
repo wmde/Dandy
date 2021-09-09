@@ -1,6 +1,6 @@
-import createDandy from '../src/dandy';
-import config from '../config/global';
-import formConfig from '../config/forms'
+import createDandy from '../../src/dandy';
+import config from '../../config/global';
+import formConfig from '../../config/forms'
 import messages from 'wmde-fundraising-frontend-content/i18n/de_DE/messages/paymentTypes.json';
 
 ( async () => {

@@ -1,4 +1,4 @@
-export default {
+const config = {
 	production_url: 'https://spenden.wikimedia.de',
 	test_url: 'https://test-spenden-2.wikimedia.de',
 	screenshots_directory: './screenshots',
@@ -42,8 +42,35 @@ export default {
 			url: '/list-comments.html'
 		}
 	],
+	user: {
+		first_name: 'The',
+		last_name: 'Doctor',
+		company: 'Tardis Co Ltd',
+		street: 'Tardis 11',
+		post_code: '10963',
+		city: 'Berlin',
+		country: 'Deutschland',
+		email: 'spenden-testing@wikimedia.de',
+		iban: 'DE12500105170648489890',
+		birth_date: '11.11.1980',
+	},
 	fields: {
 		payment: {},
 		address: {}
 	}
 };
+
+export default config;
+
+export const {
+	first_name,
+	last_name,
+	company,
+	street,
+	post_code,
+	city,
+	country,
+	email,
+	iban,
+	birth_date,
+} = config.user;

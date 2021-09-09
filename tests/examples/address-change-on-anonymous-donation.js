@@ -1,6 +1,6 @@
-import createDandy from '../src/dandy';
-import config from '../config/global';
-import formConfig from '../config/forms'
+import createDandy from '../../src/dandy';
+import config from '../../config/global';
+import formConfig from '../../config/forms'
 
 ( async () => {
 	const dandy = await createDandy( config.test_url );
