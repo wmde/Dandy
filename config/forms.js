@@ -1,6 +1,26 @@
-export default {
+const formConfig = {
 	address_page: {
 		selector: '.address-page'
+	},
+	payment_page: {
+		selector: '.payment-page'
+	},
+	forms: {
+		address_type: {
+			selector: '#address-type-selection'
+		},
+		private: {
+			selector: '#laika-donation-personal-data-person'
+		},
+		company: {
+			selector: '#laika-donation-personal-data-company'
+		},
+		email: {
+			selector: '#laika-donation-personal-data-email'
+		},
+		anonymous: {
+			selector: '#laika-donation-personal-data-anonymous'
+		},
 	},
 	fields: {
 		amount: {
@@ -113,18 +133,111 @@ export default {
 			}
 		},
 		address_type: {
-			name: 'address_type',
+			name: 'addressType',
 			radios: {
 				full: {
-					selector: '[name="addressTypeProvisional"][value="full"]'
+					selector: '[name="addressType"][value="full"]'
 				},
 				email: {
-					selector: '[name="addressTypeProvisional"][value="email"]'
+					selector: '[name="addressType"][value="email"]'
 				},
 				anonymous: {
-					selector: '[name="addressTypeProvisional"][value="anonymous"]'
+					selector: '[name="addressType"][value="anonymous"]'
 				},
 			}
+		},
+		address_type_internal: {
+			name: 'addressTypeInternal',
+			radios: {
+				person: {
+					selector: '[name="addressTypeInternal"][value="person"]'
+				},
+				company: {
+					selector: '[name="addressTypeInternal"][value="company"]'
+				},
+			}
+		},
+		address_type_membership: {
+			name: 'addressTypeInternal',
+			radios: {
+				person: {
+					selector: '#personal'
+				},
+				company: {
+					selector: '#company'
+				}
+			}
+		},
+		salutation: {
+			name: 'salutationInternal',
+			radios: {
+				mr: {
+					selector: '[name="salutationInternal"][value="Herr"]'
+				},
+				mrs: {
+					selector: '[name="salutationInternal"][value="Frau"]'
+				},
+			}
+		},
+		membership_type: {
+			name: 'type',
+			radios: {
+				active: {
+					selector: '#sustaining input',
+				},
+				sustaining: {
+					selector: '#active input',
+				}
+			}
+		},
+		title: {
+			name: 'title',
+			selector: '#title',
+			options: {
+				none: '',
+				dr: 'Dr.',
+				prof: 'Prof.',
+				prof_dr: 'Prof. Dr.'
+			}
+		},
+		company_name: {
+			selector: '#company-name',
+		},
+		first_name: {
+			selector: '#first-name'
+		},
+		last_name: {
+			selector: 'input#last-name'
+		},
+		street: {
+			selector: 'input#street'
+		},
+		post_code: {
+			selector: 'input#post-code'
+		},
+		city: {
+			selector: 'input#city'
+		},
+		country: {
+			selector: 'input#country'
+		},
+		receipt: {
+			selector: '#donation_receipt'
+		},
+		email: {
+			selector: 'input#email'
+		},
+		newsletter: {
+			selector: '[name="newsletter"]'
+		},
+		birth_date: {
+			selector: 'input#birthDate'
+		},
+		incentive: {
+			selector: '.incentive-tote_bag input'
+		},
+		iban: {
+			selector: 'input#iban'
 		}
 	},
 	buttons: {
@@ -141,6 +254,7 @@ export default {
 	},
 	success: {
 		donation: {
+			selector: '.donation-confirmation',
 			payment_notice: {
 				selector: '.payment-notice',
 				language_items: {
@@ -150,6 +264,11 @@ export default {
 			bank_data: {
 				selector: '#bank-data',
 			}
+		},
+		membership: {
+			selector: '.membership-confirmation'
 		}
 	}
 }
+
+export default formConfig;

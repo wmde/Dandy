@@ -88,7 +88,7 @@ class Dandy {
 			logger.log( `Checking that text in (${ selector }) is equal to (${ text })` );
 			const elementText = await this.page.$eval( selector, element => element.innerText );
 
-			if( elementText === text ) {
+			if( elementText.replace(/\s+/g, ' ') === text.replace(/\s+/g, ' ') ) {
 				logger.logSuccess( `Text in (${ selector }) is equal to (${ text })` );
 			} else {
 				await Promise.reject( new Error( `Text in ${ selector } (${ elementText }) is not equal to (${ text })` ) );
@@ -111,6 +111,20 @@ class Dandy {
 		return this;
 	}
 
+	selectOption( selector, option ) {
+		this.actions.push( async () => {
+			logger.log( `selecting (${ option }) on (${ selector })` );
+			const exists = await this.page.$( selector ) !== null;
+
+			if( exists ) {
+				await this.page.select( selector, option );
+			} else {
+				await Promise.reject( new Error( `Could not find element (${ selector })` ) );
+			}
+		} );
+		return this;
+	}
+
 	click( selector ) {
 		this.actions.push( async () => {
 			logger.log( `Clicking (${ selector })` );
@@ -121,6 +135,15 @@ class Dandy {
 			} else {
 				await Promise.reject( new Error( `Could not find element (${ selector })` ) );
 			}
+		} );
+		return this;
+	}
+
+	clickSubmit( selector ) {
+		this.click( selector );
+		this.actions.push( async () => {
+			logger.log( 'Waiting for page load' );
+			await this.page.waitForNavigation({ waitUntil: 'networkidle0' });
 		} );
 		return this;
 	}
@@ -140,7 +163,7 @@ class Dandy {
 		return this;
 	}
 
-	delay( milliseconds ) {
+	wait( milliseconds ) {
 		this.actions.push( async () => {
 			logger.log( `Waiting for (${ milliseconds })` );
 			await new Promise( resolve => setTimeout( resolve, milliseconds ) );
