@@ -172,10 +172,10 @@ const formConfig = {
 			name: 'salutationInternal',
 			radios: {
 				mr: {
-					selector: '[name="salutationInternal"][value="Herr"]'
+					selector: '[name="salutationInternal"][value="Herr"], [name="salutationInternal"][value="Mr"]'
 				},
 				mrs: {
-					selector: '[name="salutationInternal"][value="Frau"]'
+					selector: '[name="salutationInternal"][value="Frau"], [name="salutationInternal"][value="Ms"]'
 				},
 			}
 		},

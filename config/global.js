@@ -1,6 +1,7 @@
 const config = {
 	production_url: 'https://spenden.wikimedia.de',
 	test_url: 'https://test-spenden-2.wikimedia.de',
+	local_url: 'http://localhost:8082',
 	screenshots_directory: './screenshots',
 	tests_directory: './tests',
 	app_selector: '#app',

@@ -103,6 +103,7 @@ class Dandy {
 			const exists = await this.page.$( selector ) !== null;
 
 			if( exists ) {
+				await this.page.$eval( selector, el => el.value = '' );
 				await this.page.type( selector, value );
 			} else {
 				await Promise.reject( new Error( `Could not find element (${ selector })` ) );

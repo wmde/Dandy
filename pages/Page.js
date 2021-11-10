@@ -3,9 +3,11 @@ import config from '../config/global.js';
 
 export default class Page {
 	dandy;
+	parameters;
 
-	constructor() {
+	constructor( parameters = {} ) {
 		this.dandy = createDandy( config.test_url );
+		this.parameters = new URLSearchParams( parameters );
 	}
 
 	acceptCookies() {

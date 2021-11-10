@@ -6,10 +6,10 @@ export default class DonationForm extends Page {
 
 	form;
 
-	constructor( form ) {
-		super();
+	constructor( form, parameters = {}  ) {
+		super( parameters );
 		this.form = form;
-		this.dandy.goToPage( '/' )
+		this.dandy.goToPage( '/?' + this.parameters.toString() )
 			.waitForElement( config.app_selector );
 	}
 

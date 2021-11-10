@@ -4,9 +4,9 @@ import formConfig from '../config/forms.js';
 
 export default class MembershipForm extends Page {
 
-	constructor() {
-		super();
-		this.dandy.goToPage( '/apply-for-membership' )
+	constructor( parameters = {} ) {
+		super( parameters );
+		this.dandy.goToPage( '/apply-for-membership?' + this.parameters.toString() )
 			.waitForElement( config.app_selector );
 	}
 
