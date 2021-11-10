@@ -1,5 +1,5 @@
-import config from '../config/global';
-import createDandy from '../src/Dandy';
+import config from '../config/global.js';
+import createDandy from '../src/Dandy.js';
 
 ( async () => {
 	let dandy = await createDandy( config.test_url );

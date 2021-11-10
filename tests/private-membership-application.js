@@ -1,5 +1,5 @@
-import { first_name, last_name, street, post_code, city, country, birth_date, email, iban } from '../config/global';
-import MembershipForm from '../pages/MembershipForm';
+import { first_name, last_name, street, post_code, city, country, birth_date, email, iban } from '../config/global.js';
+import MembershipForm from '../pages/MembershipForm.js';
 
 ( async () => {
 	const form = new MembershipForm();

@@ -11,7 +11,7 @@ Fundraising Team acceptance test tool
 
 **Note:** There's an issue with live feedback at the moment because of how the files are run through exec. I'm looking into it but in the meantime if you want live feedback then you can run a single file with the following command:
 
-`$ node -r esm ./tests/pages-exist.js`
+`$ node ./tests/pages-exist.js`
 
 ### Writing a new test
 Add a new file in the tests folder, or copy an existing one and modify it for your needs. There are 2 prerequisites you need per test, you need to start with `goToPage( "/my-url" )` and finish with `run()`.

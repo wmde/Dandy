@@ -1,5 +1,5 @@
-import createDandy from '../src/Dandy';
-import config from '../config/global';
+import createDandy from '../src/Dandy.js';
+import config from '../config/global.js';
 
 export default class Page {
 	dandy;

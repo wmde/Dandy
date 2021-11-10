@@ -1,9 +1,9 @@
 import fs from 'fs';
 import meow from 'meow';
 import { extname, basename } from 'path';
-import config from './config/global';
-import runTest from './src/run_test';
-import logger from './src/logger';
+import config from './config/global.js';
+import runTest from './src/run_test.js';
+import logger from './src/logger.js';
 
 process.env.FORCE_COLOR = '1';
 

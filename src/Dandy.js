@@ -1,5 +1,5 @@
-import logger from './logger';
-import config from '../config/global';
+import logger from './logger.js';
+import config from '../config/global.js';
 import { promises as fs } from 'fs';
 import { dirname } from 'path';
 import puppeteer from 'puppeteer';

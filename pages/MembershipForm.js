@@ -1,6 +1,6 @@
-import Page from './Page';
-import config from '../config/global';
-import formConfig from '../config/forms';
+import Page from './Page.js';
+import config from '../config/global.js';
+import formConfig from '../config/forms.js';
 
 export default class MembershipForm extends Page {
 

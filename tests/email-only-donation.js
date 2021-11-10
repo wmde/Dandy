@@ -1,6 +1,6 @@
-import { email, first_name, last_name } from '../config/global';
-import formConfig from '../config/forms';
-import DonationForm from '../pages/DonationForm';
+import { email, first_name, last_name } from '../config/global.js';
+import formConfig from '../config/forms.js';
+import DonationForm from '../pages/DonationForm.js';
 
 ( async () => {
 	const page = new DonationForm( formConfig.forms.email.selector );

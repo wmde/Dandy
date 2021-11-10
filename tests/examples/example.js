@@ -1,11 +1,9 @@
-import createDandy from '../../src/dandy';
-import config from '../../config/global';
-import loadPageAcceptCookies from '../utility/load-page-accept-cookies';
+import createDandy from '../../src/dandy.js';
+import config from '../../config/global.js';
 
 ( async () => {
 
 	const dandy = await createDandy( config.test_url, { headless: false } );
-	await loadPageAcceptCookies( dandy, '/' );
 
 	dandy.wait( 1000 )
 		.click( 'button#next' )
