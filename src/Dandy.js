@@ -1,5 +1,5 @@
-import logger from './logger';
-import config from '../config/global';
+import logger from './logger.js';
+import config from '../config/global.js';
 import { promises as fs } from 'fs';
 import { dirname } from 'path';
 import puppeteer from 'puppeteer';
@@ -103,6 +103,7 @@ class Dandy {
 			const exists = await this.page.$( selector ) !== null;
 
 			if( exists ) {
+				await this.page.$eval( selector, el => el.value = '' );
 				await this.page.type( selector, value );
 			} else {
 				await Promise.reject( new Error( `Could not find element (${ selector })` ) );

@@ -1,5 +1,5 @@
-import formConfig from '../config/forms'
-import DonationForm from '../pages/DonationForm';
+import formConfig from '../config/forms.js';
+import DonationForm from '../pages/DonationForm.js';
 
 ( async () => {
 	const page = new DonationForm( formConfig.forms.anonymous.selector );

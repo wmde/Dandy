@@ -1,15 +1,15 @@
-import Page from './Page';
-import config from '../config/global';
-import formConfig from '../config/forms';
+import Page from './Page.js';
+import config from '../config/global.js';
+import formConfig from '../config/forms.js';
 
 export default class DonationForm extends Page {
 
 	form;
 
-	constructor( form ) {
-		super();
+	constructor( form, parameters = {}  ) {
+		super( parameters );
 		this.form = form;
-		this.dandy.goToPage( '/' )
+		this.dandy.goToPage( '/?' + this.parameters.toString() )
 			.waitForElement( config.app_selector );
 	}
 
