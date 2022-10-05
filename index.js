@@ -9,17 +9,36 @@ process.env.FORCE_COLOR = '1';
 
 const cli = meow( `
 	Usage
-		node -r index.js <TEST_NAMES>
+		node index.js <TEST_NAMES>
+		node index.js -b <BANNER_NAME> <TEST_NAMES>
 
 		<TEST_NAMES> Optional list of names of the tests you want to run
+		<BANNER_NAME> When you want to run tests for a banner pass the name through a flag
 		
 	Options
 		--banner, -b  Pass a banner name into Dandy to let it know you want to run tests on a single banner
 		
 	Examples
-	$ npm run dandy pages-exist
-	$ npm run dandy -b C22_WMDE_Mobile_Test_05 01-banner-loads
-	$ node index.js pages-exist
+		Run all tests:
+		$ npm run dandy
+		or
+		$ node index.js
+		
+		Run a single test:
+		$ npm run dandy pages-exist
+		or
+		$ node index.js pages-exist
+		
+		Run all tests for a banner:
+		$ npm run dandy -- -b C22_WMDE_Mobile_Test_05
+		or
+		$ node index.js -b C22_WMDE_Mobile_Test_05
+		
+		Run a single test for a banner:
+		$ npm run dandy 01-banner-loads -- -b C22_WMDE_Mobile_Test_05
+		or
+		$ node index.js 01-banner-loads -b C22_WMDE_Mobile_Test_05
+	
 	`, {
 	importMeta: import.meta,
 	description: 'Run acceptance tests',
