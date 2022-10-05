@@ -19,7 +19,7 @@ const cli = meow( `
 	Examples
 	$ npm run dandy pages-exist
 	$ npm run dandy -b C22_WMDE_Mobile_Test_05 01-banner-loads
-	$ node -r esm index.js pages-exist
+	$ node index.js pages-exist
 	`, {
 	importMeta: import.meta,
 	description: 'Run acceptance tests',

@@ -6,12 +6,12 @@ export default class Banner {
 	parameters;
 
 	constructor( url, parameters = {} ) {
-		this.dandy = createDandy( url );
+		this.dandy = createDandy( url, { viewport : { width: 460, height: 1200 } } );
 		this.parameters = new URLSearchParams( parameters );
 	}
 
 	waitForBanner() {
-		this.dandy.waitForElement( bannerConfig.banner_visible_class, { timeout: 10000 } );
+		this.dandy.waitForElement( bannerConfig.selectors.banner_visible, { timeout: 10000 } );
 		return this;
 	}
 

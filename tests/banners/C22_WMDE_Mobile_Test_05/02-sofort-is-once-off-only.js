@@ -12,6 +12,12 @@ const parameters = {
 	const banner = new MobileBanner( url, bannerConfig.selectors, parameters );
 
 	await banner.waitForBanner()
-		.captureScreenshot( 'banners/C22_WMDE_Mobile_Test_05/01-banner-loads.png' )
+		.clickMiniBannerButton()
+		.waitForFollowupBanner()
+		.clickPaymentTypeSofortButton()
+		.wait(100)
+		.checkIntervalMonthlyIsDisabled()
+		.checkIntervalYearlyIsDisabled()
+		.captureScreenshot( 'banners/C22_WMDE_Mobile_Test_05/02-sofort-is-once-off-only.png' )
 		.run();
 } )();

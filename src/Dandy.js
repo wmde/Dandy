@@ -175,7 +175,7 @@ class Dandy {
 	async run() {
 		this.browser = await puppeteer.launch( this.options );
 		this.page = await this.browser.newPage();
-		await this.page.setViewport( { width: 1800, height: 1200 } );
+		await this.page.setViewport( this.options.viewport !== undefined ? this.options.viewport : { width: 1800, height: 1200 } );
 
 		for( let i = 0; i < this.actions.length; i++ ) {
 			try {
