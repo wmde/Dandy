@@ -4,6 +4,7 @@ const config = {
 	local_url: 'http://localhost:8082',
 	screenshots_directory: './screenshots',
 	tests_directory: './tests',
+	banners_directory: './tests/banners',
 	app_selector: '#app',
 	pages: [
 		{

@@ -9,20 +9,53 @@ process.env.FORCE_COLOR = '1';
 
 const cli = meow( `
 	Usage
-		node -r esm index.js <TEST_NAMES>
+		node index.js <TEST_NAMES>
+		node index.js -b <BANNER_NAME> <TEST_NAMES>
 
 		<TEST_NAMES> Optional list of names of the tests you want to run
+		<BANNER_NAME> When you want to run tests for a banner pass the name through a flag
+		
+	Options
+		--banner, -b  Pass a banner name into Dandy to let it know you want to run tests on a single banner
 		
 	Examples
-	$ npm run dandy pages-exist
-	$ node -r esm index.js pages-exist
+		Run all tests:
+		$ npm run dandy
+		or
+		$ node index.js
+		
+		Run a single test:
+		$ npm run dandy pages-exist
+		or
+		$ node index.js pages-exist
+		
+		Run all tests for a banner:
+		$ npm run dandy -- -b C22_WMDE_Mobile_Test_05
+		or
+		$ node index.js -b C22_WMDE_Mobile_Test_05
+		
+		Run a single test for a banner:
+		$ npm run dandy 01-banner-loads -- -b C22_WMDE_Mobile_Test_05
+		or
+		$ node index.js 01-banner-loads -b C22_WMDE_Mobile_Test_05
+	
 	`, {
+	importMeta: import.meta,
 	description: 'Run acceptance tests',
 	input: [],
+	flags: {
+		banner: {
+			type: 'string',
+			alias: 'b'
+		}
+	}
 } );
 
 ( async () => {
-	let files = fs.readdirSync( config.tests_directory )
+	const isBanner = cli.flags.banner !== undefined;
+	const testDirectory = isBanner ? `${ config.banners_directory }/${ cli.flags.banner }` : config.tests_directory;
+
+	let files = fs.readdirSync( testDirectory )
 		.filter( file => extname( file ) === '.js' );
 
 	if( cli.input.length > 0 ) {
@@ -31,7 +64,7 @@ const cli = meow( `
 
 	for( let index = 0; index < files.length; index++ ) {
 		logger.logBold( `Running: ${ files[ index ] }` );
-		const output = await runTest( `${ config.tests_directory }/${ files[ index ] }` );
+		const output = await runTest( `${ testDirectory }/${ files[ index ] }` );
 		console.log( output );
 	}
 } )();
