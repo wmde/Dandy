@@ -12,6 +12,9 @@ const parameters = {
 	const banner = new MobileBanner( url, bannerConfig.selectors, parameters, { viewport : { width: 460, height: 1200 } } );
 
 	await banner.waitForBanner()
-		.captureScreenshot( 'banners/C22_WMDE_Mobile_Test_05/01-banner-loads.png' )
+		.clickMiniBannerCloseButton()
+		.wait( 100 )
+		.checkBannerIsHidden()
+		.captureScreenshot( 'banners/C22_WMDE_Mobile_Test_05/03-closes-from-mini-banner.png' )
 		.run();
 } )();

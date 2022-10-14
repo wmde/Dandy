@@ -4,11 +4,16 @@ import { bannerConfig } from '../config/banners.js';
 export default class MobileBanner extends Banner {
 	selectors;
 
-	constructor( url, selectors, parameters = {}  ) {
-		super( url, parameters );
+	constructor( url, selectors, parameters = {}, options = {}  ) {
+		super( url, parameters, options );
 		this.selectors = selectors;
 
 		this.dandy.goToPage( '?' + this.parameters.toString() );
+	}
+
+	clickMiniBannerCloseButton() {
+		this.dandy.click( bannerConfig.selectors.close_button.mini );
+		return this;
 	}
 
 	clickMiniBannerButton() {
@@ -31,8 +36,18 @@ export default class MobileBanner extends Banner {
 		return this;
 	}
 
+	checkIntervalMonthlyIsEnabled() {
+		this.dandy.checkElementDoesNotExist( bannerConfig.selectors.donation_form.interval.disabled.monthly );
+		return this;
+	}
+
 	checkIntervalYearlyIsDisabled() {
 		this.dandy.checkElementExists( bannerConfig.selectors.donation_form.interval.disabled.yearly );
+		return this;
+	}
+
+	checkBannerIsHidden() {
+		this.dandy.checkElementExists( bannerConfig.selectors.banner_hidden );
 		return this;
 	}
 }
