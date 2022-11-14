@@ -5,8 +5,8 @@ export default class Banner {
 	dandy;
 	parameters;
 
-	constructor( url, parameters = {} ) {
-		this.dandy = createDandy( url, { viewport : { width: 460, height: 1200 } } );
+	constructor( url, parameters = {}, options = {} ) {
+		this.dandy = createDandy( url, options );
 		this.parameters = new URLSearchParams( parameters );
 	}
 

@@ -9,7 +9,7 @@ const parameters = {
 };
 
 ( async () => {
-	const banner = new MobileBanner( url, bannerConfig.selectors, parameters );
+	const banner = new MobileBanner( url, bannerConfig.selectors, parameters, { viewport : { width: 460, height: 1200 } } );
 
 	await banner.waitForBanner()
 		.clickMiniBannerButton()

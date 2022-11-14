@@ -1,6 +1,7 @@
 export const bannerConfig = {
 	selectors: {
 		banner_visible: '.banner-position--state-finished',
+		banner_hidden: '.wmde-banner--hidden',
 		followup_visible: '.wmde-banner-followup-banner-position--state-finished',
 		close_button: {
 			mini: '.wmde-banner-mini-close-button',
