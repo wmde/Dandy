@@ -8,7 +8,6 @@ export default class Banner {
 	dandy;
 
 	parameters;
-
 	selectors;
 
 	constructor( url, selectors, parameters = {}, options = {} ) {
@@ -163,4 +162,8 @@ export default class Banner {
 		return this;
 	}
 
+	clickPaymentTypeSofortButton() {
+		this.dandy.click( bannerConfig.selectors.donation_form.payment_type.sofort );
+		return this;
+	}
 }
