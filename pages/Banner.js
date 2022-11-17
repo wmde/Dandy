@@ -8,6 +8,7 @@ export default class Banner {
 	dandy;
 
 	parameters;
+	selectors;
 
 	selectors;
 
