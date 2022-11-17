@@ -30,7 +30,10 @@ export const bannerConfig = {
 	selectors: {
 		banner_visible: '.banner-position--state-finished',
 		banner_hidden: '.wmde-banner--hidden',
-		followup_visible: '.wmde-banner-followup-banner-position--state-finished',
+		followup_banner: {
+			visible: '.wmde-banner-followup-banner-position--state-finished',
+			donation_form: '.wmde-banner-form'
+		},
 		close_button: {
 			mini: '.wmde-banner-mini-close-button',
 			full: '.wmde-banner-full-close'
@@ -38,6 +41,20 @@ export const bannerConfig = {
 		submit_button: {
 			mini: '.wmde-banner-mini-button',
 			form: '.wmde-banner-form-button'
+		},
+		use_of_funds: {
+			link: '.wmde-banner-footer-usage-link',
+			modal_is_open: '.banner_modal.is-visible',
+			modal_container: '.banner_modal__container',
+			elements: {
+				top_section: '.use_of_funds__section',
+				text: '.use_of_funds__info_text',
+				benefits_list: '.use_of_funds__benefits_list',
+				comparison: '.use_of_funds__comparison',
+				orgchart: '.use_of_funds__orgchart_text',
+				orgchart_image: '.use_of_funds__orgchart_image',
+				donate_button: '.use_of_funds__button'
+			}
 		},
 		donation_form: {
 			interval: {
