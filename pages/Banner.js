@@ -166,4 +166,10 @@ export default class Banner {
 		this.dandy.click( bannerConfig.selectors.donation_form.payment_type.sofort );
 		return this;
 	}
+
+	checkSliderIsDisplayedOnSmallViewPort() {
+		this.dandy.checkElementDoesNotExist( bannerConfig.selectors.message.big_viewport );
+		this.dandy.checkElementExists( bannerConfig.selectors.message.small_viewport );
+		return this;
+	}
 }

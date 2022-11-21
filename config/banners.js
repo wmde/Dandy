@@ -32,6 +32,10 @@ export const bannerConfig = {
 		banner_hidden: '.wmde-banner--hidden',
 		banner_soft_close: '.wmde-banner--soft-closing',
 		followup_visible: '.wmde-banner-followup-banner-position--state-finished',
+		message: {
+			small_viewport: '.wmde-banner-slider-container',
+			big_viewport: '.wmde-banner-message'
+		},
 		close_button: {
 			desktop: '.wmde-banner-close-link',
 			mini: '.wmde-banner-mini-close-button',
