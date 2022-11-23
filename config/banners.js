@@ -36,6 +36,12 @@ export const bannerConfig = {
 			small_viewport: '.wmde-banner-slider-container',
 			big_viewport: '.wmde-banner-message'
 		},
+		slider: {
+			first_slide: '.keen-slider__slide.wmde-banner-slide.wmde-banner-slide--current',
+			next_slide: '.keen-slider__slide.wmde-banner-slide',
+			next_button: '.wmde-banner-slider-navigation-next',
+			back_button: '.wmde-banner-slider-navigation-previous'
+		},
 		close_button: {
 			desktop: '.wmde-banner-close-link',
 			mini: '.wmde-banner-mini-close-button',

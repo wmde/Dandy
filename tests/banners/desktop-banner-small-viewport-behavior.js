@@ -10,6 +10,7 @@ const testConfig = buildBannerTestConfig( process.argv );
 
 	await banner.waitForBanner()
 		.checkSliderIsDisplayedOnSmallViewPort()
-		.captureScreenshot( `banners/${ testConfig.bannerName }/desktop-banner-small-viewport.png` )
+		.checkSlidesAreSlidingInSlider()
+		.captureScreenshot( `banners/${ testConfig.bannerName }/desktop-banner-small-viewport_second_slide.png` )
 		.run();
 } )();
