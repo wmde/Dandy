@@ -45,6 +45,18 @@ class Dandy {
 		return this;
 	}
 
+	reloadPage() {
+		this.actions.push( async () => {
+			try {
+				logger.log( `Reloading page` );
+				await this.page.reload( { waitUntil: [ "networkidle0", "domcontentloaded" ] } );
+			} catch( error ) {
+				await Promise.reject( new Error( `Something went wrong re-loading` ) );
+			}
+		} );
+		return this;
+	}
+
 	captureScreenshot( filename ) {
 		this.actions.push( async () => {
 			const fullFilePath = `${ config.screenshots_directory }/${ filename }`;

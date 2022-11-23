@@ -49,6 +49,16 @@ export default class Banner {
 		return this;
 	}
 
+	checkIfMiniBannerHasAnimatedTextHighlight() {
+		this.dandy.checkElementExists( this.selectors.selectors.animated_text_highlight.mini_slider );
+		return this;
+	}
+
+	checkIfFullPageBannerHasAnimatedTextHighlight() {
+		this.dandy.checkElementExists( this.selectors.selectors.animated_text_highlight.full );
+		return this;
+	}
+
 	clickMiniBannerCloseButton() {
 		this.dandy.click( this.selectors.close_button.mini );
 		return this;
@@ -70,7 +80,8 @@ export default class Banner {
 	}
 
 	waitForFollowupBanner() {
-		this.dandy.waitForElement( this.selectors.followup_visible );
+		this.dandy.waitForElement( this.selectors.followup_visible, { timeout: 10000 } );
+		this.dandy.waitForElement( this.selectors.close_button.full );
 		return this;
 	}
 
