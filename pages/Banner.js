@@ -43,8 +43,32 @@ export default class Banner {
 		return this;
 	}
 
+	clickUseOfFundsLink() {
+		this.dandy.click( bannerConfig.selectors.use_of_funds.link );
+		return this;
+	}
+
+	checkUseOfFundsIsVisible() {
+		this.dandy.checkElementExists( bannerConfig.selectors.use_of_funds.modal_is_open );
+		this.dandy.checkElementExists( bannerConfig.selectors.use_of_funds.modal_container );
+		this.dandy.checkElementExists( bannerConfig.selectors.use_of_funds.elements.top_section );
+		this.dandy.checkElementExists( bannerConfig.selectors.use_of_funds.elements.text );
+		this.dandy.checkElementExists( bannerConfig.selectors.use_of_funds.elements.benefits_list );
+		this.dandy.checkElementExists( bannerConfig.selectors.use_of_funds.elements.comparison );
+		this.dandy.checkElementExists( bannerConfig.selectors.use_of_funds.elements.orgchart );
+		this.dandy.checkElementExists( bannerConfig.selectors.use_of_funds.elements.orgchart_image );
+		this.dandy.checkElementExists( bannerConfig.selectors.use_of_funds.elements.donate_button );
+		return this;
+	}
+
+	checkIfActionButtonOnUOFLeadsToFullPageDonationForm() {
+		this.dandy.click( bannerConfig.selectors.use_of_funds.elements.donate_button );
+		this.dandy.checkElementDoesNotExist( bannerConfig.selectors.use_of_funds.modal_is_open );
+		this.dandy.checkElementExists( bannerConfig.selectors.followup_banner.donation_form );
+		return this;
+	}
 	waitForFollowupBanner() {
-		this.dandy.waitForElement( bannerConfig.selectors.followup_visible );
+		this.dandy.waitForElement( bannerConfig.selectors.followup_banner.visible );
 		return this;
 	}
 
