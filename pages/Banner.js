@@ -158,4 +158,9 @@ export default class Banner {
 		return this;
 	}
 
+	showConsoleLog( filter ) {
+		this.dandy.showConsoleLog( filter );
+		return this;
+	}
+
 }

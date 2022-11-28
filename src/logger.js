@@ -16,6 +16,13 @@ const logError = message => {
 	logWithTime( chalk.red( message ) );
 }
 
+const logDebug = ( message, context ) => {
+	console.log( ...[ 
+		chalk.gray( currentTime() ) + ' ' + chalk.cyan( message), 
+		...context
+	] );
+}
+
 const logWithTime = message => {
 	console.log( chalk.gray( currentTime() ) + ' ' + message );
 }
@@ -30,6 +37,7 @@ const currentTime = () => {
 export default {
 	log,
 	logBold,
+	logDebug,
 	logSuccess,
 	logError,
 }

@@ -21,6 +21,7 @@ class Dandy {
 	options = {};
 	actions = [];
 	eventLog = [];
+	consoleLog = [];
 
 	constructor( baseUrl, options = {} ) {
 		this.baseUrl = baseUrl;
@@ -237,9 +238,31 @@ class Dandy {
 		return this;
 	}
 
+	showConsoleLog( filter ) {
+		if ( !filter ) {
+			filter = /.*/
+		}
+		this.actions.push( async () => {
+			for ( let i = 0; i < this.consoleLog.length; i++ ) {
+				const entry = this.consoleLog[i];
+				if ( !entry.msg.match( filter ) ) {
+					continue;
+				}
+				const args = await Promise.all( entry.args.map( arg => arg.jsonValue() ) );
+				logger.logDebug( entry.msg, args )
+			}
+		} );
+		return this;
+	}
+
 	async run() {
 		this.browser = await puppeteer.launch( this.options );
 		this.page = await this.browser.newPage();
+
+		this.page.on('console', message => this.consoleLog.push( { 
+			msg: message.text().replace(/\s*JSHandle@(object|array)\s*/g,''), 
+			args: message.args().slice(1) 
+		} ) );
 
 		if( this.options.requestLogger !== undefined ) {
 			await this.page.setRequestInterception( true );
