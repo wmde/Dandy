@@ -1,4 +1,32 @@
 export const bannerConfig = {
+	banner_keywords: {
+		mobile_de: 'Mobile_Test',
+		mobile_en: 'Mobile_EN_Test',
+		wpde: 'WPDE',
+		desktop_en: 'Test_EN',
+	},
+	urls: {
+		desktop: {
+			production: 'https://de.wikipedia.org/wiki/Wikipedia:Hauptseite',
+			dev: 'http://localhost:8084/wiki/Wikipedia:Hauptseite'
+		},
+		mobile: {
+			production: 'https://de.wikipedia.org/wiki/Wikipedia:Hauptseite',
+			dev: 'http://localhost:8084/mobile/wiki/Wikipedia:Hauptseite'
+		},
+		desktop_en: {
+			production: 'https://en.wikipedia.org/wiki/Main_Page',
+			dev: 'http://localhost:8084/wiki/Main_Page'
+		},
+		mobile_en: {
+			production: 'https://en.wikipedia.org/wiki/Main_Page',
+			dev: 'http://localhost:8084/en-mobile/wiki/Main_Page'
+		},
+		wpde: {
+			production: 'https://www.wikipedia.de',
+			dev: 'http://localhost:8084/wikipedia.de',
+		}
+	},
 	selectors: {
 		banner_visible: '.banner-position--state-finished',
 		banner_hidden: '.wmde-banner--hidden',
@@ -8,7 +36,8 @@ export const bannerConfig = {
 			full: '.wmde-banner-full-close'
 		},
 		submit_button: {
-			mini: '.wmde-banner-mini-button'
+			mini: '.wmde-banner-mini-button',
+			form: '.wmde-banner-form-button'
 		},
 		donation_form: {
 			interval: {
