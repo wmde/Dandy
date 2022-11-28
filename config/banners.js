@@ -85,6 +85,9 @@ export const bannerConfig = {
 				direct_debit: '.select-payment-method-BEZ label',
 				bank_transfer: '.select-payment-method-UEB label',
 				sofort: '.select-payment-method-SUB label',
+				disabled: {
+					sofort: '.wmde-banner-select-group-option.select-payment-method-SUB.wmde-banner-disabled'
+				}
 			}
 		},
 		soft_close: {

@@ -100,8 +100,25 @@ export default class Banner {
 		return this;
 	}
 
+	checkPaymentTypeSofortIsDisabled() {
+		this.dandy.checkElementExists( this.selectors.donation_form.payment_type.disabled.sofort );
+		return this;
+	}
+
 	checkIntervalMonthlyIsDisabled() {
 		this.dandy.checkElementExists( this.selectors.donation_form.interval.disabled.monthly );
+		return this;
+	}
+
+	clickMonthlyPaymentInterval() {
+		this.dandy.checkElementExists( this.selectors.donation_form.interval.monthly );
+		this.dandy.click( this.selectors.donation_form.interval.monthly );
+		return this;
+	}
+
+	clickYearlyPaymentInterval() {
+		this.dandy.checkElementExists( this.selectors.donation_form.interval.yearly );
+		this.dandy.click( this.selectors.donation_form.interval.yearly );
 		return this;
 	}
 
