@@ -8,11 +8,19 @@ import puppeteer from 'puppeteer';
 class Dandy {
 
 	baseUrl = '';
+
+	/**
+	 * @type puppeteer.Browser
+	 */
 	browser = null;
+
+	/**
+	 * @type puppeteer.Page
+	 */
 	page = null;
 	options = {};
-
 	actions = [];
+	eventLog = [];
 
 	constructor( baseUrl, options = {} ) {
 		this.baseUrl = baseUrl;
@@ -172,9 +180,78 @@ class Dandy {
 		return this;
 	}
 
+	hasCookie( cookieName ) {
+		this.actions.push( async () => {
+			logger.log( `looking for cookie (${ cookieName })` );
+			const cookies = await this.page.cookies();
+
+			if( cookies.find( x => x.name === cookieName ) ) {
+				logger.logSuccess( `Cookie exists (${ cookieName })` );
+			} else {
+				await Promise.reject( new Error( `Could not find cookie (${ cookieName })` ) );
+			}
+		} );
+		return this;
+	}
+
+	eventWasLogged( eventName ) {
+		this.actions.push( async () => {
+			logger.log( `Looking for event (${ eventName })` );
+
+			if( this.eventLog.find( x => x.event === eventName ) !== undefined ) {
+				logger.logSuccess( `Event exists (${ eventName })` );
+			} else {
+				await Promise.reject( new Error( `Could not find event (${ eventName })` ) );
+			}
+		} );
+		return this;
+	}
+
+	eventWasLoggedWithData( eventName, dataKey ) {
+		this.actions.push( async () => {
+			logger.log( `Looking for event (${ eventName }) with data (${ dataKey })` );
+			const event = this.eventLog.find( x => x.event === eventName );
+
+			if( event === undefined ) {
+				await Promise.reject( new Error( `Could not find event (${ eventName })` ) );
+			}
+
+			if( event.data[ dataKey ] === undefined ) {
+				await Promise.reject( new Error( `Could not find event data item (${ dataKey }) in (${ eventName })` ) );
+			}
+
+			logger.logSuccess( `Event exists (${ eventName }) with data (${ dataKey })` );
+		} );
+		return this;
+	}
+
+	reloadPage() {
+		this.actions.push( async () => {
+			try {
+				logger.log( `Reloading page` );
+				await this.page.reload( { waitUntil: [ "networkidle0", "domcontentloaded" ] } );
+			} catch( error ) {
+				await Promise.reject( new Error( `Something went wrong re-loading` ) );
+			}
+		} );
+		return this;
+	}
+
 	async run() {
 		this.browser = await puppeteer.launch( this.options );
 		this.page = await this.browser.newPage();
+
+		if( this.options.requestLogger !== undefined ) {
+			await this.page.setRequestInterception( true );
+			this.page.on('request', async request => {
+				const log = await this.options.requestLogger.log( request );
+				if( log ) {
+					this.eventLog.push( log );
+				}
+				await request.continue();
+			} );
+		}
+
 		await this.page.setViewport( this.options.viewport !== undefined ? this.options.viewport : { width: 1800, height: 1200 } );
 
 		for( let i = 0; i < this.actions.length; i++ ) {
