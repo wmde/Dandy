@@ -90,6 +90,20 @@ class Dandy {
 		return this;
 	}
 
+	checkElementValue( selector, value ) {
+		this.actions.push( async () => {
+			logger.log( `Looking for element (${ selector })` );
+			const elementValue = await this.page.$eval( '[name="'+ selector +'"]', el => el.getAttribute( 'value' ) );
+
+			if( elementValue === value ) {
+				logger.logSuccess( `Element value is as expected` );
+			} else {
+				await Promise.reject( new Error( `Element value is NOT as expected` ) );
+			}
+		} );
+		return this;
+	}
+
 	checkElementDoesNotExist( selector ) {
 		this.actions.push( async () => {
 			logger.log( `Making sure element (${ selector }) does not exist` );

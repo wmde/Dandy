@@ -8,7 +8,6 @@ export default class Banner {
 	dandy;
 
 	parameters;
-	selectors;
 
 	selectors;
 
@@ -85,8 +84,20 @@ export default class Banner {
 		return this;
 	}
 
+	checkForSubmittedDonationForm() {
+		this.dandy.checkElementExists( this.selectors.spenden_page.donation_form );
+		this.dandy.checkElementExists( this.selectors.spenden_page.submitted_donation_form );
+		this.dandy.checkElementExists( this.selectors.spenden_page.selected_values );
+		return this;
+	}
+
 	clickInterval( interval ) {
 		this.dandy.click( this.selectors.donation_form.interval[ interval ] );
+		return this;
+	}
+
+	checkInterval( intervalValue ) {
+		this.dandy.checkElementValue( this.selectors.spenden_page.interval.selector, this.selectors.spenden_page.interval[ intervalValue ] );
 		return this;
 	}
 
@@ -95,8 +106,29 @@ export default class Banner {
 		return this;
 	}
 
+	checkPaymentType( paymentType ) {
+		this.dandy.checkElementValue( this.selectors.spenden_page.payment_type.selector, this.selectors.spenden_page.payment_type[ paymentType ] );
+		return this;
+	}
+
+	submitFullPageDonationForm() {
+		this.dandy.click( this.selectors.submit_button.form );
+		return this;
+	}
+
+	checkPaymentTypeIsDisabled( paymentType ) {
+		this.dandy.click( this.selectors.donation_form.payment_type[ paymentType ] );
+		this.dandy.checkElementExists( this.selectors.donation_form.payment_type.disabled.sofort );
+		return this;
+	}
+
 	clickAmount( amount ) {
 		this.dandy.click( this.selectors.donation_form.amount[ amount ] );
+		return this;
+	}
+
+	checkAmount( amount ) {
+		this.dandy.checkElementValue( this.selectors.spenden_page.amount.selector, this.selectors.spenden_page.amount[ amount ] );
 		return this;
 	}
 
@@ -107,23 +139,6 @@ export default class Banner {
 
 	checkIntervalMonthlyIsDisabled() {
 		this.dandy.checkElementExists( this.selectors.donation_form.interval.disabled.monthly );
-		return this;
-	}
-
-	clickMonthlyPaymentInterval() {
-		this.dandy.checkElementExists( this.selectors.donation_form.interval.monthly );
-		this.dandy.click( this.selectors.donation_form.interval.monthly );
-		return this;
-	}
-
-	clickYearlyPaymentInterval() {
-		this.dandy.checkElementExists( this.selectors.donation_form.interval.yearly );
-		this.dandy.click( this.selectors.donation_form.interval.yearly );
-		return this;
-	}
-
-	checkIntervalMonthlyIsEnabled() {
-		this.dandy.checkElementDoesNotExist( this.selectors.donation_form.interval.disabled.monthly );
 		return this;
 	}
 
@@ -191,5 +206,4 @@ export default class Banner {
 		this.dandy.showConsoleLog( filter );
 		return this;
 	}
-
 }
