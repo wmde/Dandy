@@ -29,6 +29,7 @@ export const bannerConfig = {
 	},
 	selectors: {
 		banner_visible: '.banner-position--state-finished',
+		banner_error_msg: '.wmde-banner-error-icon',
 		banner_hidden: '.wmde-banner--hidden',
 		banner_soft_close: '.wmde-banner--soft-closing',
 		followup_visible: '.wmde-banner-followup-banner-position--state-finished',
@@ -70,7 +71,9 @@ export const bannerConfig = {
 					single_payment: '.select-interval-0.wmde-banner-disabled input[disabled]',
 					monthly: '.select-interval-1.wmde-banner-disabled input[disabled]',
 					annually: '.select-interval-12.wmde-banner-disabled input[disabled]',
-				}
+					error: '.wmde-banner-error-icon'
+				},
+				error_msg_container: '.select-interval.wmde-banner-select-group-container.wmde-banner-select-group-container--with-error'
 			},
 			amount: {
 				five: '.select-amount-5 label',
@@ -78,6 +81,7 @@ export const bannerConfig = {
 				twenty_five: '.select-amount-25 label',
 				fifty: '.select-amount-50 label',
 				one_hundred: '.select-amount-100 label',
+				error_msg_container: '.select-amount.wmde-banner-select-group-container.wmde-banner-select-group-container--with-error'
 			},
 			payment_type: {
 				paypal: '.select-payment-method-PPL label',
@@ -87,7 +91,8 @@ export const bannerConfig = {
 				sofort: '.select-payment-method-SUB label',
 				disabled: {
 					sofort: '.select-payment-method-SUB.wmde-banner-disabled'
-				}
+				},
+				error_msg_container: '.select-payment-method.wmde-banner-select-group-container.wmde-banner-select-group-container--with-error'
 			}
 		},
 		soft_close: {

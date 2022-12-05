@@ -257,6 +257,7 @@ class Dandy {
 			try {
 				logger.log( `Reloading page` );
 				await this.page.reload( { waitUntil: [ "networkidle0", "domcontentloaded" ] } );
+				logger.log( `Reloaded the page successfully` );
 			} catch( error ) {
 				await Promise.reject( new Error( `Something went wrong re-loading` ) );
 			}
@@ -276,6 +277,32 @@ class Dandy {
 				}
 				const args = await Promise.all( entry.args.map( arg => arg.jsonValue() ) );
 				logger.logDebug( entry.msg, args )
+			}
+		} );
+		return this;
+	}
+
+	goBack() {
+		this.actions.push( async () => {
+			try {
+				logger.log( `Going back to the previous page` );
+				await this.page.goBack();
+				logger.log( `AT the previous page` );
+			} catch( error ) {
+				await Promise.reject( new Error( `Something went wrong in going back to the previous page` ) );
+			}
+		} );
+		return this;
+	}
+
+	scrollIntoView( selector ) {
+		this.actions.push( async () => {
+			try {
+				logger.log( `Scrolling into view` );
+				await this.page.focus( selector );
+				logger.log( `Scrolled into the view successfully` );
+			} catch( error ) {
+				await Promise.reject( new Error( `Something went wrong while scrolling into view` ) );
 			}
 		} );
 		return this;

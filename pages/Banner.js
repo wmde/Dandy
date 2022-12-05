@@ -49,17 +49,22 @@ export default class Banner {
 	}
 
 	checkIfMiniBannerHasAnimatedTextHighlight() {
-		this.dandy.checkElementExists( this.selectors.selectors.animated_text_highlight.mini_slider );
+		this.dandy.checkElementExists( this.selectors.animated_text_highlight.mini_slider );
 		return this;
 	}
 
 	checkIfFullPageBannerHasAnimatedTextHighlight() {
-		this.dandy.checkElementExists( this.selectors.selectors.animated_text_highlight.full );
+		this.dandy.checkElementExists( this.selectors.animated_text_highlight.full );
 		return this;
 	}
 
 	clickMiniBannerCloseButton() {
 		this.dandy.click( this.selectors.close_button.mini );
+		return this;
+	}
+
+	clickFollowUpBannerCloseButton() {
+		this.dandy.click( this.selectors.close_button.full );
 		return this;
 	}
 
@@ -204,6 +209,31 @@ export default class Banner {
 
 	showConsoleLog( filter ) {
 		this.dandy.showConsoleLog( filter );
+		return this;
+	}
+
+	goBackToPreviousPage() {
+		this.dandy.goBack();
+		return this;
+	}
+
+	checkIfMissingIntervalErrorMsgIsShown() {
+		this.dandy.checkElementExists( this.selectors.donation_form.interval.error_msg_container );
+		this.dandy.checkElementExists( this.selectors.banner_error_msg );
+		this.dandy.scrollIntoView( this.selectors.close_button.full );
+		return this;
+	}
+
+	checkIfMissingAmountErrorMsgIsShown() {
+		this.dandy.checkElementExists( this.selectors.donation_form.amount.error_msg_container );
+		this.dandy.checkElementExists( this.selectors.banner_error_msg );
+		this.dandy.scrollIntoView( this.selectors.close_button.full );
+		return this;
+	}
+
+	checkIfMissingPaymentTypeErrorMsgIsShown() {
+		this.dandy.checkElementExists( this.selectors.donation_form.payment_type.error_msg_container );
+		this.dandy.checkElementExists( this.selectors.banner_error_msg );
 		return this;
 	}
 }

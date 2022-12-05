@@ -78,5 +78,60 @@ const testConfig = buildBannerTestConfig( process.argv );
 		.checkAmount( amounts.one_hundred )
 		.checkPaymentType( paymentTypes.paypal )
 
+		// RELOAD the page to carry on next tests
+		.reload()
+
+		.waitForBanner()
+
+		.clickMiniBannerButton()
+		.waitForFollowupBanner()
+
+		// Test-09 : On donation form, if a user misses filling out a field and clicks on submit: red error markers should be visible in the respective form section
+		.clickAmount( amounts.one_hundred )
+		.clickPaymentType( paymentTypes.paypal )
+
+		.submitFullPageDonationForm()
+		.checkIfMissingIntervalErrorMsgIsShown()
+
+		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-fullpage-banner_interval_missing_error_msg.png` )
+
+		.clickInterval( intervals.monthly )
+		.submitFullPageDonationForm()
+
+		// Go back to the PREVIOUS page to carry on next tests
+		.goBackToPreviousPage()
+
+		// RELOAD the page to carry on next tests
+		.reload()
+		.waitForBanner()
+
+		.clickMiniBannerButton()
+		.waitForFollowupBanner()
+
+		.clickInterval( intervals.monthly )
+		.clickPaymentType( paymentTypes.paypal )
+		.submitFullPageDonationForm()
+		.checkIfMissingAmountErrorMsgIsShown()
+		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-fullpage-banner_amount_missing_error_msg.png` )
+
+		.clickAmount( amounts.one_hundred )
+		.submitFullPageDonationForm()
+
+		// Go back to the PREVIOUS page to carry on next tests
+		.goBackToPreviousPage()
+
+		// RELOAD the page to carry on next tests
+		.reload()
+		.waitForBanner()
+
+		.clickMiniBannerButton()
+		.waitForFollowupBanner()
+
+		.clickInterval( intervals.monthly )
+		.clickAmount( amounts.one_hundred )
+		.submitFullPageDonationForm()
+		.checkIfMissingPaymentTypeErrorMsgIsShown()
+		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-fullpage-banner_payment_type_missing_error_msg.png` )
+
 		.run();
 } )();
