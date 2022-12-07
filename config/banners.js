@@ -29,6 +29,8 @@ export const bannerConfig = {
 	},
 	selectors: {
 		banner_visible: '.banner-position--state-finished',
+		banner_language: '.navbar-language',
+		banner_language_active: '.active.navbar-item',
 		banner_error_msg: '.wmde-banner-error-icon',
 		banner_hidden: '.wmde-banner--hidden',
 		banner_soft_close: '.wmde-banner--soft-closing',

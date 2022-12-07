@@ -9,7 +9,7 @@ const testConfig = buildBannerTestConfig( process.argv );
 	const banner = new Banner( testConfig.url, bannerConfig.selectors, testConfig.parameters, testConfig.options );
 
 	await banner.waitForBanner()
-
+/*
 		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-mini-banner.png` )
 
 		// Test-01 : Check if mini banner has 'Text highlight'
@@ -114,6 +114,7 @@ const testConfig = buildBannerTestConfig( process.argv );
 		.checkIfMissingAmountErrorMsgIsShown()
 		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-fullpage-banner_amount_missing_error_msg.png` )
 
+		//  Test-10 : If a user causes a validation error and solves it, clicks on submit: the red error markers should be gone again
 		.clickAmount( amounts.one_hundred )
 		.submitFullPageDonationForm()
 
@@ -123,7 +124,7 @@ const testConfig = buildBannerTestConfig( process.argv );
 		// RELOAD the page to carry on next tests
 		.reload()
 		.waitForBanner()
-
+*/
 		.clickMiniBannerButton()
 		.waitForFollowupBanner()
 
@@ -132,6 +133,14 @@ const testConfig = buildBannerTestConfig( process.argv );
 		.submitFullPageDonationForm()
 		.checkIfMissingPaymentTypeErrorMsgIsShown()
 		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-fullpage-banner_payment_type_missing_error_msg.png` )
+
+		.clickPaymentType( paymentTypes.paypal )
+		.submitFullPageDonationForm()
+
+		.wait( 2000 )
+
+		//  Test-11 : Does submitting on an english banner lead to https://spenden.wikimedia.de with &locale=en_GB ?
+		.checkIfCurrentBannerIsEnglishOne( testConfig.bannerName )
 
 		.run();
 } )();

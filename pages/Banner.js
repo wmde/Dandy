@@ -236,4 +236,11 @@ export default class Banner {
 		this.dandy.checkElementExists( this.selectors.banner_error_msg );
 		return this;
 	}
+
+	checkIfCurrentBannerIsEnglishOne( bannerName ) {
+		this.dandy.checkElementExists( this.selectors.banner_language );
+		this.dandy.checkElementExists( this.selectors.banner_language_active );
+		this.dandy.checkElementContainsText ( this.selectors.banner_language_active, 'de' );
+		return this;
+	}
 }
