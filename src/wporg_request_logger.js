@@ -5,9 +5,15 @@ export const wporgRequestLogger = {
 		if ( request.url() === beaconEventUrl ) {
 			const data = JSON.parse( request.postData() );
 			if( data.schema === 'WMDEBannerSizeIssue' ) {
-				const eventAndBannerName = data.event.bannerName.split( '-org' );
+				let event;
+				if ( data.event.bannerName.startsWith( 'org-' ) ) {
+					event = 'size_issue';
+				}
+				else {
+					event = data.event.bannerName.split( '-org' )[0];
+				}
 				return Promise.resolve( {
-					event: eventAndBannerName[ 0 ],
+					event,
 					data: data.event
 				} );
 			}
