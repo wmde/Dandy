@@ -1,3 +1,4 @@
+import logger from '../src/logger.js';
 import createDandy from '../src/Dandy.js';
 import { wporgRequestLogger } from '../src/wporg_request_logger.js';
 
@@ -41,6 +42,15 @@ export default class Banner {
 
 	async run() {
 		await this.dandy.run();
+	}
+
+	testFeature( name, testSteps ) {
+		logger.log( '-'.repeat(30) );
+		logger.logBold(`Feature: ${name}`);
+		this.dandy.goToPage( '?' + this.parameters.toString() );
+
+		testSteps( this )
+		return this;
 	}
 
 	clickDesktopCloseButton() {
