@@ -29,9 +29,16 @@ export const bannerConfig = {
 	},
 	selectors: {
 		banner_visible: '.banner-position--state-finished',
+		banner_language: '.navbar-language',
+		banner_language_active: '.active.navbar-item',
+		banner_error_msg: '.wmde-banner-error-icon',
 		banner_hidden: '.wmde-banner--hidden',
 		banner_soft_close: '.wmde-banner--soft-closing',
 		followup_visible: '.wmde-banner-followup-banner-position--state-finished',
+		animated_text_highlight: {
+			mini_slider: '.wmde-banner-slider-text-animated-highlight',
+			full: '.wmde-banner-text-animated-highlight'
+		},
 		close_button: {
 			desktop: '.wmde-banner-close-link',
 			mini: '.wmde-banner-mini-close-button',
@@ -59,14 +66,16 @@ export const bannerConfig = {
 		},
 		donation_form: {
 			interval: {
-				once: '.select-interval-0 label',
+				single_payment: '.select-interval-0 label',
 				monthly: '.select-interval-1 label',
-				yearly: '.select-interval-12 label',
+				annually: '.select-interval-12 label',
 				disabled: {
-					once: '.select-interval-0.wmde-banner-disabled input[disabled]',
+					single_payment: '.select-interval-0.wmde-banner-disabled input[disabled]',
 					monthly: '.select-interval-1.wmde-banner-disabled input[disabled]',
-					yearly: '.select-interval-12.wmde-banner-disabled input[disabled]',
-				}
+					annually: '.select-interval-12.wmde-banner-disabled input[disabled]',
+					error: '.wmde-banner-error-icon'
+				},
+				error_msg_container: '.select-interval.wmde-banner-select-group-container.wmde-banner-select-group-container--with-error'
 			},
 			amount: {
 				five: '.select-amount-5 label',
@@ -74,6 +83,7 @@ export const bannerConfig = {
 				twenty_five: '.select-amount-25 label',
 				fifty: '.select-amount-50 label',
 				one_hundred: '.select-amount-100 label',
+				error_msg_container: '.select-amount.wmde-banner-select-group-container.wmde-banner-select-group-container--with-error'
 			},
 			payment_type: {
 				paypal: '.select-payment-method-PPL label',
@@ -81,19 +91,40 @@ export const bannerConfig = {
 				direct_debit: '.select-payment-method-BEZ label',
 				bank_transfer: '.select-payment-method-UEB label',
 				sofort: '.select-payment-method-SUB label',
+				disabled: {
+					sofort: '.select-payment-method-SUB.wmde-banner-disabled'
+				},
+				error_msg_container: '.select-payment-method.wmde-banner-select-group-container.wmde-banner-select-group-container--with-error'
 			}
 		},
 		soft_close: {
 			maybe_later_button: '.wmde-banner-soft-close-buttons .wmde-banner-soft-close-button:first-child',
 			close_button: '.wmde-banner-soft-close-buttons .wmde-banner-soft-close-button:last-child',
+		},
+		spenden_page: {
+			donation_form: '#laika-donation',
+			submitted_donation_form: '#laika-donation-personal-data-person',
+			selected_values: '.submit-values',
+			amount: {
+				selector: 'amount',
+				one_hundred: '10000'
+			},
+			interval: {
+				selector: 'interval',
+				annually: '12'
+			},
+			payment_type: {
+				selector: 'paymentType',
+				paypal: 'PPL'
+			}
 		}
-	}
+	},
 };
 
 export const intervals = {
-	once: 'once',
+	single_payment: 'single_payment',
 	monthly: 'monthly',
-	yearly: 'yearly',
+	annually: 'annually'
 };
 
 export const amounts = {

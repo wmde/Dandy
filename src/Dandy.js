@@ -45,10 +45,23 @@ class Dandy {
 		return this;
 	}
 
+	reloadPage() {
+		this.actions.push( async () => {
+			try {
+				logger.log( `Reloading page` );
+				await this.page.reload( { waitUntil: [ "networkidle0", "domcontentloaded" ] } );
+				logger.logSuccess( `Reloaded the page successfully` );
+			} catch( error ) {
+				await Promise.reject( new Error( `Something went wrong re-loading` ) );
+			}
+		} );
+		return this;
+	}
+
 	captureScreenshot( filename ) {
 		this.actions.push( async () => {
 			const fullFilePath = `${ config.screenshots_directory }/${ filename }`;
-			logger.log( `Taking screenshot (${ filename })` );
+			logger.logSuccess( `Taking screenshot (${ filename })` );
 			await fs.mkdir( dirname( fullFilePath ), { recursive: true } );
 			await this.page.screenshot( { path: fullFilePath } );
 		} );
@@ -78,6 +91,20 @@ class Dandy {
 		return this;
 	}
 
+	checkElementValue( selector, value ) {
+		this.actions.push( async () => {
+			logger.log( `Looking for element (${ selector })` );
+			const elementValue = await this.page.$eval( '[name="'+ selector +'"]', el => el.getAttribute( 'value' ) );
+
+			if( elementValue === value ) {
+				logger.logSuccess( `Element value is as expected` );
+			} else {
+				await Promise.reject( new Error( `Element value is NOT as expected` ) );
+			}
+		} );
+		return this;
+	}
+
 	checkElementDoesNotExist( selector ) {
 		this.actions.push( async () => {
 			logger.log( `Making sure element (${ selector }) does not exist` );
@@ -94,13 +121,19 @@ class Dandy {
 
 	checkElementContainsText( selector, text ) {
 		this.actions.push( async () => {
-			logger.log( `Checking that text in (${ selector }) is equal to (${ text })` );
-			const elementText = await this.page.$eval( selector, element => element.innerText );
+			logger.log( `Checking if text in (${ selector }) is equal to (${ text })` );
 
-			if( elementText.replace(/\s+/g, ' ') === text.replace(/\s+/g, ' ') ) {
-				logger.logSuccess( `Text in (${ selector }) is equal to (${ text })` );
-			} else {
-				await Promise.reject( new Error( `Text in ${ selector } (${ elementText }) is not equal to (${ text })` ) );
+			const elements = await this.page.$$( selector );
+			let textExists = false;
+			for ( const element of elements ) {
+				const textFromElement = await ( await element.getProperty( 'textContent' ) ).jsonValue()
+				if( textFromElement.trim() === text.trim() ) {
+					logger.logSuccess( `Text in (${ selector }) is : (${ textFromElement }) which is equal to (${ text })` );
+					textExists = true;
+				}
+			}
+			if ( textExists === false  ) {
+				await Promise.reject( new Error( `Text in ${ selector } is not equal to (${ text })` ) );
 			}
 		} );
 		return this;
@@ -231,6 +264,7 @@ class Dandy {
 			try {
 				logger.log( `Reloading page` );
 				await this.page.reload( { waitUntil: [ "networkidle0", "domcontentloaded" ] } );
+				logger.log( `Reloaded the page successfully` );
 			} catch( error ) {
 				await Promise.reject( new Error( `Something went wrong re-loading` ) );
 			}
@@ -250,6 +284,32 @@ class Dandy {
 				}
 				const args = await Promise.all( entry.args.map( arg => arg.jsonValue() ) );
 				logger.logDebug( entry.msg, args )
+			}
+		} );
+		return this;
+	}
+
+	goBack() {
+		this.actions.push( async () => {
+			try {
+				logger.log( `Going back to the previous page` );
+				await this.page.goBack();
+				logger.logSuccess( `AT the previous page` );
+			} catch( error ) {
+				await Promise.reject( new Error( `Something went wrong in going back to the previous page` ) );
+			}
+		} );
+		return this;
+	}
+
+	scrollIntoView( selector ) {
+		this.actions.push( async () => {
+			try {
+				logger.log( `Scrolling into view` );
+				await this.page.focus( selector );
+				logger.logSuccess( `Scrolled into the view successfully` );
+			} catch( error ) {
+				await Promise.reject( new Error( `Something went wrong while scrolling into view` ) );
 			}
 		} );
 		return this;
