@@ -98,8 +98,8 @@ export const bannerConfig = {
 			}
 		},
 		soft_close: {
-			maybe_later_button: '.wmde-banner-soft-close-buttons .wmde-banner-soft-close-button:first-child',
-			close_button: '.wmde-banner-soft-close-buttons .wmde-banner-soft-close-button:last-child',
+			maybe_later_button: '.wmde-banner-soft-close-buttons.wmde-banner-soft-close-button:first-child',
+			close_button: '.wmde-banner-soft-close-buttons.wmde-banner-soft-close-button:last-child',
 		},
 		spenden_page: {
 			donation_form: '#laika-donation',
@@ -111,7 +111,8 @@ export const bannerConfig = {
 			},
 			interval: {
 				selector: 'interval',
-				annually: '12'
+				annually: '12',
+				monthly: '1'
 			},
 			payment_type: {
 				selector: 'paymentType',

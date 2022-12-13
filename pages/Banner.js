@@ -237,10 +237,15 @@ export default class Banner {
 		return this;
 	}
 
-	checkIfCurrentBannerIsEnglishOne( bannerName ) {
+	checkIfSubmittingTheBannerDonationFormLeadsToSpendenPageWithCorrectCorrespoindingLanguage( bannerName ) {
 		this.dandy.checkElementExists( this.selectors.banner_language );
 		this.dandy.checkElementExists( this.selectors.banner_language_active );
-		this.dandy.checkElementContainsText ( this.selectors.banner_language_active, 'de' );
+		if ( bannerName.includes( 'EN' ) ) {
+			this.dandy.checkElementContainsText ( this.selectors.banner_language_active, 'en' );
+		}
+		else {
+			this.dandy.checkElementContainsText ( this.selectors.banner_language_active, 'de' );
+		}
 		return this;
 	}
 }

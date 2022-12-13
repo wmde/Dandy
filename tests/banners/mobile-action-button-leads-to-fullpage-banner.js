@@ -9,7 +9,7 @@ const testConfig = buildBannerTestConfig( process.argv );
 	const banner = new Banner( testConfig.url, bannerConfig.selectors, testConfig.parameters, testConfig.options );
 
 	await banner.waitForBanner()
-/*
+
 		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-mini-banner.png` )
 
 		// Test-01 : Check if mini banner has 'Text highlight'
@@ -37,9 +37,48 @@ const testConfig = buildBannerTestConfig( process.argv );
 
 		// Test-05 : Check if clicking mini banner close button 'closes' the banner and 'sets' the cookie
 		.clickMiniBannerCloseButton()
+		.checkBannerIsHidden()
 		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-mini-banner_closed.png` )
 		.wait( 2000 )
 		.checkCookieExists( 'centralnotice_hide_fundraising' )
+
+		// Test-06 : Test Soft close functionality thoroughly
+		.clickMiniBannerCloseButton()
+		.checkBannerIsHidden()
+		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-mini-banner_closed_soft_close_functionality.png` )
+		.waitForSoftClose()
+		.clickSoftCloseCloseButton()
+		.wait( 500 ) // Give the cookie time to get set
+		.checkBannerIsHidden()
+		.checkCookieExists( 'centralnotice_hide_fundraising' )
+		.captureScreenshot( `banners/${ testConfig.bannerName }/after-clicking-soft-close-close-button-banner-has-disappeared-now.png` )
+
+		// RELOAD the page to carry on next tests
+		.reload()
+
+		.waitForBanner()
+
+		.clickMiniBannerCloseButton()
+		.checkBannerIsHidden()
+		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-mini-banner_closed_soft_close_functionality_1.png` )
+		.waitForSoftClose()
+		.clickSoftCloseMaybeLaterButton()
+		.checkBannerIsHidden()
+		.captureScreenshot( `banners/${ testConfig.bannerName }/after-clicking-soft-close-maybe-later-button-banner-has-disappeared-now.png` )
+
+		// RELOAD the page to carry on next tests
+		.reload()
+
+		.waitForBanner()
+
+		.clickMiniBannerCloseButton()
+		.checkBannerIsHidden()
+		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-mini-banner_closed_soft_close_functionality_2.png` )
+		.waitForSoftClose()
+		.wait( 15000 )
+		.checkBannerIsHidden()
+		.captureScreenshot( `banners/${ testConfig.bannerName }/because-of-no-user-interaction-after-15-seconds-banner-has-disappeared-now.png` )
+
 
 		// RELOAD the page to carry on next tests
 		.reload()
@@ -48,7 +87,7 @@ const testConfig = buildBannerTestConfig( process.argv );
 		.clickMiniBannerButton()
 		.waitForFollowupBanner()
 
-		// Test-06 : Check if selecting 'monthly' payment interval on the full page banner 'disables' the 'Sofort' payment type
+		// Test-07 : Check if selecting 'monthly' payment interval on the full page banner 'disables' the 'Sofort' payment type
 		.clickInterval( intervals.monthly )
 		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-fullpage-banner_monthly_interval_selected.png` )
 		.checkPaymentTypeSofortIsDisabled()
@@ -61,12 +100,12 @@ const testConfig = buildBannerTestConfig( process.argv );
 		.clickMiniBannerButton()
 		.waitForFollowupBanner()
 
-		// Test-07 : Check if selecting 'annually' payment interval on the full page banner 'disables' the 'Sofort' payment type
+		// Test-08 : Check if selecting 'annually' payment interval on the full page banner 'disables' the 'Sofort' payment type
 		.clickInterval( intervals.annually )
 		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-fullpage-banner_annually_interval_selected.png` )
 		.checkPaymentTypeSofortIsDisabled()
 
-		// Test-08 : Check if submitting the full page donation form values: interval, payment type and donation amount gets passed correctly to the spenden.wikimedia.de page
+		// Test-09 : Check if submitting the full page donation form values: interval, payment type and donation amount gets passed correctly to the spenden.wikimedia.de page
 		.clickAmount( amounts.one_hundred )
 		.clickPaymentType( paymentTypes.paypal )
 		.submitFullPageDonationForm()
@@ -86,7 +125,7 @@ const testConfig = buildBannerTestConfig( process.argv );
 		.clickMiniBannerButton()
 		.waitForFollowupBanner()
 
-		// Test-09 : On donation form, if a user misses filling out a field and clicks on submit: red error markers should be visible in the respective form section
+		// Test-10 : On donation form, if a user misses filling out a field and clicks on submit: red error markers should be visible in the respective form section
 		.clickAmount( amounts.one_hundred )
 		.clickPaymentType( paymentTypes.paypal )
 
@@ -95,8 +134,19 @@ const testConfig = buildBannerTestConfig( process.argv );
 
 		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-fullpage-banner_interval_missing_error_msg.png` )
 
+		//  Test-11 : If a user causes a validation error and solves it, clicks on submit: the red error markers should be gone again
 		.clickInterval( intervals.monthly )
 		.submitFullPageDonationForm()
+
+		.wait( 3000 )
+
+		//  Test-12 : Does submitting on an english banner lead to https://spenden.wikimedia.de with &locale=en_GB ?
+		.checkIfSubmittingTheBannerDonationFormLeadsToSpendenPageWithCorrectCorrespoindingLanguage( testConfig.bannerName )
+
+		.checkForSubmittedDonationForm()
+		.checkPaymentType( paymentTypes.paypal )
+		.checkInterval( intervals.monthly )
+		.checkAmount( amounts.one_hundred )
 
 		// Go back to the PREVIOUS page to carry on next tests
 		.goBackToPreviousPage()
@@ -104,43 +154,6 @@ const testConfig = buildBannerTestConfig( process.argv );
 		// RELOAD the page to carry on next tests
 		.reload()
 		.waitForBanner()
-
-		.clickMiniBannerButton()
-		.waitForFollowupBanner()
-
-		.clickInterval( intervals.monthly )
-		.clickPaymentType( paymentTypes.paypal )
-		.submitFullPageDonationForm()
-		.checkIfMissingAmountErrorMsgIsShown()
-		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-fullpage-banner_amount_missing_error_msg.png` )
-
-		//  Test-10 : If a user causes a validation error and solves it, clicks on submit: the red error markers should be gone again
-		.clickAmount( amounts.one_hundred )
-		.submitFullPageDonationForm()
-
-		// Go back to the PREVIOUS page to carry on next tests
-		.goBackToPreviousPage()
-
-		// RELOAD the page to carry on next tests
-		.reload()
-		.waitForBanner()
-*/
-		.clickMiniBannerButton()
-		.waitForFollowupBanner()
-
-		.clickInterval( intervals.monthly )
-		.clickAmount( amounts.one_hundred )
-		.submitFullPageDonationForm()
-		.checkIfMissingPaymentTypeErrorMsgIsShown()
-		.captureScreenshot( `banners/${ testConfig.bannerName }/mobile-fullpage-banner_payment_type_missing_error_msg.png` )
-
-		.clickPaymentType( paymentTypes.paypal )
-		.submitFullPageDonationForm()
-
-		.wait( 2000 )
-
-		//  Test-11 : Does submitting on an english banner lead to https://spenden.wikimedia.de with &locale=en_GB ?
-		.checkIfCurrentBannerIsEnglishOne( testConfig.bannerName )
 
 		.run();
 } )();
