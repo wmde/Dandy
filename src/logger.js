@@ -23,6 +23,11 @@ const logDebug = ( message, context ) => {
 	] );
 }
 
+const logStep = message => {
+	logWithTime( chalk.blue( message ) );
+}
+
+
 const logWithTime = message => {
 	console.log( chalk.gray( currentTime() ) + ' ' + message );
 }
@@ -40,4 +45,5 @@ export default {
 	logDebug,
 	logSuccess,
 	logError,
+	logStep,
 }
