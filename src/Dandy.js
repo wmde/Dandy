@@ -58,8 +58,9 @@ class Dandy {
 	waitForElement( selector, options ) {
 		this.actions.push( async () => {
 			logger.log( `Waiting for element (${ selector })` );
+			let start = new Date();
 			await this.page.waitForSelector( selector, options );
-			logger.logSuccess( `Found element (${ selector })` );
+			logger.logSuccess( `Found element (${ selector }) in (${ new Date() - start }) milliseconds` );
 		} );
 		return this;
 	}

@@ -8,7 +8,6 @@ export default class Banner {
 	dandy;
 
 	parameters;
-
 	selectors;
 
 	constructor( url, selectors, parameters = {}, options = {} ) {
@@ -163,4 +162,24 @@ export default class Banner {
 		return this;
 	}
 
+	clickPaymentTypeSofortButton() {
+		this.dandy.click( this.selectors.donation_form.payment_type.sofort );
+		return this;
+	}
+
+	checkSliderIsDisplayedOnSmallViewPort() {
+		this.dandy.checkElementDoesNotExist( this.selectors.message.big_viewport );
+		this.dandy.checkElementExists( this.selectors.message.small_viewport );
+		return this;
+	}
+
+	checkSlidesAreSlidingInSlider() {
+		this.wait( 2000 )
+		this.dandy.checkElementExists( this.selectors.slider.first_slide );
+		this.wait( 10000 )
+		this.dandy.checkElementExists( this.selectors.slider.next_slide );
+		this.dandy.click( this.selectors.slider.next_button );
+		this.dandy.click( this.selectors.slider.back_button );
+		return this;
+	}
 }
