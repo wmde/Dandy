@@ -48,8 +48,23 @@ export default class Banner {
 		return this;
 	}
 
+	checkIfMiniBannerHasAnimatedTextHighlight() {
+		this.dandy.checkElementExists( this.selectors.animated_text_highlight.mini_slider );
+		return this;
+	}
+
+	checkIfFullPageBannerHasAnimatedTextHighlight() {
+		this.dandy.checkElementExists( this.selectors.animated_text_highlight.full );
+		return this;
+	}
+
 	clickMiniBannerCloseButton() {
 		this.dandy.click( this.selectors.close_button.mini );
+		return this;
+	}
+
+	clickFollowUpBannerCloseButton() {
+		this.dandy.click( this.selectors.close_button.full );
 		return this;
 	}
 
@@ -69,7 +84,15 @@ export default class Banner {
 	}
 
 	waitForFollowupBanner() {
-		this.dandy.waitForElement( this.selectors.followup_visible );
+		this.dandy.waitForElement( this.selectors.followup_visible, { timeout: 10000 } );
+		this.dandy.waitForElement( this.selectors.close_button.full );
+		return this;
+	}
+
+	checkForSubmittedDonationForm() {
+		this.dandy.checkElementExists( this.selectors.spenden_page.donation_form );
+		this.dandy.checkElementExists( this.selectors.spenden_page.submitted_donation_form );
+		this.dandy.checkElementExists( this.selectors.spenden_page.selected_values );
 		return this;
 	}
 
@@ -78,8 +101,29 @@ export default class Banner {
 		return this;
 	}
 
+	checkInterval( intervalValue ) {
+		this.dandy.checkElementValue( this.selectors.spenden_page.interval.selector, this.selectors.spenden_page.interval[ intervalValue ] );
+		return this;
+	}
+
 	clickPaymentType( paymentType ) {
 		this.dandy.click( this.selectors.donation_form.payment_type[ paymentType ] );
+		return this;
+	}
+
+	checkPaymentType( paymentType ) {
+		this.dandy.checkElementValue( this.selectors.spenden_page.payment_type.selector, this.selectors.spenden_page.payment_type[ paymentType ] );
+		return this;
+	}
+
+	submitFullPageDonationForm() {
+		this.dandy.click( this.selectors.submit_button.form );
+		return this;
+	}
+
+	checkPaymentTypeIsDisabled( paymentType ) {
+		this.dandy.click( this.selectors.donation_form.payment_type[ paymentType ] );
+		this.dandy.checkElementExists( this.selectors.donation_form.payment_type.disabled.sofort );
 		return this;
 	}
 
@@ -88,13 +132,18 @@ export default class Banner {
 		return this;
 	}
 
-	checkIntervalMonthlyIsDisabled() {
-		this.dandy.checkElementExists( this.selectors.donation_form.interval.disabled.monthly );
+	checkAmount( amount ) {
+		this.dandy.checkElementValue( this.selectors.spenden_page.amount.selector, this.selectors.spenden_page.amount[ amount ] );
 		return this;
 	}
 
-	checkIntervalMonthlyIsEnabled() {
-		this.dandy.checkElementDoesNotExist( this.selectors.donation_form.interval.disabled.monthly );
+	checkPaymentTypeSofortIsDisabled() {
+		this.dandy.checkElementExists( this.selectors.donation_form.payment_type.disabled.sofort );
+		return this;
+	}
+
+	checkIntervalMonthlyIsDisabled() {
+		this.dandy.checkElementExists( this.selectors.donation_form.interval.disabled.monthly );
 		return this;
 	}
 
@@ -163,4 +212,40 @@ export default class Banner {
 		return this;
 	}
 
+	goBackToPreviousPage() {
+		this.dandy.goBack();
+		return this;
+	}
+
+	checkIfMissingIntervalErrorMsgIsShown() {
+		this.dandy.checkElementExists( this.selectors.donation_form.interval.error_msg_container );
+		this.dandy.checkElementExists( this.selectors.banner_error_msg );
+		this.dandy.scrollIntoView( this.selectors.close_button.full );
+		return this;
+	}
+
+	checkIfMissingAmountErrorMsgIsShown() {
+		this.dandy.checkElementExists( this.selectors.donation_form.amount.error_msg_container );
+		this.dandy.checkElementExists( this.selectors.banner_error_msg );
+		this.dandy.scrollIntoView( this.selectors.close_button.full );
+		return this;
+	}
+
+	checkIfMissingPaymentTypeErrorMsgIsShown() {
+		this.dandy.checkElementExists( this.selectors.donation_form.payment_type.error_msg_container );
+		this.dandy.checkElementExists( this.selectors.banner_error_msg );
+		return this;
+	}
+
+	checkIfSubmittingTheBannerDonationFormLeadsToSpendenPageWithCorrectCorrespoindingLanguage( bannerName ) {
+		this.dandy.checkElementExists( this.selectors.banner_language );
+		this.dandy.checkElementExists( this.selectors.banner_language_active );
+		if ( bannerName.includes( 'EN' ) ) {
+			this.dandy.checkElementContainsText ( this.selectors.banner_language_active, 'en' );
+		}
+		else {
+			this.dandy.checkElementContainsText ( this.selectors.banner_language_active, 'de' );
+		}
+		return this;
+	}
 }
