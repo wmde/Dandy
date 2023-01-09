@@ -1,19 +1,26 @@
 import fs from 'fs';
 import meow from 'meow';
+import yaml from 'yaml';
 import { extname, basename } from 'path';
 import config from './config/global.js';
 import runTest from './src/run_test.js';
 import logger from './src/logger.js';
+
+import Banner from './pages/Banner.js';
+import buildBannerTestConfig from './src/build_banner_test_config.js';
+import {bannerConfig} from "./config/banners.js";
+import loadFeatures from "./src/FeatureLoader.js";
 
 process.env.FORCE_COLOR = '1';
 
 const cli = meow( `
 	Usage
 		node index.js <TEST_NAMES>
-		node index.js -b <BANNER_NAME> <TEST_NAMES>
+		node index.js -b <BANNER_NAME> <BANNER_FEATURES_NAME>
 
 		<TEST_NAMES> Optional list of names of the tests you want to run
 		<BANNER_NAME> When you want to run tests for a banner pass the name through a flag
+		<BANNER_FEATURES_NAME> This is the name of 'feature set' that you want to test from banner_features.yaml
 		
 	Options
 		--banner, -b  Pass a banner name into Dandy to let it know you want to run tests on a single banner
@@ -31,15 +38,10 @@ const cli = meow( `
 		or
 		$ node index.js pages-exist
 		
-		Run all tests for a banner:
-		$ npm run dandy -- -b B22_WMDE_Mobile_Test_05_var
-		or
-		$ node index.js -b B22_WMDE_Mobile_Test_05_var
-		
 		Run a single test for a banner:
-		$ npm run dandy banner-loads -- -b B22_WMDE_Mobile_Test_05_var
+		$ npm run dandy -- -b B22_WMDE_Mobile_Test_05_var mobile_banner
 		or
-		$ node index.js banner-loads -b B22_WMDE_Mobile_Test_05_var
+		$ node index.js -b B22_WMDE_Mobile_Test_05_var mobile_banner
 	
 	`, {
 	importMeta: import.meta,
@@ -67,12 +69,29 @@ const cli = meow( `
 	const isBanner = cli.flags.banner !== undefined;
 
 	if ( isBanner ) {
-		const tests = cli.input;
+		const featureSets = cli.input;
+		console.log( 'featureSets => ' ,featureSets );
+		const configuration = yaml.parse( fs.readFileSync( 'banner_features.yaml', { encoding:'utf8' }) );
+		console.log( 'configuration => ' ,configuration );
+		console.log('cli.flags.banner ==>', cli.flags.banner);
+		const testConfig = buildBannerTestConfig( cli.flags.banner );
+		const banner = new Banner( testConfig.url, bannerConfig.selectors, testConfig.parameters, testConfig.options );
+		for( let index = 0; index < featureSets.length; index++ ) {
+			const featureSet = featureSets[ index ];
+			console.log( 'featureSet => ' ,featureSet );
+			if( !configuration[ featureSet ] ) {
+				logger.logError( `${ featureSet } NOT found` );
+				continue;
+			}
+			logger.logBold( `Running: ${ configuration[ featureSet ].description }` );
+			const features = await loadFeatures( configuration[ featureSet ].features );
 
-		for( let index = 0; index < tests.length; index++ ) {
-			logger.logBold( `Running: ${ tests[ index ] }` );
-			const output = await runTest( `${ config.banners_directory }/${ tests[ index ] } -b ${ cli.flags.banner } -e ${ cli.flags.dev } -h ${ cli.flags.headed }` );
-			console.log( output );
+			for ( let j = 0; j < features.length; j++ ) {
+				console.log('features[j] ==>', features[j])
+				const testClass = new features[j]();
+				testClass.runSteps( banner );
+				//await banner.run();
+			}
 		}
 
 	} else {
