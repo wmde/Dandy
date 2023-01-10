@@ -17,3 +17,5 @@ test_banner:
     description: "Features of test banner"
     features:
         - banner_slides_in
+        - banner_slides_in
+        - banner_closes
