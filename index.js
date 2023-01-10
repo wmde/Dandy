@@ -7,7 +7,7 @@ import runTest from './src/run_test.js';
 import logger from './src/logger.js';
 
 import Banner from './pages/Banner.js';
-import buildBannerTestConfig from './src/build_banner_test_config.js';
+import buildBannerTestConfig from './src/build_banner_test_config_param.js';
 import {bannerConfig} from "./config/banners.js";
 import loadFeatures from "./src/FeatureLoader.js";
 
@@ -70,28 +70,24 @@ const cli = meow( `
 
 	if ( isBanner ) {
 		const featureSets = cli.input;
-		console.log( 'featureSets => ' ,featureSets );
-		const configuration = yaml.parse( fs.readFileSync( 'banner_features.yaml', { encoding:'utf8' }) );
-		console.log( 'configuration => ' ,configuration );
-		console.log('cli.flags.banner ==>', cli.flags.banner);
-		const testConfig = buildBannerTestConfig( cli.flags.banner );
+		const configuration = yaml.parse( fs.readFileSync( 'banner_features.yaml', { encoding:'utf8' } ) );
+		const environment = cli.flags.dev ? 'dev' : 'production';
+		const testConfig = buildBannerTestConfig( cli.flags.banner, environment, cli.flags.headed );
 		const banner = new Banner( testConfig.url, bannerConfig.selectors, testConfig.parameters, testConfig.options );
 		for( let index = 0; index < featureSets.length; index++ ) {
 			const featureSet = featureSets[ index ];
-			console.log( 'featureSet => ' ,featureSet );
 			if( !configuration[ featureSet ] ) {
 				logger.logError( `${ featureSet } NOT found` );
 				continue;
 			}
 			logger.logBold( `Running: ${ configuration[ featureSet ].description }` );
 			const features = await loadFeatures( configuration[ featureSet ].features );
-
 			for ( let j = 0; j < features.length; j++ ) {
-				console.log('features[j] ==>', features[j])
 				const testClass = new features[j]();
+				banner.dandy.logStep( `Feature: ${ testClass.description }` );
 				testClass.runSteps( banner );
-				//await banner.run();
 			}
+			await banner.run();
 		}
 
 	} else {

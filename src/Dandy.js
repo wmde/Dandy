@@ -256,6 +256,12 @@ class Dandy {
 		return this;
 	}
 
+	logStep( message ) {
+		this.actions.push( async () => {
+			logger.logStep( message );
+		});
+	}
+
 	async run() {
 		this.browser = await puppeteer.launch( this.options );
 		this.page = await this.browser.newPage();
