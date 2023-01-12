@@ -85,7 +85,9 @@ const cli = meow( `
 			for ( let j = 0; j < features.length; j++ ) {
 				const testClass = new features[j]();
 				banner.dandy.logStep( `Feature: ${ testClass.description }` );
+				banner.waitForBanner()
 				testClass.runSteps( banner );
+				banner.reload()
 			}
 			await banner.run();
 		}

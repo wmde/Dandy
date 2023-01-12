@@ -262,6 +262,27 @@ class Dandy {
 		});
 	}
 
+	setViewPort( width, height ) {
+		this.actions.push( async () => {
+			logger.log( `Setting viewport to ${ width }x${ height }` );
+			return this.page.setViewport( { width, height } );
+		});
+	}
+
+	checkElementValue( selector, value ) {
+		this.actions.push( async () => {
+			logger.log( `Looking for element (${ selector })` );
+			const elementValue = await this.page.$eval( '[name="'+ selector +'"]', el => el.getAttribute( 'value' ) );
+
+			if( elementValue === value ) {
+				logger.logSuccess( `Element value is as expected` );
+			} else {
+				await Promise.reject( new Error( `Element value is NOT as expected` ) );
+			}
+		} );
+		return this;
+	}
+
 	async run() {
 		this.browser = await puppeteer.launch( this.options );
 		this.page = await this.browser.newPage();

@@ -1,7 +1,7 @@
 import { bannerConfig } from '../config/banners.js';
 import isMobileBanner from './is_mobile_banner.js';
 
-const DUMMY_BANNER_NAME = 'B17WMDE_webpack_prototype';
+const DUMMY_BANNER_NAME = 'B22_WMDE_local_prototype';
 
 function determineUrl( bannerName, environment ) {
 	if ( bannerName.includes( bannerConfig.banner_keywords.mobile_de ) ) {

@@ -9,7 +9,7 @@ mobile_banner:
     description: "Features of mobile banner"
     features:
         - banner_slides_in
-        - banner_closes
+        - soft_close
         - banner_slider_stops_on_interaction
         - form_slides_in_on_click
 
@@ -17,5 +17,10 @@ test_banner:
     description: "Features of test banner"
     features:
         - banner_slides_in
+        - open_follow_up_banner
+
+desktop_banner:
+    description: "Features of desktop banner"
+    features:
+        - banner_is_not_shown_on_smaller_viewport
         - banner_slides_in
-        - banner_closes

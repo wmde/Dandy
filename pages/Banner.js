@@ -10,12 +10,97 @@ export default class Banner {
 	parameters;
 	selectors;
 
+	defaultViewPort;
+
 	constructor( url, selectors, parameters = {}, options = {} ) {
 		this.dandy = createDandy( url, Object.assign( options, { requestLogger: wporgRequestLogger } ) );
 		this.parameters = new URLSearchParams( parameters );
 		this.selectors = selectors;
+		this.defaultViewPort = options.viewport;
 
 		this.dandy.goToPage( '?' + this.parameters.toString() );
+	}
+
+	getBannerName() {
+		if( this.parameters.has( 'devbanner' ) ) {
+			return this.parameters.get( 'devbanner' );
+		}
+		return this.parameters.get( 'banner' );
+	}
+
+	checkIfMiniBannerHasAnimatedTextHighlight() {
+		this.dandy.checkElementExists( this.selectors.animated_text_highlight.mini_slider );
+		return this;
+	}
+
+	checkIfFullPageBannerHasAnimatedTextHighlight() {
+		this.dandy.checkElementExists( this.selectors.animated_text_highlight.full );
+		return this;
+	}
+
+	clickFollowUpBannerCloseButton() {
+		this.dandy.click( this.selectors.close_button.full );
+		return this;
+	}
+
+	checkPaymentTypeSofortIsDisabled() {
+		this.dandy.checkElementExists( this.selectors.donation_form.payment_type.disabled.sofort );
+		return this;
+	}
+
+	submitFullPageDonationForm() {
+		this.dandy.click( this.selectors.submit_button.form );
+		return this;
+	}
+
+	checkForSubmittedDonationForm() {
+		this.dandy.checkElementExists( this.selectors.spenden_page.donation_form );
+		this.dandy.checkElementExists( this.selectors.spenden_page.submitted_donation_form );
+		this.dandy.checkElementExists( this.selectors.spenden_page.selected_values );
+		return this;
+	}
+
+	checkInterval( intervalValue ) {
+		this.dandy.checkElementValue( this.selectors.spenden_page.interval.selector, this.selectors.spenden_page.interval[ intervalValue ] );
+		return this;
+	}
+
+	checkAmount( amount ) {
+		this.dandy.checkElementValue( this.selectors.spenden_page.amount.selector, this.selectors.spenden_page.amount[ amount ] );
+		return this;
+	}
+
+	checkPaymentType( paymentType ) {
+		this.dandy.checkElementValue( this.selectors.spenden_page.payment_type.selector, this.selectors.spenden_page.payment_type[ paymentType ] );
+		return this;
+	}
+
+	checkIfMissingIntervalErrorMsgIsShown() {
+		this.dandy.checkElementExists( this.selectors.donation_form.interval.error_msg_container );
+		this.dandy.checkElementExists( this.selectors.banner_error_msg );
+		this.dandy.scrollIntoView( this.selectors.close_button.full );
+		return this;
+	}
+
+	checkIfSubmittingTheBannerDonationFormLeadsToSpendenPageWithCorrectCorrespoindingLanguage( bannerName ) {
+		this.dandy.checkElementExists( this.selectors.banner_language );
+		this.dandy.checkElementExists( this.selectors.banner_language_active );
+		if ( bannerName.includes( 'EN' ) ) {
+			this.dandy.checkElementContainsText ( this.selectors.banner_language_active, 'en' );
+		}
+		else {
+			this.dandy.checkElementContainsText ( this.selectors.banner_language_active, 'de' );
+		}
+		return this;
+	}
+
+	setViewPort( width, height ) {
+		this.dandy.setViewPort( width, height )
+		return this;
+	}
+
+	resetViewPort() {
+		return this.setViewPort( this.defaultViewPort.width, this.defaultViewPort.height );
 	}
 
 	waitForBanner() {
