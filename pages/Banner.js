@@ -124,12 +124,7 @@ export default class Banner {
 	}
 
 	waitForBanner() {
-		this.dandy.waitForElement( this.selectors.banner_visible, { timeout: 50000 } );//10000
-		return this;
-	}
-
-	waitForBannerWPDE() {
-		this.dandy.waitForElement( this.selectors.banner_visible_wpde, { timeout: 10000 } );
+		this.dandy.waitForElement( this.selectors.banner_visible, { timeout: 20000 } );//10000
 		return this;
 	}
 

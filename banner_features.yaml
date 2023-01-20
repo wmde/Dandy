@@ -65,6 +65,10 @@ pad_en_banner:
 wikipedia_de_banner:
     description: "Features of wikipedia de banner"
     features:
+        - desktop/full_page_donation_form_values_get_passed_correctly_to_the_donation_page
+        - banner_closes_directly_without_soft_close
+        - mobile/mini_banner_has_text_highlight
+        - pad/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
 
 wikipedia_de_mobile_banner:
     description: "Features of wikipedia de mobile banner"

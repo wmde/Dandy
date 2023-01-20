@@ -85,6 +85,7 @@ const cli = meow( `
 			for ( let j = 0; j < features.length; j++ ) {
 				const testClass = new features[j]();
 				banner.dandy.logStep( `Feature ${j+1}: ${ testClass.description }` );
+				banner.captureScreenshot( `banners/${ banner.getBannerName() }/SOMETHING.png` )
 				banner.waitForBanner()
 				testClass.runSteps( banner );
 				banner.resetEnvironment();

@@ -28,7 +28,7 @@ export const bannerConfig = {
 		}
 	},
 	selectors: {
-		banner_visible: '.banner-position--state-finished',
+		banner_visible: '.t-banner-visible',//'.banner-position--state-finished'
 		banner_visible_wpde: '.banner-position.wmde-banner--visible',
 		banner_language: '.navbar-language',
 		banner_language_active: '.active.navbar-item',
