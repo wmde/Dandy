@@ -5,8 +5,8 @@ export default class Page {
 	dandy;
 	parameters;
 
-	constructor( parameters = {} ) {
-		this.dandy = createDandy( config.test_url );
+	constructor( parameters = {}, dandy = null ) {
+		this.dandy = dandy ? dandy : createDandy( config.test_url );
 		this.parameters = new URLSearchParams( parameters );
 	}
 

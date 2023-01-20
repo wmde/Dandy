@@ -6,6 +6,9 @@ const formConfig = {
 		selector: '.payment-page'
 	},
 	forms: {
+		language: {
+			active: '.navbar-language .active.navbar-item',
+		},
 		address_type: {
 			selector: '#address-type-selection'
 		},
@@ -238,6 +241,10 @@ const formConfig = {
 		},
 		iban: {
 			selector: 'input#iban'
+		},
+		submit_values: {
+			interval:{},
+			amount: {},
 		}
 	},
 	buttons: {
@@ -268,7 +275,50 @@ const formConfig = {
 		membership: {
 			selector: '.membership-confirmation'
 		}
+	},
+	submit_values: {
+		donation_form: '#laika-donation',
+		submitted_donation_form: '#laika-donation-personal-data-person',
+		selected_values: '.submit-values',
+		amount: {
+			selector: 'amount',
+			one_hundred: '10000',
+			five: '500',
+			twenty_five: '2500'
+		},
+		interval: {
+			selector: 'interval',
+			annually: '12',
+			monthly: '1',
+			single_payment: '0',
+		},
+		payment_type: {
+			selector: 'paymentType',
+			paypal: 'PPL'
+		}
 	}
 }
 
 export default formConfig;
+
+export const interval = {
+	single_payment: 'single_payment',
+	monthly: 'monthly',
+	annually: 'annually',
+};
+
+export const amount = {
+	five: 'five',
+	//fifteen: 'fifteen',
+	twenty_five: 'twenty_five',
+	//fifty: 'fifty',
+	one_hundred: 'one_hundred',
+};
+
+export const paymentType = {
+	paypal: 'paypal',
+	//credit_card: 'credit_card',
+	//direct_debit: 'direct_debit',
+	//bank_transfer: 'bank_transfer',
+	//sofort: 'sofort',
+};

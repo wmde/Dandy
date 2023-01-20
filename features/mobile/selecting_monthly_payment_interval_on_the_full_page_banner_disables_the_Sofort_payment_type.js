@@ -1,4 +1,4 @@
-import {intervals} from "../config/banners.js";
+import {intervals} from "../../config/banners.js";
 export default class SelectingMonthlyPaymentIntervalOnTheFullPageBannerDisablesTheSofortPaymentType {
 
 	description = "Selecting monthly payment interval on the full page banner disables the sofort payment type";

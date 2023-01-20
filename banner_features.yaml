@@ -1,26 +1,108 @@
 base_features:
     description: "Features that all banners must support"
     features:
-        - banner_slides_in
-        - banner_closes
-        - banner_slider_stops_on_interaction
-
-mobile_banner:
-    description: "Features of mobile banner"
-    features:
-        - banner_slides_in
-        - soft_close
-        - banner_slider_stops_on_interaction
-        - form_slides_in_on_click
-
-test_banner:
-    description: "Features of test banner"
-    features:
-        - banner_slides_in
-        - open_follow_up_banner
+        - mobile/banner_slides_in
 
 desktop_banner:
     description: "Features of desktop banner"
     features:
-        - banner_is_not_shown_on_smaller_viewport
+        - mobile/banner_slides_in
+        - mobile/mini_banner_has_text_highlight
+        - mobile/banner_closes_with_soft_close
+        - mobile/micro_banner_maybe_later_button_closes_the_banner
+        - mobile/micro_banner_close_button_closes_the_banner_and_sets_the_cookie
+        - pad/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
+        - pad/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
+        - mobile/micro_banner_disappears_after_15_seconds_without_user_interaction
+        - banner_is_not_shown_on_too_small_viewport
+
+mobile_banner:
+    description: "Features of mobile banner"
+    features:
+        - mobile/banner_slides_in
+        - mobile/mini_banner_has_text_highlight
+        - mobile/banner_closes_with_soft_close
+        - mobile/micro_banner_maybe_later_button_closes_the_banner
+        - mobile/micro_banner_close_button_closes_the_banner_and_sets_the_cookie
+        - mobile/micro_banner_disappears_after_15_seconds_without_user_interaction
+        - mobile/mini_banner_action_button_leads_to_follow_up_banner
+        - mobile/full_page_banner_has_text_highlight
+        - mobile/full_page_banner_close_button_closes_the_banner
+        - mobile/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
+        - mobile/selecting_monthly_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type
+        - mobile/selecting_annually_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type
+
+mobile_english_banner:
+    description: "Features of mobile english banner"
+    features:
+        - mobile/full_page_donation_form_values_get_passed_correctly_to_the_donation_page
+        - mobile/micro_banner_close_button_closes_the_banner_and_sets_the_cookie
+        - mobile/micro_banner_disappears_after_15_seconds_without_user_interaction
+
+pad_banner:
+    description: "Features of pad banner"
+    features:
+        - mobile/banner_slides_in
+        - mobile/mini_banner_has_text_highlight
+        - mobile/banner_closes_with_soft_close
+        - mobile/micro_banner_maybe_later_button_closes_the_banner
+        - mobile/micro_banner_close_button_closes_the_banner_and_sets_the_cookie
+        - pad/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
+        - pad/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
+        - banner_is_not_shown_on_too_small_viewport
+        - mobile/micro_banner_disappears_after_15_seconds_without_user_interaction
+
+pad_en_banner:
+    description: "Features of pad en banner"
+    features:
+        - mobile/banner_slides_in
+        - mobile/mini_banner_has_text_highlight
+        - banner_closes_directly_without_soft_close
+        - pad/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
+        - pad/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
+        - banner_is_not_shown_on_too_small_viewport
+
+wikipedia_de_banner:
+    description: "Features of wikipedia de banner"
+    features:
+
+wikipedia_de_mobile_banner:
+    description: "Features of wikipedia de mobile banner"
+    features:
+
+english_banner:
+    description: "Features of english banner"
+    features:
+        - mobile/banner_slides_in
+        - mobile/mini_banner_has_text_highlight
+        - mobile/banner_closes_with_soft_close
+        - mobile/micro_banner_maybe_later_button_closes_the_banner
+        - mobile/micro_banner_close_button_closes_the_banner_and_sets_the_cookie
+        - mobile/micro_banner_disappears_after_15_seconds_without_user_interaction
+        - pad/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
+        - pad/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
+        - banner_is_not_shown_on_too_small_viewport
+        - pad/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
+        - pad/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
+
+test_banner:
+    description: "Features of test banner"
+    features:
+        - banner_closes_directly_without_soft_close
+        - banner_is_not_shown_on_too_small_viewport
+        - banner_is_shown_with_slider_on_smaller_viewport
         - banner_slides_in
+        - full_page_banner_close_button_closes_the_banner
+        - full_page_banner_has_text_highlight
+        - full_page_donation_form_values_get_passed_correctly_to_the_donation_page
+        - in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
+        - micro_banner_disappears_after_15_seconds_without_user_interaction
+        - mini_banner_action_button_leads_to_follow_up_banner
+        - mini_banner_close_button_closes_the_banner_and_sets _the _cookie
+        - mini_banner_has_text_highlight
+        - red_error_markers_are_shown_when_respective_form_fields_are_not_filled_in_fullpage_donation_form
+        - selecting_annually_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type
+        - selecting_monthly_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type
+        - soft-close_maybe_later_button_closes_the_banner
+        - soft_close_close_button_closes_the_banner_and_sets_the_cookie
+        - submitting_english_banner_leads_to_english_donation_page

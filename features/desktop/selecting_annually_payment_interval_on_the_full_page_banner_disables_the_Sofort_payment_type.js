@@ -1,4 +1,4 @@
-import {intervals} from "../config/banners.js";
+import {intervals} from "../../config/banners.js";
 
 export default class SelectingAnnuallyPaymentIntervalOnTheFullPageBannerDisablesThe_SofortPaymentType {
 
@@ -8,9 +8,7 @@ export default class SelectingAnnuallyPaymentIntervalOnTheFullPageBannerDisables
 	 * @param { Banner } banner
 	 */
 	runSteps( banner ) {
-		banner.clickMiniBannerActionButton()
-			.waitForFollowupBanner()
-			.clickInterval( intervals.annually )
+		banner.clickInterval( intervals.annually )
 			.wait( 500 ) //wait for browser to settle
 			.captureScreenshot( `banners/${ banner.getBannerName() }/fullpage-banner_annually_interval_selected.png` )
 			.checkPaymentTypeSofortIsDisabled()

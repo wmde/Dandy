@@ -84,10 +84,10 @@ const cli = meow( `
 			const features = await loadFeatures( configuration[ featureSet ].features );
 			for ( let j = 0; j < features.length; j++ ) {
 				const testClass = new features[j]();
-				banner.dandy.logStep( `Feature: ${ testClass.description }` );
+				banner.dandy.logStep( `Feature ${j+1}: ${ testClass.description }` );
 				banner.waitForBanner()
 				testClass.runSteps( banner );
-				banner.reload()
+				banner.resetEnvironment();
 			}
 			await banner.run();
 		}

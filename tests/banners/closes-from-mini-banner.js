@@ -8,7 +8,7 @@ const testConfig = buildBannerTestConfig( process.argv );
 	const banner = new Banner( testConfig.url, bannerConfig.selectors, testConfig.parameters, testConfig.options );
 
 	await banner.waitForBanner()
-		.clickMiniBannerCloseButton()
+		.clickMainBannerCloseButton()
 		.wait( 100 )
 		.checkBannerIsHidden()
 		.captureScreenshot( `banners/${ testConfig.bannerName }/03-closes-from-mini-banner.png` )

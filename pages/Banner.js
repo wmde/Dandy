@@ -21,6 +21,14 @@ export default class Banner {
 		this.dandy.goToPage( '?' + this.parameters.toString() );
 	}
 
+	resetEnvironment(){
+		this.resetViewPort();
+		this.dandy.goToPage( '?' + this.parameters.toString() );
+		this.dandy.deleteCookies();
+		this.dandy.reloadPage();
+		return this;
+	}
+
 	getBannerName() {
 		if( this.parameters.has( 'devbanner' ) ) {
 			return this.parameters.get( 'devbanner' );
@@ -28,8 +36,13 @@ export default class Banner {
 		return this.parameters.get( 'banner' );
 	}
 
+	checkIfInDevEnvironment() {
+		return this.parameters.has( 'devbanner' );
+	}
+
 	checkIfMiniBannerHasAnimatedTextHighlight() {
 		this.dandy.checkElementExists( this.selectors.animated_text_highlight.mini_slider );
+		this.dandy.scrollIntoView( this.selectors.animated_text_highlight.mini_slider );
 		return this;
 	}
 
@@ -38,7 +51,7 @@ export default class Banner {
 		return this;
 	}
 
-	clickFollowUpBannerCloseButton() {
+	clickFullBannerCloseButton() {
 		this.dandy.click( this.selectors.close_button.full );
 		return this;
 	}
@@ -53,44 +66,51 @@ export default class Banner {
 		return this;
 	}
 
-	checkForSubmittedDonationForm() {
-		this.dandy.checkElementExists( this.selectors.spenden_page.donation_form );
-		this.dandy.checkElementExists( this.selectors.spenden_page.submitted_donation_form );
-		this.dandy.checkElementExists( this.selectors.spenden_page.selected_values );
+	submitFullPageDonationForm2() {
+		this.dandy.click( this.selectors.submit_button.step_two );
 		return this;
 	}
 
-	checkInterval( intervalValue ) {
-		this.dandy.checkElementValue( this.selectors.spenden_page.interval.selector, this.selectors.spenden_page.interval[ intervalValue ] );
+	submitFullPageDonationFormCustomAmount() {
+		this.dandy.click( this.selectors.submit_button.custom_amount );
 		return this;
 	}
 
-	checkAmount( amount ) {
-		this.dandy.checkElementValue( this.selectors.spenden_page.amount.selector, this.selectors.spenden_page.amount[ amount ] );
+	clickAnnualUpgradeOption( choice ){
+		this.dandy.click( this.selectors.donation_form.upgrade_option_annually[ choice ] );
 		return this;
 	}
 
-	checkPaymentType( paymentType ) {
-		this.dandy.checkElementValue( this.selectors.spenden_page.payment_type.selector, this.selectors.spenden_page.payment_type[ paymentType ] );
+	clickContactDetailsOption( choice ){
+		this.dandy.click( this.selectors.donation_form.upgrade_option_annually[ choice ] );
+		return this;
+	}
+
+	clickAnnualUpgradeOptionCustomAmount( amount ){
+		// this.dandy.click( this.selectors.donation_form.upgrade_option_annually.custom_amount );
+		// this.dandy.wait( 2000 ); //wait for the second page form to appear
+		this.dandy.fillInTextBox( this.selectors.donation_form.upgrade_option_annually.enter_custom_amount, amount );
 		return this;
 	}
 
 	checkIfMissingIntervalErrorMsgIsShown() {
 		this.dandy.checkElementExists( this.selectors.donation_form.interval.error_msg_container );
 		this.dandy.checkElementExists( this.selectors.banner_error_msg );
-		this.dandy.scrollIntoView( this.selectors.close_button.full );
+		//this.dandy.scrollIntoView( this.selectors.close_button.full );
 		return this;
 	}
 
-	checkIfSubmittingTheBannerDonationFormLeadsToSpendenPageWithCorrectCorrespoindingLanguage( bannerName ) {
-		this.dandy.checkElementExists( this.selectors.banner_language );
-		this.dandy.checkElementExists( this.selectors.banner_language_active );
-		if ( bannerName.includes( 'EN' ) ) {
-			this.dandy.checkElementContainsText ( this.selectors.banner_language_active, 'en' );
-		}
-		else {
-			this.dandy.checkElementContainsText ( this.selectors.banner_language_active, 'de' );
-		}
+	checkIfMissingAmountErrorMsgIsShown() {
+		this.dandy.checkElementExists( this.selectors.donation_form.amount.error_msg_container );
+		this.dandy.checkElementExists( this.selectors.banner_error_msg );
+		//this.dandy.scrollIntoView( this.selectors.close_button.full );
+		return this;
+	}
+
+	checkIfMissingPaymentTypeErrorMsgIsShown() {
+		this.dandy.checkElementExists( this.selectors.donation_form.payment_type.error_msg_container );
+		this.dandy.checkElementExists( this.selectors.banner_error_msg );
+		//this.dandy.scrollIntoView( this.selectors.close_button.full );
 		return this;
 	}
 
@@ -104,7 +124,12 @@ export default class Banner {
 	}
 
 	waitForBanner() {
-		this.dandy.waitForElement( this.selectors.banner_visible, { timeout: 10000 } );
+		this.dandy.waitForElement( this.selectors.banner_visible, { timeout: 50000 } );//10000
+		return this;
+	}
+
+	waitForBannerWPDE() {
+		this.dandy.waitForElement( this.selectors.banner_visible_wpde, { timeout: 10000 } );
 		return this;
 	}
 
@@ -127,15 +152,16 @@ export default class Banner {
 		await this.dandy.run();
 	}
 
-	clickDesktopCloseButton() {
-		this.dandy.click( this.selectors.close_button.desktop );
+	clickMainBannerCloseButton() {
+		this.dandy.click( this.selectors.close_button.main );
 		return this;
 	}
 
-	clickMiniBannerCloseButton() {
-		this.dandy.click( this.selectors.close_button.mini );
-		return this;
-	}
+	// clickMainBannerCloseButton() {
+	// 	this.wait( 3000 )
+	// 	this.dandy.click( this.selectors.close_button.mini );
+	// 	return this;
+	// }
 
 	clickSoftCloseCloseButton() {
 		this.dandy.click( this.selectors.soft_close.close_button );
@@ -147,7 +173,7 @@ export default class Banner {
 		return this;
 	}
 
-	clickMiniBannerButton() {
+	clickMiniBannerActionButton() {
 		this.dandy.click( this.selectors.submit_button.mini );
 		return this;
 	}
@@ -247,6 +273,11 @@ export default class Banner {
 		return this;
 	}
 
+	markStepAsSkipped( message ) {
+		this.dandy.logStep( message );
+		return this;
+	}
+
 	clickPaymentTypeSofortButton() {
 		this.dandy.click( this.selectors.donation_form.payment_type.sofort );
 		return this;
@@ -264,7 +295,9 @@ export default class Banner {
 		this.wait( 10000 )
 		this.dandy.checkElementExists( this.selectors.slider.next_slide );
 		this.dandy.click( this.selectors.slider.next_button );
+		this.wait( 2000 )
 		this.dandy.click( this.selectors.slider.back_button );
+		this.wait( 2000 )
 		return this;
 	}
 }

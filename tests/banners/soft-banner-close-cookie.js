@@ -9,7 +9,7 @@ const testConfig = buildBannerTestConfig( process.argv );
 	const banner = new Banner( testConfig.url, bannerConfig.selectors, testConfig.parameters, testConfig.options );
 
 	await banner.waitForBanner()
-		.clickDesktopCloseButton()
+		.clickMainBannerCloseButton()
 		.waitForSoftClose()
 		.clickSoftCloseCloseButton()
 		.wait( 500 ) // Give the cookie time to be set

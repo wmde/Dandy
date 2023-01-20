@@ -1,4 +1,4 @@
-import {amounts, intervals, paymentTypes} from "../config/banners.js";
+import {amounts, intervals, paymentTypes} from "../../config/banners.js";
 
 export default class InDonationFormWhenUserSolvesTheValidationErrorRedMarkersAreGone {
 

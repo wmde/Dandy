@@ -1,18 +1,15 @@
-import {amounts, intervals, paymentTypes} from "../config/banners.js";
+import {amounts, intervals, paymentTypes} from "../../config/banners.js";
 
 export default class InDonationFormWhenUserSolvesTheValidationErrorRedMarkersAreGone {
 
 	//On donation form, if a user misses filling out a field and clicks on submit: red error markers should be visible in the respective form section
-	description = 'On donation form, if a user misses filling out a field and clicks on submit: red error markers should be visible in the respective form section. When the validation error is solved, the red error markers should be gone';
+	description = 'In donation form, if a user misses filling out a field and clicks on submit: red error markers should be visible in the respective form section. When the validation error is solved, the red error markers should be gone';
 
 	/**
 	 * @param { Banner } banner
 	 */
 	runSteps( banner ) {
-		banner.clickMiniBannerActionButton()
-			.waitForFollowupBanner()
-
-			.clickAmount( amounts.five )
+		banner.clickAmount( amounts.five )
 			.clickPaymentType( paymentTypes.paypal )
 			.submitFullPageDonationForm()
 			.checkIfMissingIntervalErrorMsgIsShown()
@@ -23,8 +20,6 @@ export default class InDonationFormWhenUserSolvesTheValidationErrorRedMarkersAre
 			.wait( 2000 )
 			.reload()
 			.waitForBanner()
-			.clickMiniBannerActionButton()
-			.waitForFollowupBanner()
 
 			.clickAmount( amounts.one_hundred )
 			.clickInterval( intervals.annually )
@@ -37,8 +32,6 @@ export default class InDonationFormWhenUserSolvesTheValidationErrorRedMarkersAre
 			.wait( 2000 )
 			.reload()
 			.waitForBanner()
-			.clickMiniBannerActionButton()
-			.waitForFollowupBanner()
 
 			.clickInterval( intervals.single_payment )
 			.clickPaymentType( paymentTypes.paypal )

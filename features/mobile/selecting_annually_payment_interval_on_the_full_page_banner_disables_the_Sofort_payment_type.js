@@ -1,4 +1,4 @@
-import {intervals} from "../config/banners.js";
+import {intervals} from "../../config/banners.js";
 
 export default class SelectingAnnuallyPaymentIntervalOnTheFullPageBannerDisablesThe_SofortPaymentType {
 

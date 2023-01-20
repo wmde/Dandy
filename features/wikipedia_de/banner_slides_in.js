@@ -6,7 +6,7 @@ export default class BannerSlidesIn {
 	 * @param { Banner } banner
 	 */
 	runSteps( banner ) {
-		banner.waitForBanner()
-			.captureScreenshot( `banners/${ banner.getBannerName() }/banner_slides_in.png` )
+		banner.waitForBannerWPDE()
+			.captureScreenshot( `banners/${ banner.getBannerName() }/banner_is_present_WPDE.png` )
 	}
 }

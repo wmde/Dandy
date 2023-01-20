@@ -8,7 +8,7 @@ const testConfig = buildBannerTestConfig( process.argv );
 	const banner = new Banner( testConfig.url, bannerConfig.selectors, testConfig.parameters, testConfig.options );
 
 	await banner.waitForBanner()
-		.clickMiniBannerButton()
+		.clickMiniBannerActionButton()
 		.waitForFollowupBanner()
 		.clickPaymentType( paymentTypes.sofort )
 		.wait(100)

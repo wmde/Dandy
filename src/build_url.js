@@ -26,6 +26,7 @@ function determineUrl( bannerName, environment ) {
 function determineParameters( bannerName, environment ) {
 	const parameters = {
 		banner: environment === 'production' ? bannerName : DUMMY_BANNER_NAME,
+		devMode: 'true'
 	};
 
 	if ( environment === 'dev' ) {

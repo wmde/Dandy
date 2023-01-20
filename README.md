@@ -70,13 +70,13 @@ For example if you want to test a banner field throws an error with the followin
 The code would look something like this:
 
 ```js
-const banner = new Banner( url, selectors, parameters, options );
+const banner = new Banner(url, selectors, parameters, options);
 
 await banner.waitForBanner()
-    .clickMiniBannerCloseButton()
-    .checkBannerIsHidden()
-    .captureScreenshot( `banners/${ testConfig.bannerName }/banner-loads.png` )
-    .run();
+	.clickMainBannerCloseButton()
+	.checkBannerIsHidden()
+	.captureScreenshot(`banners/${testConfig.bannerName}/banner-loads.png`)
+	.run();
 ```
 
 ## Updating the Pages and Configuration

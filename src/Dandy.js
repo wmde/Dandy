@@ -79,6 +79,27 @@ class Dandy {
 		return this;
 	}
 
+	//const elem = await page.$('.portal-body');
+	//const boundingBox = await elem.boundingBox();
+	//console.log('boundingBox', boundingBox)
+
+	checkElementExists1( selector ) {
+		this.actions.push( async () => {
+			logger.log( `Looking for element (${ selector })` );
+			const exists = await this.page.$( selector ) !== null;
+			const boundingBox = await exists.boundingBox();
+
+
+			if( exists ) {
+				logger.logSuccess( `Found element (${ selector })` );
+				logger.logSuccess( `BoundingBx (${ boundingBox })` );
+			} else {
+				await Promise.reject( new Error( `Could not find element (${ selector })` ) );
+			}
+		} );
+		return this;
+	}
+
 	checkElementDoesNotExist( selector ) {
 		this.actions.push( async () => {
 			logger.log( `Making sure element (${ selector }) does not exist` );
@@ -150,6 +171,21 @@ class Dandy {
 		return this;
 	}
 
+	fillInTextBox( selector, text ) {
+		this.actions.push( async () => {
+			logger.log( `Filling in the text box (${ selector })` );
+			const exists = await this.page.$( selector ) !== null;
+			if( exists ) {
+				//await this.page.click( selector );
+				const what = await this.page.type( selector, text, { delay: 100 } );
+				logger.logStep( what )
+			} else {
+				await Promise.reject( new Error( `Could not fill in the text box (${ selector })` ) );
+			}
+		} );
+		return this;
+	}
+
 	clickSubmit( selector ) {
 		this.click( selector );
 		this.actions.push( async () => {
@@ -174,6 +210,19 @@ class Dandy {
 		return this;
 	}
 
+	scrollIntoView( selector ) {
+		this.actions.push( async () => {
+			try {
+				logger.log( `Scrolling into view` );
+				await this.page.focus( selector );
+				logger.logSuccess( `Scrolled into the view successfully` );
+			} catch( error ) {
+				await Promise.reject( new Error( `Something went wrong while scrolling into view` ) );
+			}
+		} );
+		return this;
+	}
+
 	wait( milliseconds ) {
 		this.actions.push( async () => {
 			logger.log( `Waiting for (${ milliseconds })` );
@@ -186,11 +235,27 @@ class Dandy {
 		this.actions.push( async () => {
 			logger.log( `looking for cookie (${ cookieName })` );
 			const cookies = await this.page.cookies();
-
 			if( cookies.find( x => x.name === cookieName ) ) {
 				logger.logSuccess( `Cookie exists (${ cookieName })` );
 			} else {
 				await Promise.reject( new Error( `Could not find cookie (${ cookieName })` ) );
+			}
+		} );
+		return this;
+	}
+	// const client = await page.target().createCDPSession();
+	// await client.send('Network.clearBrowserCookies');
+	// await client.send('Network.clearBrowserCache');
+	deleteCookies() {
+		this.actions.push( async () => {
+			const client = await this.page.target().createCDPSession();
+			await client.send('Network.clearBrowserCookies');
+			await client.send('Network.clearBrowserCache');
+			const cookies = await this.page.cookies();
+			if( cookies.length === 0 ) {
+				logger.logSuccess( `Cookies deleted successfully` );
+			} else {
+				await Promise.reject( new Error( `These cookies still exist: (${ cookies })` ) );
 			}
 		} );
 		return this;

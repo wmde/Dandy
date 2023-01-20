@@ -1,12 +1,17 @@
-export default class SoftCloseCloseButtonClosesTheBannerAndSetsTheCookie {
-	description = 'Soft close close button closes the banner and sets the cookie';
+export default class MicroBannerCloseButtonClosesTheBannerAndSetsTheCookie {
+	description = 'Micro banner close button closes the banner and sets the cookie';
 
 	/**
-	 *
 	 * @param { Banner } banner
 	 */
 	runSteps( banner ) {
-		banner.clickMiniBannerCloseButton()
+
+		if( banner.checkIfInDevEnvironment() ) {
+			banner.markStepAsSkipped( 'Local environment does NOT support cookies for Wikipedia.' );
+			return;
+		}
+
+		banner.clickMainBannerCloseButton()
 			.captureScreenshot( `banners/${ banner.getBannerName() }/mini-banner_closed__test_soft_close_functionality.png` )
 			.waitForSoftClose()
 			.clickSoftCloseCloseButton()
