@@ -6,7 +6,7 @@ export default class FullPageBannerCloseButtonClosesTheBanner {
 	 * @param { Banner } banner
 	 */
 	runSteps( banner ) {
-		banner.clickMiniBannerActionButton()
+		banner.clickMainBannerActionButton()
 			.waitForFollowupBanner()
 			.captureScreenshot( `banners/${ banner.getBannerName() }/full-page-banner.png` )
 			.clickFullBannerCloseButton()

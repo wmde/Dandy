@@ -8,7 +8,7 @@ export default class SelectingAnnuallyPaymentIntervalOnTheFullPageBannerDisables
 	 * @param { Banner } banner
 	 */
 	runSteps( banner ) {
-		banner.clickMiniBannerActionButton()
+		banner.clickMainBannerActionButton()
 			.waitForFollowupBanner()
 			.clickInterval( intervals.annually )
 			.wait( 500 ) //wait for browser to settle

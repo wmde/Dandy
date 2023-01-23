@@ -2,23 +2,22 @@ import {amounts, intervals, paymentTypes, upgradeOptions} from '../../config/ban
 import { amount, interval, paymentType } from '../../config/forms.js';
 import DonationForm from "../../pages/DonationForm.js";
 
-export default class FullPageDonationFormValuesGetPassedCorrectlyToTheDonationPage {
+export default class NoToDonateYearlyUpgradeFullPageDonationFormValuesGetPassedCorrectlyToTheDonationPage {
 
-	description = 'Do you want to donate yearly? :Check if submitting the full page donation form values: interval, payment type and donation amount gets passed correctly to the spenden.wikimedia.de page';
+	description = 'Do you want to donate yearly? NO :Check if submitting the full page donation form values:' +
+		'interval, payment type and donation amount get passed correctly to the spenden.wikimedia.de page';
 
 	/**
 	 * @param { Banner } banner
 	 */
 	runSteps( banner ) {
-		banner.clickMiniBannerActionButton()
-			.waitForFollowupBanner()
-
-			.clickInterval( intervals.single_payment )
+		banner.clickInterval( intervals.single_payment )
 			.clickAmount( amounts.five )
 			.clickPaymentType( paymentTypes.paypal )
 			.submitFullPageDonationForm()
 			.clickAnnualUpgradeOption( upgradeOptions.no )
-			.submitFullPageDonationForm2();
+			.submitFullPageDonationFormAnnualUpgradeChoice()
+			.wait( 2000 );
 
 		const donationForm = DonationForm.createFromBanner( banner );
 		donationForm.checkForSubmittedDonationForm()

@@ -7,7 +7,7 @@ export default class SelectingMonthlyPaymentIntervalOnTheFullPageBannerDisablesT
 	 * @param { Banner } banner
 	 */
 	runSteps( banner ) {
-		banner.clickMiniBannerActionButton()
+		banner.clickMainBannerActionButton()
 			.waitForFollowupBanner()
 			.clickInterval( intervals.monthly )
 			.wait( 500 ) //wait for browser to settle

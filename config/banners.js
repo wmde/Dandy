@@ -28,7 +28,7 @@ export const bannerConfig = {
 		}
 	},
 	selectors: {
-		banner_visible: '.t-banner-visible',//'.banner-position--state-finished'
+		banner_visible: '.t-banner-visible',
 		banner_visible_wpde: '.banner-position.wmde-banner--visible',
 		banner_language: '.navbar-language',
 		banner_language_active: '.active.navbar-item',
@@ -36,8 +36,9 @@ export const bannerConfig = {
 		banner_hidden: '.wmde-banner--hidden',
 		banner_soft_close: '.wmde-banner--soft-closing',
 		followup_visible: '.wmde-banner-followup-banner-position--state-finished',
+		use_of_funds_link: '.t-use-of-funds-link',
 		animated_text_highlight: {
-			mini_slider: '.wmde-banner-slider-text-animated-highlight',
+			main_slider: '.wmde-banner-slider-text-animated-highlight',
 			full: '.wmde-banner-text-animated-highlight'
 		},
 		message: {
@@ -45,28 +46,26 @@ export const bannerConfig = {
 			big_viewport: '.wmde-banner-message'
 		},
 		slider: {
-			first_slide: '.keen-slider__slide.wmde-banner-slide.wmde-banner-slide--current',
+			first_slide: '.keen-slider__slide.wmde-banner-slide',
 			next_slide: '.keen-slider__slide.wmde-banner-slide',
 			next_button: '.wmde-banner-slider-navigation-next',
 			back_button: '.wmde-banner-slider-navigation-previous'
 		},
 		close_button: {
-			main: '.t-main-banner-close',
-			//desktop: '.wmde-banner-close-link',
-			//mini: '.wmde-banner-mini-close-button',
-			full: '.t-full-banner-close'//.wmde-banner-full-close
+			main: '.t-close-main-banner',
+			full: '.t-close-full-banner'
 		},
 		submit_button: {
-			mini: '.wmde-banner-mini-button',
+			main: '.wmde-banner-mini-button',
 			form: '.wmde-banner-form-button',
 			form_step_1: '.wmde-banner-form-step-1 .wmde-banner-form-button',
 			form_step_2: '.wmde-banner-form-step-2 .wmde-banner-form-button',
-			step_two: '.form-step-2-button .wmde-banner-form-button',
-			custom_amount: '.wmde-banner-form-custom-button .wmde-banner-form-button'
+			annual_upgrade_choice: '.form-step-2-button .wmde-banner-form-button',
+			custom_amount: '.t-submit-custom-amount'
 		},
 		use_of_funds: {
-			link: '.wmde-banner-footer-usage-link',
 			modal_is_open: '.banner_modal.is-visible',
+			modal_container: '.banner_modal__container',
 			call_to_action: '.use_of_funds__button',
 			elements: {
 				top_section: '.use_of_funds__section',
@@ -97,6 +96,7 @@ export const bannerConfig = {
 				twenty_five: '.select-amount-25 label',
 				fifty: '.select-amount-50 label',
 				one_hundred: '.select-amount-100 label',
+				custom_amount: '.t-custom-amount',
 				error_msg_container: '.select-amount.wmde-banner-select-group-container.wmde-banner-select-group-container--with-error'
 			},
 			payment_type: {
@@ -111,14 +111,15 @@ export const bannerConfig = {
 				error_msg_container: '.select-payment-method.wmde-banner-select-group-container.wmde-banner-select-group-container--with-error'
 			},
 			upgrade_option_annually: {
-				no: '.wmde-banner-select-group-option.wmde-banner-select-group-option-no',
-				yes: '.wmde-banner-select-group-option.wmde-banner-select-group-option-yes',
-				custom_amount: '.wmde-banner-form-upgrade-custom',
-				enter_custom_amount: '.wmde-banner-select-custom-amount-input'
+				no: '.t-annual-upgrade-no',
+				yes: '.t-annual-upgrade-yes',
+				annual_upgrade_yes_custom_amount: '.t-annual-upgrade-yes-custom',
+				enter_custom_amount: '.t-custom-amount-annual-upgrade',
+				error_msg_container: '.wmde-banner-select-group-error-message'
 			},
 			contactDetails: {
-				full: '',
-				no: ''
+				full: '.t-submit-address-type-person',
+				anonymous: '.t-submit-address-type-anonym'
 			}
 		},
 		soft_close: {
@@ -153,10 +154,10 @@ export const paymentTypes = {
 export const upgradeOptions = {
 	yes: 'yes',
 	no: 'no',
-	custom_amount: 'custom_amount'
+	custom_amount: 'annual_upgrade_yes_custom_amount'
 };
 
 export const contactDetails = {
 	full: 'full',
-	no: 'no',
+	anonymous: 'anonymous',
 };

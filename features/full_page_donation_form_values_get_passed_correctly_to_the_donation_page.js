@@ -4,13 +4,14 @@ import DonationForm from "../../pages/DonationForm.js";
 
 export default class FullPageDonationFormValuesGetPassedCorrectlyToTheDonationPage {
 
-	description = 'Check if submitting the full page donation form values: interval, payment type and donation amount gets passed correctly to the spenden.wikimedia.de page';
+	description = 'Check if submitting the full page donation form values: interval, payment type and donation' +
+		'amount get passed correctly to the spenden.wikimedia.de page';
 
 	/**
 	 * @param { Banner } banner
 	 */
 	runSteps( banner ) {
-		banner.clickMiniBannerActionButton()
+		banner.clickMainBannerActionButton()
 			.waitForFollowupBanner()
 
 			.clickInterval( intervals.monthly )

@@ -1,21 +1,18 @@
-import {amounts, contactDetails, intervals, paymentTypes, upgradeOptions} from '../../config/banners.js';
+import {amounts, intervals, paymentTypes, upgradeOptions} from '../../config/banners.js';
 import { amount, interval, paymentType } from '../../config/forms.js';
 import DonationForm from "../../pages/DonationForm.js";
 
 export default class YesToDonateYearlyUpgradeDifferentAmountFullPageDonationFormValuesGetPassedCorrectlyToTheDonationPage {
 
 	description = 'Do you want to donate yearly? YES with different amount :Check if submitting the full page' +
-		'donation form values: interval, payment type and donation amount gets passed correctly to the' +
+		'donation form values: interval, payment type and donation amount get passed correctly to the' +
 		'spenden.wikimedia.de page';
 
 	/**
 	 * @param { Banner } banner
 	 */
 	runSteps( banner ) {
-		banner.clickMainBannerActionButton()
-			.waitForFollowupBanner()
-
-			.clickInterval( intervals.single_payment )
+		banner.clickInterval( intervals.single_payment )
 			.clickAmount( amounts.fifty )
 			.clickPaymentType( paymentTypes.paypal )
 			.submitFullPageDonationForm()

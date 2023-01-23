@@ -6,7 +6,7 @@ export default class FullPageBannerHasTextHighlight {
 	 * @param { Banner } banner
 	 */
 	runSteps( banner ) {
-		banner.clickMiniBannerActionButton()
+		banner.clickMainBannerActionButton()
 			.waitForFollowupBanner()
 			.checkIfFullPageBannerHasAnimatedTextHighlight()
 			.wait( 2000 ) //Wait here to let the 'text highlight' appear

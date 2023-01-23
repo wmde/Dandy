@@ -9,7 +9,7 @@ export default class SubmittingBannerLeadsToDonationPageWithCorrectCorresponding
 	 * @param { Banner } banner
 	 */
 	runSteps( banner ) {
-		banner.clickMiniBannerActionButton()
+		banner.clickMainBannerActionButton()
 			.waitForFollowupBanner()
 			.clickAmount( amounts.one_hundred )
 			.clickPaymentType( paymentTypes.paypal )

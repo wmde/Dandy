@@ -2,25 +2,25 @@ import {amounts, intervals, paymentTypes, upgradeOptions} from '../../config/ban
 import { amount, interval, paymentType } from '../../config/forms.js';
 import DonationForm from "../../pages/DonationForm.js";
 
-export default class FullPageDonationFormValuesGetPassedCorrectlyToTheDonationPage {
+export default class YesToDonateYearlyUpgradeCustomAmountFullPageDonationFormValuesGetPassedCorrectlyToTheDonationPage {
 
-	description = 'Do you want to donate yearly? :Check if submitting the full page donation form values: interval, payment type and donation amount gets passed correctly to the spenden.wikimedia.de page';
+	description = 'Yes to donate yearly upgrade with custom amount, full page donation form values get passed' +
+		'correctly to the donation page';
 
 	/**
 	 * @param { Banner } banner
 	 */
 	runSteps( banner ) {
-		banner.clickMiniBannerActionButton()
-			.waitForFollowupBanner()
-
-			.clickInterval( intervals.single_payment )
-			.clickAmount( amounts.one_hundred )
+		banner.clickInterval( intervals.single_payment )
+			.clickAmount( amounts.five )
 			.clickPaymentType( paymentTypes.paypal )
 			.submitFullPageDonationForm()
 			.clickAnnualUpgradeOption( upgradeOptions.custom_amount )
 			.wait( 2000 ) 	//wait for the next form page to appear
-			.clickAnnualUpgradeOptionCustomAmount( 100 )
-			.submitFullPageDonationFormCustomAmount();
+			.enterAnnualUpgradeOptionCustomAmount( '100' )
+			.submitFullPageDonationFormCustomAmount()
+			//.captureScreenshot( `banners/${ banner.getBannerName() }/upgrade-to-donate-yearly-custom-amount.png` )
+			.wait( 4000 );
 
 		const donationForm = DonationForm.createFromBanner( banner );
 		donationForm.checkForSubmittedDonationForm()

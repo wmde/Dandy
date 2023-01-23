@@ -1,12 +1,12 @@
-export default class MiniBannerHasTextHighlight {
+export default class MainBannerHasTextHighlight {
 
-	description = "Check if mini banner has 'Text highlight'";
+	description = "Check if main banner has 'Text highlight'";
 
 	/**
 	 * @param { Banner } banner
 	 */
 	runSteps( banner ) {
-		banner.checkIfMiniBannerHasAnimatedTextHighlight()
+		banner.checkIfMainBannerHasAnimatedTextHighlight()
 			.captureScreenshot( `banners/${ banner.getBannerName() }/mini-banner_has_text_highlight.png` )
 	}
 }

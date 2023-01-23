@@ -1,6 +1,6 @@
 export default class MiniBannerCloseButtonClosesTheBannerAndSetsTheCookie {
 
-	description = "Check if clicking mini banner close button 'closes' the banner and 'sets' the cookie";
+	description = "Check if clicking main banner close button 'closes' the banner and 'sets' the cookie";
 
 	/**
 	 * @param { Banner } banner

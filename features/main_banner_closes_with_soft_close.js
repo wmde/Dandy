@@ -1,6 +1,6 @@
-export default class BannerClosesWithSoftClose {
+export default class MainBannerClosesWithSoftClose {
 
-	description = 'Banner closes with soft close (micro banner appears)';
+	description = 'Main banner closes with soft close (micro banner appears)';
 
 	/**
 	 * @param { Banner } banner

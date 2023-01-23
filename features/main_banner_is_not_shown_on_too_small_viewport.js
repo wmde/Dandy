@@ -1,6 +1,6 @@
-export default class BannerIsNotShownOnTooSmallViewport {
+export default class MainBannerIsNotShownOnTooSmallViewport {
 
-	description = 'Banner is not shown on too small viewport';
+	description = 'Main banner is not shown on too small viewport';
 
 	/**
 	 * @param { Banner } banner
