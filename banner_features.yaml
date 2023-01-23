@@ -1,21 +1,15 @@
 desktop_banner: # npm run dandy -- -b B22_WMDE_Test_27_ctrl -d -h desktop_banner
     description: "Features of desktop banner"
     features:
-        - main_banner_slides_in
-        - main_banner_has_text_highlight
-        - main_banner_closes_with_soft_close
-        - micro_banner_maybe_later_button_closes_the_banner
-        - micro_banner_close_button_closes_the_banner_and_sets_the_cookie
-        - micro_banner_disappears_after_15_seconds_without_user_interaction
-        - use_of_funds_link_is_working
-        - desktop/donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
-        - desktop/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
-        - desktop/no_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/yes_to_donate_yearly_upgrade_custom_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/yes_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - main_banner_is_not_shown_on_too_small_viewport
-        - banner_is_shown_with_slider_on_smaller_viewport # -h mode!
+        - mobile/banner_slides_in
+        - mobile/mini_banner_has_text_highlight
+        - mobile/banner_closes_with_soft_close
+        - mobile/micro_banner_maybe_later_button_closes_the_banner
+        - mobile/micro_banner_close_button_closes_the_banner_and_sets_the_cookie
+        - pad/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
+        - pad/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
+        - mobile/micro_banner_disappears_after_15_seconds_without_user_interaction
+        - banner_is_not_shown_on_too_small_viewport
 
 mobile_banner_ctrl: # npm run dandy -- -b B22_WMDE_Mobile_Test_14_ctrl -d -h mobile_banner_ctrl
     description: "Features of mobile ctrl banner"
