@@ -1,4 +1,4 @@
-import { amounts, bannerConfig, intervals, paymentTypes } from '../../config/banners.js';
+import { bannerConfig } from '../../config/banners.js';
 import Banner from '../../pages/Banner.js';
 import buildBannerTestConfig from '../../src/build_banner_test_config.js';
 

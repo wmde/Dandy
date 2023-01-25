@@ -1,4 +1,4 @@
-import {amounts, intervals, paymentTypes} from "../../config/banners.js";
+import { amounts, intervals, paymentTypes } from '../../config/banners.js';
 
 export default class InDonationFormWhenUserSolvesTheValidationErrorRedMarkersAreGone {
 
@@ -47,6 +47,6 @@ export default class InDonationFormWhenUserSolvesTheValidationErrorRedMarkersAre
 			.checkIfMissingAmountErrorMsgIsShown()
 			.captureScreenshot( `banners/${ banner.getBannerName() }/fullpage-banner_amount_missing_red_marker.png` )
 			.clickAmount( amounts.twenty_five )
-			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_after_amount_missing_red_marker_solved.png` )
+			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_after_amount_missing_red_marker_solved.png` );
 	}
 }

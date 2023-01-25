@@ -9,7 +9,7 @@ export default class FullPageBannerHasTextHighlight {
 		banner.clickMainBannerActionButton()
 			.waitForFollowupBanner()
 			.checkIfFullPageBannerHasAnimatedTextHighlight()
-			.wait( 2000 ) //Wait here to let the 'text highlight' appear
+			.wait( 2000 ) // Wait here to let the 'text highlight' appear
 			.captureScreenshot( `banners/${ banner.getBannerName() }/full-page-banner_has_text_highlight.png` );
 	}
 }

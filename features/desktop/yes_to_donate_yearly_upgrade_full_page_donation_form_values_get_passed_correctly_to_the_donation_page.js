@@ -1,6 +1,6 @@
-import {amounts, intervals, paymentTypes, upgradeOptions} from '../../config/banners.js';
+import { amounts, intervals, paymentTypes, upgradeOptions } from '../../config/banners.js';
 import { amount, interval, paymentType } from '../../config/forms.js';
-import DonationForm from "../../pages/DonationForm.js";
+import DonationForm from '../../pages/DonationForm.js';
 
 export default class YesToDonateYearlyUpgradeFullPageDonationFormValuesGetPassedCorrectlyToTheDonationPage {
 
@@ -23,6 +23,6 @@ export default class YesToDonateYearlyUpgradeFullPageDonationFormValuesGetPassed
 		donationForm.checkForSubmittedDonationForm()
 			.checkPaymentType( paymentType.paypal )
 			.checkInterval( interval.annually )
-			.checkAmount( amount.one_hundred )
+			.checkAmount( amount.one_hundred );
 	}
 }

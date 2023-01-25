@@ -24,7 +24,7 @@ import messages from 'wmde-fundraising-frontend-content/i18n/de_DE/messages/mess
 		.checkElementExists( formConfig.success.donation.payment_notice.selector )
 		.checkElementContainsText(
 			formConfig.success.donation.payment_notice.selector,
-			messages[ formConfig.success.donation.payment_notice.language_items.bank_transfer ]
+			messages[ formConfig.success.donation.payment_notice.language_items.bank_transfer ],
 		)
 
 		.checkElementExists( formConfig.success.donation.bank_data.selector )

@@ -13,7 +13,7 @@ export default function buildBannerTestConfig( nodeArguments ) {
 		parameters,
 		options: {
 			headless: !flags.headed,
-			viewport : { width: isMobileBanner( flags.bannerName ) ? 460 : 1200, height: 1200 }
-		}
+			viewport: { width: isMobileBanner( flags.bannerName ) ? 460 : 1200, height: 1200 },
+		},
 	};
 }

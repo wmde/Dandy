@@ -11,7 +11,7 @@ const testConfig = buildBannerTestConfig( process.argv );
 		.clickMainBannerActionButton()
 		.waitForFollowupBanner()
 		.clickPaymentType( paymentTypes.sofort )
-		.wait(100)
+		.wait( 100 )
 		.checkIntervalMonthlyIsDisabled()
 		.checkIntervalYearlyIsDisabled()
 		.captureScreenshot( `banners/${ testConfig.bannerName }/02-sofort-is-once-off-only.png` )

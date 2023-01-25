@@ -1,6 +1,6 @@
 import { bannerConfig } from '../config/banners.js';
 import isMobileBanner from './is_mobile_banner.js';
-import isWPDEBanner from "./is_wpde_banner.js";
+import isWPDEBanner from './is_wpde_banner.js';
 
 const WP_ORG_DEV_BANNER = 'B22_WMDE_local_prototype';
 const WP_DE_DEV_BANNER = 'dev-mode-wpde';
@@ -29,13 +29,13 @@ function determineParameters( bannerName, environment ) {
 
 	let devBanner = WP_ORG_DEV_BANNER;
 
-	if( isWPDEBanner( bannerName ) ) {
+	if ( isWPDEBanner( bannerName ) ) {
 		devBanner = WP_DE_DEV_BANNER;
 	}
 
 	const parameters = {
 		banner: environment === 'production' ? bannerName : devBanner,
-		devMode: 'true'
+		devMode: 'true',
 	};
 
 	if ( environment === 'dev' ) {
@@ -52,6 +52,6 @@ function determineParameters( bannerName, environment ) {
 export default function buildUrl( banner, environment ) {
 	return {
 		url: determineUrl( banner, environment ),
-		parameters: determineParameters( banner, environment )
-	}
+		parameters: determineParameters( banner, environment ),
+	};
 }

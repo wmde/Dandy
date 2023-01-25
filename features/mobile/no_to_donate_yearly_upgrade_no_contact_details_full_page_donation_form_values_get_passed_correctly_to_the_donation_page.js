@@ -1,6 +1,5 @@
-import {amounts, contactDetails, intervals, paymentTypes, upgradeOptions} from '../../config/banners.js';
-import { amount, interval, paymentType } from '../../config/forms.js';
-import DonationForm from "../../pages/DonationForm.js";
+import { amounts, contactDetails, intervals, paymentTypes, upgradeOptions } from '../../config/banners.js';
+import DonationForm from '../../pages/DonationForm.js';
 
 export default class NoToDonateYearlyUpgradeNoContactDetailsFullPageDonationFormValuesGetPassedCorrectlyToTheDonationPage {
 
@@ -25,9 +24,9 @@ export default class NoToDonateYearlyUpgradeNoContactDetailsFullPageDonationForm
 
 		const donationForm = DonationForm.createFromBanner( banner );
 		donationForm.checkIsOnSuccessPage();
-			//.checkForSubmittedDonationForm()
-			// .checkPaymentType( paymentType.paypal )//////////////////
-			// .checkInterval( interval.single_payment )
-			// .checkAmount( amount.five )
+		// .checkForSubmittedDonationForm()
+		// .checkPaymentType( paymentType.paypal )//////////////////
+		// .checkInterval( interval.single_payment )
+		// .checkAmount( amount.five )
 	}
 }

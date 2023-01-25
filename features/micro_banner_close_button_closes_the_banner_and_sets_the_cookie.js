@@ -6,7 +6,7 @@ export default class MicroBannerCloseButtonClosesTheBannerAndSetsTheCookie {
 	 */
 	runSteps( banner ) {
 
-		if( banner.checkIfInDevEnvironment() ) {
+		if ( banner.checkIfInDevEnvironment() ) {
 			banner.markStepAsSkipped( 'Local environment does NOT support cookies for Wikipedia.' );
 			return;
 		}
@@ -18,6 +18,6 @@ export default class MicroBannerCloseButtonClosesTheBannerAndSetsTheCookie {
 			.wait( 500 ) // Give the cookie time to get set
 			.checkBannerIsHidden()
 			.checkCookieExists( 'centralnotice_hide_fundraising' )
-			.captureScreenshot( `banners/${ banner.getBannerName() }/after-clicking-soft-close-close-button-banner-has-disappeared-now.png` )
+			.captureScreenshot( `banners/${ banner.getBannerName() }/after-clicking-soft-close-close-button-banner-has-disappeared-now.png` );
 	}
 }

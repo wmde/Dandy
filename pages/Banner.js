@@ -3,7 +3,7 @@ import { wporgRequestLogger } from '../src/wporg_request_logger.js';
 
 export default class Banner {
 	/**
-	 * @type Dandy
+	 * @type { Dandy }
 	 */
 	dandy;
 
@@ -21,17 +21,17 @@ export default class Banner {
 		this.dandy.goToPage( '?' + this.parameters.toString() );
 	}
 
-	resetEnvironment(){
+	resetEnvironment() {
 		this.resetViewPort();
 		this.dandy.goToPage( '?' + this.parameters.toString() );
-		this.dandy.wait( 2000 );	//wait for cookies to get set successfully
+		this.dandy.wait( 2000 ); // wait for cookies to get set successfully
 		this.dandy.deleteCookies();
 		this.dandy.reloadPage();
 		return this;
 	}
 
 	getBannerName() {
-		if( this.parameters.has( 'devbanner' ) ) {
+		if ( this.parameters.has( 'devbanner' ) ) {
 			return this.parameters.get( 'devbanner' );
 		}
 		return this.parameters.get( 'banner' );
@@ -42,14 +42,14 @@ export default class Banner {
 	}
 
 	checkIfMainBannerHasAnimatedTextHighlight() {
-		//this.dandy.checkElementExists( this.selectors.animated_text_highlight.main_slider );
+		// this.dandy.checkElementExists( this.selectors.animated_text_highlight.main_slider );
 		this.dandy.waitForElement( this.selectors.animated_text_highlight.main_slider, { timeout: 200 } );
 		this.dandy.scrollIntoView( this.selectors.animated_text_highlight.main_slider );
 		return this;
 	}
 
 	checkIfFullPageBannerHasAnimatedTextHighlight() {
-		//this.dandy.checkElementExists( this.selectors.animated_text_highlight.full );
+		// this.dandy.checkElementExists( this.selectors.animated_text_highlight.full );
 		this.dandy.waitForElement( this.selectors.animated_text_highlight.full, { timeout: 200 } );
 		return this;
 	}
@@ -60,7 +60,7 @@ export default class Banner {
 	}
 
 	checkPaymentTypeSofortIsDisabled() {
-		//this.dandy.checkElementExists( this.selectors.donation_form.payment_type.disabled.sofort );
+		// this.dandy.checkElementExists( this.selectors.donation_form.payment_type.disabled.sofort );
 		this.dandy.waitForElement( this.selectors.donation_form.payment_type.disabled.sofort, { timeout: 200 } );
 		return this;
 	}
@@ -80,71 +80,71 @@ export default class Banner {
 		return this;
 	}
 
-	clickAnnualUpgradeOption( choice ){
+	clickAnnualUpgradeOption( choice ) {
 		this.dandy.click( this.selectors.donation_form.upgrade_option_annually[ choice ] );
 		return this;
 	}
 
-	clickContactDetailsOption( choice ){
+	clickContactDetailsOption( choice ) {
 		this.dandy.click( this.selectors.donation_form.contactDetails[ choice ] );
 		return this;
 	}
 
-	enterAnnualUpgradeOptionCustomAmount(amount ){
+	enterAnnualUpgradeOptionCustomAmount( amount ) {
 		// this.dandy.click( this.selectors.donation_form.upgrade_option_annually.custom_amount );
 		// this.dandy.wait( 2000 ); //wait for the second page form to appear
-		//this.dandy.fillInTextBox( this.selectors.donation_form.upgrade_option_annually.enter_custom_amount, amount );
+		// this.dandy.fillInTextBox( this.selectors.donation_form.upgrade_option_annually.enter_custom_amount, amount );
 		this.dandy.setInputText( this.selectors.donation_form.upgrade_option_annually.enter_custom_amount, amount );
 		return this;
 	}
 
 	checkIfMissingAnnualUpgradeChoiceErrorMsgIsShown() {
-		//this.dandy.checkElementExists( this.selectors.donation_form.upgrade_option_annually.error_msg_container );
+		// this.dandy.checkElementExists( this.selectors.donation_form.upgrade_option_annually.error_msg_container );
 		this.dandy.waitForElement( this.selectors.donation_form.upgrade_option_annually.error_msg_container, { timeout: 200 } );
-		//this.dandy.checkElementExists( this.selectors.banner_error_msg );
+		// this.dandy.checkElementExists( this.selectors.banner_error_msg );
 		this.dandy.waitForElement( this.selectors.banner_error_msg, { timeout: 200 } );
-		//this.dandy.scrollIntoView( this.selectors.close_button.full );
+		// this.dandy.scrollIntoView( this.selectors.close_button.full );
 		return this;
 	}
 
 	checkIfMissingCustomAmountErrorMsgIsShown() {
-		//this.dandy.checkElementExists( this.selectors.donation_form.upgrade_option_annually.error_msg_container );
+		// this.dandy.checkElementExists( this.selectors.donation_form.upgrade_option_annually.error_msg_container );
 		this.dandy.waitForElement( this.selectors.donation_form.upgrade_option_annually.error_msg_container, { timeout: 200 } );
-		//this.dandy.checkElementExists( this.selectors.banner_error_msg );
+		// this.dandy.checkElementExists( this.selectors.banner_error_msg );
 		this.dandy.waitForElement( this.selectors.banner_error_msg, { timeout: 200 } );
-		//this.dandy.scrollIntoView( this.selectors.close_button.full );
+		// this.dandy.scrollIntoView( this.selectors.close_button.full );
 		return this;
 	}
 
 	checkIfMissingIntervalErrorMsgIsShown() {
-		//this.dandy.checkElementExists( this.selectors.donation_form.interval.error_msg_container );
+		// this.dandy.checkElementExists( this.selectors.donation_form.interval.error_msg_container );
 		this.dandy.waitForElement( this.selectors.donation_form.interval.error_msg_container, { timeout: 200 } );
-		//this.dandy.checkElementExists( this.selectors.banner_error_msg );
+		// this.dandy.checkElementExists( this.selectors.banner_error_msg );
 		this.dandy.waitForElement( this.selectors.banner_error_msg, { timeout: 200 } );
-		//this.dandy.scrollIntoView( this.selectors.close_button.full );
+		// this.dandy.scrollIntoView( this.selectors.close_button.full );
 		return this;
 	}
 
 	checkIfMissingAmountErrorMsgIsShown() {
-		//this.dandy.checkElementExists( this.selectors.donation_form.amount.error_msg_container );
+		// this.dandy.checkElementExists( this.selectors.donation_form.amount.error_msg_container );
 		this.dandy.waitForElement( this.selectors.donation_form.amount.error_msg_container, { timeout: 200 } );
-		//this.dandy.checkElementExists( this.selectors.banner_error_msg );
+		// this.dandy.checkElementExists( this.selectors.banner_error_msg );
 		this.dandy.waitForElement( this.selectors.banner_error_msg, { timeout: 200 } );
-		//this.dandy.scrollIntoView( this.selectors.close_button.full );
+		// this.dandy.scrollIntoView( this.selectors.close_button.full );
 		return this;
 	}
 
 	checkIfMissingPaymentTypeErrorMsgIsShown() {
-		//this.dandy.checkElementExists( this.selectors.donation_form.payment_type.error_msg_container );
+		// this.dandy.checkElementExists( this.selectors.donation_form.payment_type.error_msg_container );
 		this.dandy.waitForElement( this.selectors.donation_form.payment_type.error_msg_container, { timeout: 200 } );
-		//this.dandy.checkElementExists( this.selectors.banner_error_msg );
+		// this.dandy.checkElementExists( this.selectors.banner_error_msg );
 		this.dandy.waitForElement( this.selectors.banner_error_msg, { timeout: 200 } );
-		//this.dandy.scrollIntoView( this.selectors.close_button.full );
+		// this.dandy.scrollIntoView( this.selectors.close_button.full );
 		return this;
 	}
 
 	setViewPort( width, height ) {
-		this.dandy.setViewPort( width, height )
+		this.dandy.setViewPort( width, height );
 		return this;
 	}
 
@@ -180,12 +180,6 @@ export default class Banner {
 		this.dandy.click( this.selectors.close_button.main );
 		return this;
 	}
-
-	// clickMainBannerCloseButton() {
-	// 	this.wait( 3000 )
-	// 	this.dandy.click( this.selectors.close_button.mini );
-	// 	return this;
-	// }
 
 	clickSoftCloseCloseButton() {
 		this.dandy.click( this.selectors.soft_close.close_button );
@@ -223,7 +217,7 @@ export default class Banner {
 	}
 
 	checkIntervalMonthlyIsDisabled() {
-		//this.dandy.checkElementExists( this.selectors.donation_form.interval.disabled.monthly );
+		// this.dandy.checkElementExists( this.selectors.donation_form.interval.disabled.monthly );
 		this.dandy.waitForElement( this.selectors.donation_form.interval.disabled.monthly, { timeout: 200 } );
 		return this;
 	}
@@ -234,13 +228,13 @@ export default class Banner {
 	}
 
 	checkIntervalYearlyIsDisabled() {
-		//this.dandy.checkElementExists( this.selectors.donation_form.interval.disabled.yearly );
+		// this.dandy.checkElementExists( this.selectors.donation_form.interval.disabled.yearly );
 		this.dandy.waitForElement( this.selectors.donation_form.interval.disabled.yearly, { timeout: 200 } );
 		return this;
 	}
 
 	checkBannerIsHidden() {
-		//this.dandy.checkElementExists( this.selectors.banner_hidden );
+		// this.dandy.checkElementExists( this.selectors.banner_hidden );
 		this.dandy.waitForElement( this.selectors.banner_hidden, { timeout: 200 } );
 		return this;
 	}
@@ -289,7 +283,7 @@ export default class Banner {
 	}
 
 	checkUseOfFundsIsVisible() {
-		//this.dandy.checkElementExists( this.selectors.use_of_funds.modal_container );
+		// this.dandy.checkElementExists( this.selectors.use_of_funds.modal_container );
 		this.dandy.waitForElement( this.selectors.use_of_funds.modal_container, { timeout: 200 } );
 		return this;
 	}
@@ -316,22 +310,22 @@ export default class Banner {
 
 	checkSliderIsDisplayedOnSmallViewPort() {
 		this.dandy.checkElementDoesNotExist( this.selectors.message.big_viewport );
-		//this.dandy.checkElementExists( this.selectors.message.small_viewport );
+		// this.dandy.checkElementExists( this.selectors.message.small_viewport );
 		this.dandy.waitForElement( this.selectors.message.small_viewport, { timeout: 200 } );
 		return this;
 	}
 
 	checkSlidesAreSlidingInSlider() {
-		this.wait( 2000 )
-		//this.dandy.checkElementExists( this.selectors.slider.first_slide );
+		this.wait( 2000 );
+		// this.dandy.checkElementExists( this.selectors.slider.first_slide );
 		this.dandy.waitForElement( this.selectors.slider.first_slide, { timeout: 200 } );
-		this.wait( 10000 )
-		//this.dandy.checkElementExists( this.selectors.slider.next_slide );
+		this.wait( 10000 );
+		// this.dandy.checkElementExists( this.selectors.slider.next_slide );
 		this.dandy.waitForElement( this.selectors.slider.next_slide, { timeout: 200 } );
 		this.dandy.click( this.selectors.slider.next_button );
-		this.wait( 2000 )
+		this.wait( 2000 );
 		this.dandy.click( this.selectors.slider.back_button );
-		this.wait( 2000 )
+		this.wait( 2000 );
 		return this;
 	}
 }

@@ -7,6 +7,6 @@ export default class MainBannerSlidesIn {
 	 */
 	runSteps( banner ) {
 		banner.waitForBanner()
-			.captureScreenshot( `banners/${ banner.getBannerName() }/main_banner_slides_in.png` )
+			.captureScreenshot( `banners/${ banner.getBannerName() }/main_banner_slides_in.png` );
 	}
 }

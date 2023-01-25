@@ -1,4 +1,4 @@
-import {amounts, intervals, paymentTypes, upgradeOptions} from "../../config/banners.js";
+import { amounts, intervals, paymentTypes, upgradeOptions } from '../../config/banners.js';
 
 export default class InDonationFormWhenUserSolvesTheValidationErrorRedMarkersAreGone {
 
@@ -55,6 +55,6 @@ export default class InDonationFormWhenUserSolvesTheValidationErrorRedMarkersAre
 			.checkIfMissingAnnualUpgradeChoiceErrorMsgIsShown()
 			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_annual_upgrade_choice_missing_red_marker.png` )
 			.clickAnnualUpgradeOption( upgradeOptions.no )
-			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_after_annual_upgrade_choice_missing_red_marker_solved.png` )
+			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_after_annual_upgrade_choice_missing_red_marker_solved.png` );
 	}
 }
