@@ -44,7 +44,7 @@ export default class Banner {
 	checkIfMainBannerHasAnimatedTextHighlight() {
 		//this.dandy.checkElementExists( this.selectors.animated_text_highlight.main_slider );
 		this.dandy.waitForElement( this.selectors.animated_text_highlight.main_slider, { timeout: 200 } );
-		this.dandy.scrollIntoView( this.selectors.animated_text_highlight.main_slider );
+		this.dandy.scrollDownOneWindow( this.selectors.animated_text_highlight.main_slider );
 		return this;
 	}
 
@@ -277,7 +277,7 @@ export default class Banner {
 
 	clickUseOfFundsLink() {
 		this.dandy.waitForElement( this.selectors.use_of_funds_link, { timeout: 200 } );
-		this.dandy.scrollIntoView( this.selectors.use_of_funds_link );
+		this.dandy.scrollDownOneWindow( this.selectors.use_of_funds_link );
 		this.dandy.wait( 2000 );
 		this.dandy.click( this.selectors.use_of_funds_link );
 		return this;

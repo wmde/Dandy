@@ -174,15 +174,14 @@ class Dandy {
 		return this;
 	}
 
-	scrollIntoView( selector ) {
+	scrollDownOneWindow() {
 		this.actions.push( async () => {
 			try {
-				logger.log( `Scrolling into view` );
-				await this.page.$eval(selector, (el) => el.scrollIntoView());
-
-				logger.logSuccess( `Scrolled into the view successfully` );
-			} catch( error ) {
-				await Promise.reject( new Error( `Something went wrong while scrolling into view` ) );
+				logger.log( 'Scrolling down one window' );
+				await this.page.evaluate( 'window.scrollTo(0, window.innerHeight)' );
+				logger.logSuccess( 'Scrolled down successfully' );
+			} catch ( error ) {
+				await Promise.reject( new Error( 'Something went wrong while scrolling down' ) );
 			}
 		} );
 		return this;
