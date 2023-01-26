@@ -1,4 +1,4 @@
-import {amounts, intervals, paymentTypes, upgradeOptions} from "../../config/banners.js";
+import { amounts, intervals, paymentTypes, upgradeOptions } from '../../config/banners.js';
 
 export default class InDonationFormWhenUserSolvesTheValidationErrorRedMarkersAreGone {
 
@@ -73,7 +73,6 @@ export default class InDonationFormWhenUserSolvesTheValidationErrorRedMarkersAre
 			.checkIfMissingCustomAmountErrorMsgIsShown()
 			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_annual_upgrade_choice_missing_custom_amount_red_marker.png` )
 			.enterAnnualUpgradeOptionCustomAmount( '5' )
-			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_after_annual_upgrade_choice_missing_custom_amount_red_marker_solved.png` )
-
+			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_after_annual_upgrade_choice_missing_custom_amount_red_marker_solved.png` );
 	}
 }

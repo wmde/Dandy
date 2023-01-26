@@ -4,18 +4,16 @@ import { promises as fs } from 'fs';
 import { dirname } from 'path';
 import puppeteer from 'puppeteer';
 
-
 class Dandy {
-
 	baseUrl = '';
 
 	/**
-	 * @type puppeteer.Browser
+	 *  @type { puppeteer.Browser }
 	 */
 	browser = null;
 
 	/**
-	 * @type puppeteer.Page
+	 * @type { puppeteer.Page }
 	 */
 	page = null;
 	options = {};
@@ -38,7 +36,7 @@ class Dandy {
 			try {
 				logger.log( `Loading page (${ fullPath })` );
 				await this.page.goto( fullPath );
-			} catch( error ) {
+			} catch ( error ) {
 				await Promise.reject( new Error( `Something went wrong loading (${ fullPath })` ) );
 			}
 		} );
@@ -58,9 +56,9 @@ class Dandy {
 	waitForElement( selector, options ) {
 		this.actions.push( async () => {
 			logger.log( `Waiting for element (${ selector })` );
-			let start = new Date();
+			let start = Date.now();
 			await this.page.waitForSelector( selector, options );
-			logger.logSuccess( `Found element (${ selector }) in (${ new Date() - start }) milliseconds` );
+			logger.logSuccess( `Found element (${ selector }) in (${ Date.now() - start }) milliseconds` );
 		} );
 		return this;
 	}
@@ -70,7 +68,7 @@ class Dandy {
 			logger.log( `Looking for element (${ selector })` );
 			const exists = await this.page.$( selector ) !== null;
 
-			if( exists ) {
+			if ( exists ) {
 				logger.logSuccess( `Found element (${ selector })` );
 			} else {
 				await Promise.reject( new Error( `Could not find element (${ selector })` ) );
@@ -84,7 +82,7 @@ class Dandy {
 			logger.log( `Making sure element (${ selector }) does not exist` );
 			const exists = await this.page.$( selector ) !== null;
 
-			if( exists ) {
+			if ( exists ) {
 				throw new Error( `Found element (${ selector })` );
 			} else {
 				logger.logSuccess( `Did not find element (${ selector })` );
@@ -98,7 +96,7 @@ class Dandy {
 			logger.log( `Checking that text in (${ selector }) is equal to (${ text })` );
 			const elementText = await this.page.$eval( selector, element => element.innerText );
 
-			if( elementText.replace(/\s+/g, ' ') === text.replace(/\s+/g, ' ') ) {
+			if ( elementText.replace( /\s+/g, ' ' ) === text.replace( /\s+/g, ' ' ) ) {
 				logger.logSuccess( `Text in (${ selector }) is equal to (${ text })` );
 			} else {
 				await Promise.reject( new Error( `Text in ${ selector } (${ elementText }) is not equal to (${ text })` ) );
@@ -112,8 +110,10 @@ class Dandy {
 			logger.log( `Setting (${ selector }) value to (${ value })` );
 			const exists = await this.page.$( selector ) !== null;
 
-			if( exists ) {
-				await this.page.$eval( selector, el => el.value = '' );
+			if ( exists ) {
+				await this.page.$eval( selector, el => {
+					el.value = '';
+				} );
 				await this.page.type( selector, value );
 			} else {
 				await Promise.reject( new Error( `Could not find element (${ selector })` ) );
@@ -127,7 +127,7 @@ class Dandy {
 			logger.log( `selecting (${ option }) on (${ selector })` );
 			const exists = await this.page.$( selector ) !== null;
 
-			if( exists ) {
+			if ( exists ) {
 				await this.page.select( selector, option );
 			} else {
 				await Promise.reject( new Error( `Could not find element (${ selector })` ) );
@@ -141,7 +141,7 @@ class Dandy {
 			logger.log( `Clicking (${ selector })` );
 			const exists = await this.page.$( selector ) !== null;
 
-			if( exists ) {
+			if ( exists ) {
 				await this.page.click( selector );
 			} else {
 				await Promise.reject( new Error( `Could not find element (${ selector })` ) );
@@ -154,7 +154,7 @@ class Dandy {
 		this.click( selector );
 		this.actions.push( async () => {
 			logger.log( 'Waiting for page load' );
-			await this.page.waitForNavigation({ waitUntil: 'networkidle0' });
+			await this.page.waitForNavigation( { waitUntil: 'networkidle0' } );
 		} );
 		return this;
 	}
@@ -164,7 +164,7 @@ class Dandy {
 			logger.log( `Clicking (${ selector })` );
 			const element = await this.page.$( selector );
 
-			if( element !== null ) {
+			if ( element !== null ) {
 				await element.blur();
 				await this.page.click( selector );
 			} else {
@@ -199,7 +199,7 @@ class Dandy {
 		this.actions.push( async () => {
 			logger.log( `looking for cookie (${ cookieName })` );
 			const cookies = await this.page.cookies();
-			if( cookies.find( x => x.name === cookieName ) ) {
+			if ( cookies.find( x => x.name === cookieName ) ) {
 				logger.logSuccess( `Cookie exists (${ cookieName })` );
 			} else {
 				await Promise.reject( new Error( `Could not find cookie (${ cookieName })` ) );
@@ -211,11 +211,11 @@ class Dandy {
 	deleteCookies() {
 		this.actions.push( async () => {
 			const client = await this.page.target().createCDPSession();
-			await client.send('Network.clearBrowserCookies');
-			await client.send('Network.clearBrowserCache');
+			await client.send( 'Network.clearBrowserCookies' );
+			await client.send( 'Network.clearBrowserCache' );
 			const cookies = await this.page.cookies();
-			if( cookies.length === 0 ) {
-				logger.logSuccess( `Cookies deleted successfully` );
+			if ( cookies.length === 0 ) {
+				logger.logSuccess( 'Cookies deleted successfully' );
 			} else {
 				await Promise.reject( new Error( `These cookies still exist: (${ cookies })` ) );
 			}
@@ -227,7 +227,7 @@ class Dandy {
 		this.actions.push( async () => {
 			logger.log( `Looking for event (${ eventName })` );
 
-			if( this.eventLog.find( x => x.event === eventName ) !== undefined ) {
+			if ( this.eventLog.find( x => x.event === eventName ) !== undefined ) {
 				logger.logSuccess( `Event exists (${ eventName })` );
 			} else {
 				await Promise.reject( new Error( `Could not find event (${ eventName })` ) );
@@ -241,11 +241,11 @@ class Dandy {
 			logger.log( `Looking for event (${ eventName }) with data (${ dataKey })` );
 			const event = this.eventLog.find( x => x.event === eventName );
 
-			if( event === undefined ) {
+			if ( event === undefined ) {
 				await Promise.reject( new Error( `Could not find event (${ eventName })` ) );
 			}
 
-			if( event.data[ dataKey ] === undefined ) {
+			if ( event.data[ dataKey ] === undefined ) {
 				await Promise.reject( new Error( `Could not find event data item (${ dataKey }) in (${ eventName })` ) );
 			}
 
@@ -257,10 +257,10 @@ class Dandy {
 	reloadPage() {
 		this.actions.push( async () => {
 			try {
-				logger.log( `Reloading page` );
-				await this.page.reload( { waitUntil: [ "networkidle0", "domcontentloaded" ] } );
-			} catch( error ) {
-				await Promise.reject( new Error( `Something went wrong re-loading` ) );
+				logger.log( 'Reloading page' );
+				await this.page.reload( { waitUntil: [ 'networkidle0', 'domcontentloaded' ] } );
+			} catch ( error ) {
+				await Promise.reject( new Error( 'Something went wrong re-loading' ) );
 			}
 		} );
 		return this;
@@ -268,16 +268,16 @@ class Dandy {
 
 	showConsoleLog( filter ) {
 		if ( !filter ) {
-			filter = /.*/
+			filter = /.*/;
 		}
 		this.actions.push( async () => {
 			for ( let i = 0; i < this.consoleLog.length; i++ ) {
-				const entry = this.consoleLog[i];
+				const entry = this.consoleLog[ i ];
 				if ( !entry.msg.match( filter ) ) {
 					continue;
 				}
 				const args = await Promise.all( entry.args.map( arg => arg.jsonValue() ) );
-				logger.logDebug( entry.msg, args )
+				logger.logDebug( entry.msg, args );
 			}
 		} );
 		return this;
@@ -286,25 +286,25 @@ class Dandy {
 	logStep( message ) {
 		this.actions.push( async () => {
 			logger.logStep( message );
-		});
+		} );
 	}
 
 	setViewPort( width, height ) {
 		this.actions.push( async () => {
 			logger.log( `Setting viewport to ${ width }x${ height }` );
 			return this.page.setViewport( { width, height } );
-		});
+		} );
 	}
 
 	checkElementValue( selector, value ) {
 		this.actions.push( async () => {
 			logger.log( `Looking for element (${ selector })` );
-			const elementValue = await this.page.$eval( '[name="'+ selector +'"]', el => el.getAttribute( 'value' ) );
+			const elementValue = await this.page.$eval( '[name="' + selector + '"]', el => el.getAttribute( 'value' ) );
 
-			if( elementValue === value ) {
-				logger.logSuccess( `Element value is as expected` );
+			if ( elementValue === value ) {
+				logger.logSuccess( 'Element value is as expected' );
 			} else {
-				await Promise.reject( new Error( `Element value is NOT as expected` ) );
+				await Promise.reject( new Error( 'Element value is NOT as expected' ) );
 			}
 		} );
 		return this;
@@ -314,16 +314,16 @@ class Dandy {
 		this.browser = await puppeteer.launch( this.options );
 		this.page = await this.browser.newPage();
 
-		this.page.on('console', message => this.consoleLog.push( { 
-			msg: message.text().replace(/\s*JSHandle@(object|array)\s*/g,''), 
-			args: message.args().slice(1) 
+		this.page.on( 'console', message => this.consoleLog.push( {
+			msg: message.text().replace( /\s*JSHandle@(object|array)\s*/g, '' ),
+			args: message.args().slice( 1 ),
 		} ) );
 
-		if( this.options.requestLogger !== undefined ) {
+		if ( this.options.requestLogger !== undefined ) {
 			await this.page.setRequestInterception( true );
-			this.page.on('request', async request => {
+			this.page.on( 'request', async request => {
 				const log = await this.options.requestLogger.log( request );
-				if( log ) {
+				if ( log ) {
 					this.eventLog.push( log );
 				}
 				await request.continue();
@@ -332,10 +332,10 @@ class Dandy {
 
 		await this.page.setViewport( this.options.viewport !== undefined ? this.options.viewport : { width: 1800, height: 1200 } );
 
-		for( let i = 0; i < this.actions.length; i++ ) {
+		for ( let i = 0; i < this.actions.length; i++ ) {
 			try {
-				await this.actions[i]();
-			} catch( e ) {
+				await this.actions[ i ]();
+			} catch ( e ) {
 				logger.logError( e );
 				break;
 			}
@@ -347,4 +347,4 @@ class Dandy {
 
 export default function ( baseUrl, options = {} ) {
 	return new Dandy( baseUrl, options );
-};
+}

@@ -10,6 +10,6 @@ export default class MicroBannerMaybeLaterButtonClosesTheBanner {
 			.waitForSoftClose()
 			.clickSoftCloseMaybeLaterButton()
 			.checkBannerIsHidden()
-			.captureScreenshot( `banners/${ banner.getBannerName() }/after-clicking-soft-close-maybe-later-button-micro-banner-has-disappeared-now.png` )
+			.captureScreenshot( `banners/${ banner.getBannerName() }/after-clicking-soft-close-maybe-later-button-micro-banner-has-disappeared-now.png` );
 	}
 }

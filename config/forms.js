@@ -1,28 +1,28 @@
 const formConfig = {
 	address_page: {
-		selector: '.address-page'
+		selector: '.address-page',
 	},
 	payment_page: {
-		selector: '.payment-page'
+		selector: '.payment-page',
 	},
 	forms: {
 		language: {
 			active: '.navbar-language .active.navbar-item',
 		},
 		address_type: {
-			selector: '#address-type-selection'
+			selector: '#address-type-selection',
 		},
 		private: {
-			selector: '#laika-donation-personal-data-person'
+			selector: '#laika-donation-personal-data-person',
 		},
 		company: {
-			selector: '#laika-donation-personal-data-company'
+			selector: '#laika-donation-personal-data-company',
 		},
 		email: {
-			selector: '#laika-donation-personal-data-email'
+			selector: '#laika-donation-personal-data-email',
 		},
 		anonymous: {
-			selector: '#laika-donation-personal-data-anonymous'
+			selector: '#laika-donation-personal-data-anonymous',
 		},
 	},
 	fields: {
@@ -69,7 +69,7 @@ const formConfig = {
 					selector: 'amount-custom',
 					label_selector: '#amount-custom + label',
 				},
-			}
+			},
 		},
 		interval: {
 			name: 'interval',
@@ -99,7 +99,7 @@ const formConfig = {
 					selector: '#interval-12',
 					label_selector: '#interval-12 .control-label',
 				},
-			}
+			},
 		},
 		payment: {
 			name: 'payment',
@@ -133,54 +133,54 @@ const formConfig = {
 					selector: '#payment-sub',
 					label_selector: '#payment-sub .control-label',
 				},
-			}
+			},
 		},
 		address_type: {
 			name: 'addressType',
 			radios: {
 				full: {
-					selector: '[name="addressType"][value="full"]'
+					selector: '[name="addressType"][value="full"]',
 				},
 				email: {
-					selector: '[name="addressType"][value="email"]'
+					selector: '[name="addressType"][value="email"]',
 				},
 				anonymous: {
-					selector: '[name="addressType"][value="anonymous"]'
+					selector: '[name="addressType"][value="anonymous"]',
 				},
-			}
+			},
 		},
 		address_type_internal: {
 			name: 'addressTypeInternal',
 			radios: {
 				person: {
-					selector: '[name="addressTypeInternal"][value="person"]'
+					selector: '[name="addressTypeInternal"][value="person"]',
 				},
 				company: {
-					selector: '[name="addressTypeInternal"][value="company"]'
+					selector: '[name="addressTypeInternal"][value="company"]',
 				},
-			}
+			},
 		},
 		address_type_membership: {
 			name: 'addressTypeInternal',
 			radios: {
 				person: {
-					selector: '#personal'
+					selector: '#personal',
 				},
 				company: {
-					selector: '#company'
-				}
-			}
+					selector: '#company',
+				},
+			},
 		},
 		salutation: {
 			name: 'salutationInternal',
 			radios: {
 				mr: {
-					selector: '[name="salutationInternal"][value="Herr"], [name="salutationInternal"][value="Mr"]'
+					selector: '[name="salutationInternal"][value="Herr"], [name="salutationInternal"][value="Mr"]',
 				},
 				mrs: {
-					selector: '[name="salutationInternal"][value="Frau"], [name="salutationInternal"][value="Ms"]'
+					selector: '[name="salutationInternal"][value="Frau"], [name="salutationInternal"][value="Ms"]',
 				},
-			}
+			},
 		},
 		membership_type: {
 			name: 'type',
@@ -190,8 +190,8 @@ const formConfig = {
 				},
 				sustaining: {
 					selector: '#active input',
-				}
-			}
+				},
+			},
 		},
 		title: {
 			name: 'title',
@@ -200,64 +200,64 @@ const formConfig = {
 				none: '',
 				dr: 'Dr.',
 				prof: 'Prof.',
-				prof_dr: 'Prof. Dr.'
-			}
+				prof_dr: 'Prof. Dr.',
+			},
 		},
 		company_name: {
 			selector: '#company-name',
 		},
 		first_name: {
-			selector: '#first-name'
+			selector: '#first-name',
 		},
 		last_name: {
-			selector: 'input#last-name'
+			selector: 'input#last-name',
 		},
 		street: {
-			selector: 'input#street'
+			selector: 'input#street',
 		},
 		post_code: {
-			selector: 'input#post-code'
+			selector: 'input#post-code',
 		},
 		city: {
-			selector: 'input#city'
+			selector: 'input#city',
 		},
 		country: {
-			selector: 'input#country'
+			selector: 'input#country',
 		},
 		receipt: {
-			selector: '#donation_receipt'
+			selector: '#donation_receipt',
 		},
 		email: {
-			selector: 'input#email'
+			selector: 'input#email',
 		},
 		newsletter: {
-			selector: '[name="newsletter"]'
+			selector: '[name="newsletter"]',
 		},
 		birth_date: {
-			selector: 'input#birthDate'
+			selector: 'input#birthDate',
 		},
 		incentive: {
-			selector: '.incentive-tote_bag input'
+			selector: '.incentive-tote_bag input',
 		},
 		iban: {
-			selector: 'input#iban'
+			selector: 'input#iban',
 		},
 		submit_values: {
-			interval:{},
+			interval: {},
 			amount: {},
-		}
+		},
 	},
 	buttons: {
 		next: {
 			language_item: '',
-			selector: '#next'
+			selector: '#next',
 		},
 		submit: {
-			selector: '#submit-btn'
+			selector: '#submit-btn',
 		},
 		address_change: {
-			selector: '#address-change-button'
-		}
+			selector: '#address-change-button',
+		},
 	},
 	success: {
 		donation: {
@@ -270,11 +270,11 @@ const formConfig = {
 			},
 			bank_data: {
 				selector: '#bank-data',
-			}
+			},
 		},
 		membership: {
-			selector: '.membership-confirmation'
-		}
+			selector: '.membership-confirmation',
+		},
 	},
 	submit_values: {
 		donation_form: '#laika-donation',
@@ -284,7 +284,7 @@ const formConfig = {
 			selector: 'amount',
 			one_hundred: '10000',
 			five: '500',
-			twenty_five: '2500'
+			twenty_five: '2500',
 		},
 		interval: {
 			selector: 'interval',
@@ -294,10 +294,10 @@ const formConfig = {
 		},
 		payment_type: {
 			selector: 'paymentType',
-			paypal: 'PPL'
-		}
-	}
-}
+			paypal: 'PPL',
+		},
+	},
+};
 
 export default formConfig;
 
@@ -309,16 +309,16 @@ export const interval = {
 
 export const amount = {
 	five: 'five',
-	//fifteen: 'fifteen',
+	// fifteen: 'fifteen',
 	twenty_five: 'twenty_five',
-	//fifty: 'fifty',
+	// fifty: 'fifty',
 	one_hundred: 'one_hundred',
 };
 
 export const paymentType = {
 	paypal: 'paypal',
-	//credit_card: 'credit_card',
-	//direct_debit: 'direct_debit',
-	//bank_transfer: 'bank_transfer',
-	//sofort: 'sofort',
+	// credit_card: 'credit_card',
+	// direct_debit: 'direct_debit',
+	// bank_transfer: 'bank_transfer',
+	// sofort: 'sofort',
 };

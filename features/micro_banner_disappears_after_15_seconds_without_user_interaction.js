@@ -10,6 +10,6 @@ export default class MicroBannerDisappearsAfter15SecondsWithoutUserInteraction {
 			.waitForSoftClose()
 			.wait( 15000 )
 			.checkBannerIsHidden()
-			.captureScreenshot( `banners/${ banner.getBannerName() }/because-of-no-user-interaction-after-15-seconds-banner-has-disappeared-now.png` )
+			.captureScreenshot( `banners/${ banner.getBannerName() }/because-of-no-user-interaction-after-15-seconds-banner-has-disappeared-now.png` );
 	}
 }

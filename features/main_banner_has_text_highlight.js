@@ -7,6 +7,6 @@ export default class MainBannerHasTextHighlight {
 	 */
 	runSteps( banner ) {
 		banner.checkIfMainBannerHasAnimatedTextHighlight()
-			.captureScreenshot( `banners/${ banner.getBannerName() }/mini-banner_has_text_highlight.png` )
+			.captureScreenshot( `banners/${ banner.getBannerName() }/mini-banner_has_text_highlight.png` );
 	}
 }

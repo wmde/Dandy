@@ -10,7 +10,6 @@ export default class MiniBannerCloseButtonClosesTheBannerAndSetsTheCookie {
 			.checkBannerIsHidden()
 			.captureScreenshot( `banners/${ banner.getBannerName() }/mobile-mini-banner_closed_cookie_set.png` )
 			.wait( 2000 )
-			.checkCookieExists( 'centralnotice_hide_fundraising' )
+			.checkCookieExists( 'centralnotice_hide_fundraising' );
 	}
 }
-

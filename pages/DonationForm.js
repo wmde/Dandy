@@ -9,18 +9,18 @@ export default class DonationForm extends Page {
 	constructor( form, parameters = {}, loadPage = true, dandy = null ) {
 		super( parameters, dandy );
 		this.form = form;
-		if( loadPage ) {
+		if ( loadPage ) {
 			this.dandy.goToPage( '/?' + this.parameters.toString() )
 				.waitForElement( config.app_selector );
 		}
 	}
 
 	/**
-	 * @param {Banner} banner
-	 * @returns {DonationForm}
+	 * @param { Banner } banner
+	 * @return { DonationForm }
 	 */
 	static createFromBanner( banner ) {
-		return new DonationForm( formConfig.forms.anonymous.selector, {}, false, banner.dandy )
+		return new DonationForm( formConfig.forms.anonymous.selector, {}, false, banner.dandy );
 	}
 
 	formSelector() {
@@ -56,7 +56,7 @@ export default class DonationForm extends Page {
 
 	selectAddressTypeCompany() {
 		this.dandy.click( formConfig.fields.address_type.radios.full.selector )
-			.click( formConfig.fields.address_type_internal.radios.company.selector )
+			.click( formConfig.fields.address_type_internal.radios.company.selector );
 		return this;
 	}
 
@@ -134,10 +134,9 @@ export default class DonationForm extends Page {
 	checkIfSubmittingTheBannerDonationFormLeadsToDonationPageWithCorrectCorrespondingLanguage( bannerName ) {
 		this.dandy.checkElementExists( formConfig.forms.language.active );
 		if ( bannerName.toUpperCase().includes( 'EN' ) ) {
-			this.dandy.checkElementContainsText ( formConfig.forms.language.active, 'en' );
-		}
-		else {
-			this.dandy.checkElementContainsText ( formConfig.forms.language.active, 'de' );
+			this.dandy.checkElementContainsText( formConfig.forms.language.active, 'en' );
+		} else {
+			this.dandy.checkElementContainsText( formConfig.forms.language.active, 'de' );
 		}
 		return this;
 	}
