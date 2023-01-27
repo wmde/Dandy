@@ -1,12 +1,10 @@
 import { intervals } from '../../config/banners.js';
-export default class SelectingMonthlyPaymentIntervalOnTheFullPageBannerDisablesTheSofortPaymentType {
 
-	description = 'Selecting monthly payment interval on the full page banner disables the sofort payment type';
+export default {
 
-	/**
-	 * @param { Banner } banner
-	 */
-	runSteps( banner ) {
+	description: 'Selecting monthly payment interval on the full page banner disables the sofort payment type',
+
+	steps: function ( banner ) {
 		banner.clickMainBannerActionButton()
 			.waitForFollowupBanner()
 			.clickInterval( intervals.monthly )
@@ -14,5 +12,5 @@ export default class SelectingMonthlyPaymentIntervalOnTheFullPageBannerDisablesT
 			.captureScreenshot( `banners/${ banner.getBannerName() }/fullpage-banner_monthly_interval_selected.png` )
 			.checkPaymentTypeSofortIsDisabled()
 			.captureScreenshot( `banners/${ banner.getBannerName() }/fullpage-banner_monthly_interval_selected_sofort_disabled.png` );
-	}
-}
+	},
+};

@@ -1,16 +1,13 @@
 import { amounts, contactDetails, intervals, paymentTypes, upgradeOptions } from '../../config/banners.js';
 import DonationForm from '../../pages/DonationForm.js';
 
-export default class YesToDonateYearlyUpgradeDifferentAmountNoContactDetailsFullPageDonationFormValuesGetPassedCorrectlyToTheDonationPage {
+export default {
 
-	description = 'Do you want to donate yearly? YES with different amount. Do you want to give your contact' +
+	description: 'Do you want to donate yearly? YES with different amount. Do you want to give your contact' +
 		'details? NO :Check if submitting the full page donation form values: interval, payment type and donation' +
-		'amount gets passed correctly to the spenden.wikimedia.de page';
+		'amount gets passed correctly to the spenden.wikimedia.de page',
 
-	/**
-	 * @param { Banner } banner
-	 */
-	runSteps( banner ) {
+	steps: function ( banner ) {
 		banner.clickMainBannerActionButton()
 			.waitForFollowupBanner()
 
@@ -27,5 +24,5 @@ export default class YesToDonateYearlyUpgradeDifferentAmountNoContactDetailsFull
 
 		const donationForm = DonationForm.createFromBanner( banner );
 		donationForm.checkIsOnSuccessPage();
-	}
-}
+	},
+};

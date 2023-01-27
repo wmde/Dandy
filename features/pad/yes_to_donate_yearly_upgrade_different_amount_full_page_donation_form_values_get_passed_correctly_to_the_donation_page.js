@@ -2,15 +2,12 @@ import { amounts, intervals, paymentTypes, upgradeOptions } from '../../config/b
 import { amount, interval, paymentType } from '../../config/forms.js';
 import DonationForm from '../../pages/DonationForm.js';
 
-export default class YesToDonateYearlyUpgradeDifferentAmountFullPageDonationFormValuesGetPassedCorrectlyToTheDonationPage {
+export default {
 
-	description = 'Yes to donate yearly upgrade with a different amount, full page donation form values get passed' +
-		'correctly to the donation page';
+	description: 'Yes to donate yearly upgrade with a different amount, full page donation form values get passed' +
+		'correctly to the donation page',
 
-	/**
-	 * @param { Banner } banner
-	 */
-	runSteps( banner ) {
+	steps: function ( banner ) {
 		banner.clickInterval( intervals.single_payment )
 			.clickAmount( amounts.five )
 			.clickPaymentType( paymentTypes.paypal )
@@ -27,5 +24,5 @@ export default class YesToDonateYearlyUpgradeDifferentAmountFullPageDonationForm
 			.checkPaymentType( paymentType.paypal )
 			.checkInterval( interval.annually )
 			.checkAmount( amount.one_hundred );
-	}
-}
+	},
+};

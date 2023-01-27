@@ -1,14 +1,11 @@
 import DonationForm from '../../pages/DonationForm.js';
 import { amounts, intervals, paymentTypes } from '../../config/banners.js';
 
-export default class SubmittingBannerLeadsToDonationPageWithCorrectCorrespondingLanguage {
+export default {
 
-	description = 'Submitting banner leads to donation page with correct corresponding language';
+	description: 'Submitting banner leads to donation page with correct corresponding language',
 
-	/**
-	 * @param { Banner } banner
-	 */
-	runSteps( banner ) {
+	steps: function ( banner ) {
 		banner.clickAmount( amounts.one_hundred )
 			.clickPaymentType( paymentTypes.paypal )
 			.clickInterval( intervals.monthly )
@@ -18,5 +15,5 @@ export default class SubmittingBannerLeadsToDonationPageWithCorrectCorresponding
 
 		const donationForm = DonationForm.createFromBanner( banner );
 		donationForm.checkIfSubmittingTheBannerDonationFormLeadsToDonationPageWithCorrectCorrespondingLanguage( banner.getBannerName() );
-	}
-}
+	},
+};

@@ -1,11 +1,8 @@
-export default class BannerIsShownWithSliderOnSmallerViewport {
+export default {
 
-	description = 'Banner is shown with slider on smaller viewport';
+	description: 'Banner is shown with slider on smaller viewport',
 
-	/**
-	 * @param { Banner } banner
-	 */
-	runSteps( banner ) {
+	steps: function ( banner ) {
 		banner.setViewPort( 1299, 800 )
 			.reload() // Reload to trigger size issue check
 			.wait( 10000 )
@@ -15,5 +12,5 @@ export default class BannerIsShownWithSliderOnSmallerViewport {
 			.checkSlidesAreSlidingInSlider()
 			.captureScreenshot( `banners/${ banner.getBannerName() }/banner-with-slider-on-smaller-viewport_second_slide.png` )
 			.resetViewPort();
-	}
-}
+	},
+};

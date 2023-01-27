@@ -1,13 +1,10 @@
-export default class UseOfFundsLinkIsWorking {
+export default {
 
-	description = 'Use of funds link is working';
+	description: 'Use of funds link is working',
 
-	/**
-	 * @param { Banner } banner
-	 */
-	runSteps( banner ) {
+	steps: function ( banner ) {
 		banner.clickUseOfFundsLink()
 			.checkUseOfFundsIsVisible()
 			.captureScreenshot( `banners/${ banner.getBannerName() }/use-of-funds.png` );
-	}
-}
+	},
+};

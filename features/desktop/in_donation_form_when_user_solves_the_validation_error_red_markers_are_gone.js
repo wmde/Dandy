@@ -1,15 +1,12 @@
 import { amounts, intervals, paymentTypes, upgradeOptions } from '../../config/banners.js';
 
-export default class InDonationFormWhenUserSolvesTheValidationErrorRedMarkersAreGone {
+export default {
 
-	description = 'In donation form, if a user misses filling out a field and clicks on submit: red error markers' +
+	description: 'In donation form, if a user misses filling out a field and clicks on submit: red error markers' +
 		'should be visible in the respective form section. When the validation error is solved, the red error markers' +
-		'should be gone';
+		'should be gone',
 
-	/**
-	 * @param { Banner } banner
-	 */
-	runSteps( banner ) {
+	steps: function ( banner ) {
 		banner.clickAmount( amounts.five )
 			.clickPaymentType( paymentTypes.paypal )
 			.submitFullPageDonationForm()
@@ -74,5 +71,5 @@ export default class InDonationFormWhenUserSolvesTheValidationErrorRedMarkersAre
 			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_annual_upgrade_choice_missing_custom_amount_red_marker.png` )
 			.enterAnnualUpgradeOptionCustomAmount( '5' )
 			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_after_annual_upgrade_choice_missing_custom_amount_red_marker_solved.png` );
-	}
-}
+	},
+};

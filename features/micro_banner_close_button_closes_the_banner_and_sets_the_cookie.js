@@ -1,11 +1,8 @@
-export default class MicroBannerCloseButtonClosesTheBannerAndSetsTheCookie {
-	description = 'Micro banner close button closes the banner and sets the cookie';
+export default {
 
-	/**
-	 * @param { Banner } banner
-	 */
-	runSteps( banner ) {
+	description: 'Micro banner close button closes the banner and sets the cookie',
 
+	steps: function ( banner ) {
 		if ( banner.checkIfInDevEnvironment() ) {
 			banner.markStepAsSkipped( 'Local environment does NOT support cookies for Wikipedia.' );
 			return;
@@ -19,5 +16,5 @@ export default class MicroBannerCloseButtonClosesTheBannerAndSetsTheCookie {
 			.checkBannerIsHidden()
 			.checkCookieExists( 'centralnotice_hide_fundraising' )
 			.captureScreenshot( `banners/${ banner.getBannerName() }/after-clicking-soft-close-close-button-banner-has-disappeared-now.png` );
-	}
-}
+	},
+};

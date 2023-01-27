@@ -42,104 +42,90 @@ export default class Banner {
 	}
 
 	checkIfMainBannerHasAnimatedTextHighlight() {
-		// this.dandy.checkElementExists( this.selectors.animated_text_highlight.main_slider );
 		this.dandy.waitForElement( this.selectors.animated_text_highlight.main_slider, { timeout: 200 } );
 		this.dandy.scrollDownOneWindow( this.selectors.animated_text_highlight.main_slider );
 		return this;
 	}
 
 	checkIfFullPageBannerHasAnimatedTextHighlight() {
-		// this.dandy.checkElementExists( this.selectors.animated_text_highlight.full );
 		this.dandy.waitForElement( this.selectors.animated_text_highlight.full, { timeout: 200 } );
 		return this;
 	}
 
 	clickFullBannerCloseButton() {
+		this.dandy.waitForElement( this.selectors.close_button.full, { timeout: 200 } );
 		this.dandy.click( this.selectors.close_button.full );
 		return this;
 	}
 
 	checkPaymentTypeSofortIsDisabled() {
-		// this.dandy.checkElementExists( this.selectors.donation_form.payment_type.disabled.sofort );
 		this.dandy.waitForElement( this.selectors.donation_form.payment_type.disabled.sofort, { timeout: 200 } );
 		return this;
 	}
 
 	submitFullPageDonationForm() {
+		this.dandy.waitForElement( this.selectors.submit_button.form, { timeout: 200 } );
 		this.dandy.click( this.selectors.submit_button.form );
 		return this;
 	}
 
 	submitFullPageDonationFormAnnualUpgradeChoice() {
+		this.dandy.waitForElement( this.selectors.submit_button.annual_upgrade_choice, { timeout: 200 } );
 		this.dandy.click( this.selectors.submit_button.annual_upgrade_choice );
 		return this;
 	}
 
 	submitFullPageDonationFormCustomAmount() {
+		this.dandy.waitForElement( this.selectors.submit_button.custom_amount, { timeout: 200 } );
 		this.dandy.click( this.selectors.submit_button.custom_amount );
 		return this;
 	}
 
 	clickAnnualUpgradeOption( choice ) {
+		this.dandy.waitForElement( this.selectors.donation_form.upgrade_option_annually[ choice ], { timeout: 200 } );
 		this.dandy.click( this.selectors.donation_form.upgrade_option_annually[ choice ] );
 		return this;
 	}
 
 	clickContactDetailsOption( choice ) {
+		this.dandy.waitForElement( this.selectors.donation_form.contactDetails[ choice ], { timeout: 200 } );
 		this.dandy.click( this.selectors.donation_form.contactDetails[ choice ] );
 		return this;
 	}
 
 	enterAnnualUpgradeOptionCustomAmount( amount ) {
-		// this.dandy.click( this.selectors.donation_form.upgrade_option_annually.custom_amount );
-		// this.dandy.wait( 2000 ); //wait for the second page form to appear
-		// this.dandy.fillInTextBox( this.selectors.donation_form.upgrade_option_annually.enter_custom_amount, amount );
+		this.dandy.waitForElement( this.selectors.donation_form.upgrade_option_annually.enter_custom_amount, { timeout: 200 } );
 		this.dandy.setInputText( this.selectors.donation_form.upgrade_option_annually.enter_custom_amount, amount );
 		return this;
 	}
 
 	checkIfMissingAnnualUpgradeChoiceErrorMsgIsShown() {
-		// this.dandy.checkElementExists( this.selectors.donation_form.upgrade_option_annually.error_msg_container );
 		this.dandy.waitForElement( this.selectors.donation_form.upgrade_option_annually.error_msg_container, { timeout: 200 } );
-		// this.dandy.checkElementExists( this.selectors.banner_error_msg );
 		this.dandy.waitForElement( this.selectors.banner_error_msg, { timeout: 200 } );
-		// this.dandy.scrollIntoView( this.selectors.close_button.full );
 		return this;
 	}
 
 	checkIfMissingCustomAmountErrorMsgIsShown() {
-		// this.dandy.checkElementExists( this.selectors.donation_form.upgrade_option_annually.error_msg_container );
 		this.dandy.waitForElement( this.selectors.donation_form.upgrade_option_annually.error_msg_container, { timeout: 200 } );
-		// this.dandy.checkElementExists( this.selectors.banner_error_msg );
 		this.dandy.waitForElement( this.selectors.banner_error_msg, { timeout: 200 } );
-		// this.dandy.scrollIntoView( this.selectors.close_button.full );
 		return this;
 	}
 
 	checkIfMissingIntervalErrorMsgIsShown() {
-		// this.dandy.checkElementExists( this.selectors.donation_form.interval.error_msg_container );
 		this.dandy.waitForElement( this.selectors.donation_form.interval.error_msg_container, { timeout: 200 } );
-		// this.dandy.checkElementExists( this.selectors.banner_error_msg );
 		this.dandy.waitForElement( this.selectors.banner_error_msg, { timeout: 200 } );
-		// this.dandy.scrollIntoView( this.selectors.close_button.full );
 		return this;
 	}
 
 	checkIfMissingAmountErrorMsgIsShown() {
-		// this.dandy.checkElementExists( this.selectors.donation_form.amount.error_msg_container );
 		this.dandy.waitForElement( this.selectors.donation_form.amount.error_msg_container, { timeout: 200 } );
-		// this.dandy.checkElementExists( this.selectors.banner_error_msg );
 		this.dandy.waitForElement( this.selectors.banner_error_msg, { timeout: 200 } );
-		// this.dandy.scrollIntoView( this.selectors.close_button.full );
 		return this;
 	}
 
 	checkIfMissingPaymentTypeErrorMsgIsShown() {
-		// this.dandy.checkElementExists( this.selectors.donation_form.payment_type.error_msg_container );
 		this.dandy.waitForElement( this.selectors.donation_form.payment_type.error_msg_container, { timeout: 200 } );
-		// this.dandy.checkElementExists( this.selectors.banner_error_msg );
 		this.dandy.waitForElement( this.selectors.banner_error_msg, { timeout: 200 } );
-		// this.dandy.scrollIntoView( this.selectors.close_button.full );
 		return this;
 	}
 
@@ -177,27 +163,25 @@ export default class Banner {
 	}
 
 	clickMainBannerCloseButton() {
+		this.dandy.waitForElement( this.selectors.close_button.main, { timeout: 10000 } );
 		this.dandy.click( this.selectors.close_button.main );
 		return this;
 	}
 
-	// clickMainBannerCloseButton() {
-	// this.wait( 3000 )
-	// this.dandy.click( this.selectors.close_button.mini );
-	// return this;
-	// }
-
 	clickSoftCloseCloseButton() {
+		this.dandy.waitForElement( this.selectors.soft_close.close_button, { timeout: 10000 } );
 		this.dandy.click( this.selectors.soft_close.close_button );
 		return this;
 	}
 
 	clickSoftCloseMaybeLaterButton() {
+		this.dandy.waitForElement( this.selectors.soft_close.maybe_later_button, { timeout: 10000 } );
 		this.dandy.click( this.selectors.soft_close.maybe_later_button );
 		return this;
 	}
 
 	clickMainBannerActionButton() {
+		this.dandy.waitForElement( this.selectors.submit_button.main, { timeout: 10000 } );
 		this.dandy.click( this.selectors.submit_button.main );
 		return this;
 	}
@@ -208,22 +192,24 @@ export default class Banner {
 	}
 
 	clickInterval( interval ) {
+		this.dandy.waitForElement( this.selectors.donation_form.interval[ interval ], { timeout: 10000 } );
 		this.dandy.click( this.selectors.donation_form.interval[ interval ] );
 		return this;
 	}
 
 	clickPaymentType( paymentType ) {
+		this.dandy.waitForElement( this.selectors.donation_form.payment_type[ paymentType ], { timeout: 10000 } );
 		this.dandy.click( this.selectors.donation_form.payment_type[ paymentType ] );
 		return this;
 	}
 
 	clickAmount( amount ) {
+		this.dandy.waitForElement( this.selectors.donation_form.amount[ amount ], { timeout: 10000 } );
 		this.dandy.click( this.selectors.donation_form.amount[ amount ] );
 		return this;
 	}
 
 	checkIntervalMonthlyIsDisabled() {
-		// this.dandy.checkElementExists( this.selectors.donation_form.interval.disabled.monthly );
 		this.dandy.waitForElement( this.selectors.donation_form.interval.disabled.monthly, { timeout: 200 } );
 		return this;
 	}
@@ -234,13 +220,11 @@ export default class Banner {
 	}
 
 	checkIntervalYearlyIsDisabled() {
-		// this.dandy.checkElementExists( this.selectors.donation_form.interval.disabled.yearly );
 		this.dandy.waitForElement( this.selectors.donation_form.interval.disabled.yearly, { timeout: 200 } );
 		return this;
 	}
 
 	checkBannerIsHidden() {
-		// this.dandy.checkElementExists( this.selectors.banner_hidden );
 		this.dandy.waitForElement( this.selectors.banner_hidden, { timeout: 200 } );
 		return this;
 	}
@@ -251,16 +235,19 @@ export default class Banner {
 	}
 
 	submitForm() {
+		this.dandy.waitForElement( this.selectors.submit_button.form, { timeout: 200 } );
 		this.dandy.click( this.selectors.submit_button.form );
 		return this;
 	}
 
 	submitFormStep1() {
+		this.dandy.waitForElement( this.selectors.submit_button.form_step_1, { timeout: 200 } );
 		this.dandy.click( this.selectors.submit_button.form_step_1 );
 		return this;
 	}
 
 	submitFormStep2() {
+		this.dandy.waitForElement( this.selectors.submit_button.form_step_2, { timeout: 200 } );
 		this.dandy.click( this.selectors.submit_button.form_step_2 );
 		return this;
 	}
@@ -284,13 +271,13 @@ export default class Banner {
 	}
 
 	clickUseOfFundsCallToAction() {
+		this.dandy.waitForElement( this.selectors.use_of_funds.call_to_action, { timeout: 200 } );
 		this.dandy.click( this.selectors.use_of_funds.call_to_action );
 		return this;
 	}
 
 	checkUseOfFundsIsVisible() {
-		// this.dandy.checkElementExists( this.selectors.use_of_funds.modal_container );
-		this.dandy.waitForElement( this.selectors.use_of_funds.modal_container, { timeout: 200 } );
+		this.dandy.waitForElement( this.selectors.use_of_funds.modal_container, { timeout: 1000 } );
 		return this;
 	}
 
@@ -310,23 +297,21 @@ export default class Banner {
 	}
 
 	clickPaymentTypeSofortButton() {
+		this.dandy.waitForElement( this.selectors.donation_form.payment_type.sofort, { timeout: 200 } );
 		this.dandy.click( this.selectors.donation_form.payment_type.sofort );
 		return this;
 	}
 
 	checkSliderIsDisplayedOnSmallViewPort() {
 		this.dandy.checkElementDoesNotExist( this.selectors.message.big_viewport );
-		// this.dandy.checkElementExists( this.selectors.message.small_viewport );
 		this.dandy.waitForElement( this.selectors.message.small_viewport, { timeout: 200 } );
 		return this;
 	}
 
 	checkSlidesAreSlidingInSlider() {
 		this.wait( 2000 );
-		// this.dandy.checkElementExists( this.selectors.slider.first_slide );
 		this.dandy.waitForElement( this.selectors.slider.first_slide, { timeout: 200 } );
 		this.wait( 10000 );
-		// this.dandy.checkElementExists( this.selectors.slider.next_slide );
 		this.dandy.waitForElement( this.selectors.slider.next_slide, { timeout: 200 } );
 		this.dandy.click( this.selectors.slider.next_button );
 		this.wait( 2000 );

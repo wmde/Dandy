@@ -83,12 +83,11 @@ const cli = meow( `
 			logger.logBold( `Running: ${ configuration[ featureSet ].description }` );
 			const features = await loadFeatures( configuration[ featureSet ].features );
 			for ( let j = 0; j < features.length; j++ ) {
-				const testClass = new features[j]();
-				banner.dandy.logStep( `Feature ${j+1}: ${ testClass.description }` );
-				banner.captureScreenshot( `banners/${ banner.getBannerName() }/initial_webpage_loaded.png` )
+				const test = features[j];
+				banner.dandy.logStep( `Feature ${j+1}: ${ test.description }` );
 				banner.resetEnvironment();
 				banner.waitForBanner();
-				testClass.runSteps( banner );
+				test.steps( banner );
 			}
 			await banner.run();
 		}
