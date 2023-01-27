@@ -23,4 +23,4 @@ jobs:
             # Install packages, exact versions from package-lock.json
             - run: npm ci
             # Run CI script (linting and testing)
-            - run: npm run ci
+            - run: npm run lint

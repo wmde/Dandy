@@ -21,7 +21,7 @@
 		"eslint": "^8.32.0",
 		"eslint-config-wikimedia": "^0.24.0",
 		"meow": "^10.0.0",
-		"puppeteer": "^11.0.0",
+		"puppeteer": "^19.6.2",
 		"wmde-fundraising-frontend-content": "wmde/fundraising-frontend-content#test",
 		"yaml": "^2.2.1"
 	}
