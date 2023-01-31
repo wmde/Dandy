@@ -17,8 +17,8 @@ desktop_banner: # npm run dandy -- -b B22_WMDE_Test_27_ctrl -d -h desktop_banner
         - main_banner_is_not_shown_on_too_small_viewport
         - banner_is_shown_with_slider_on_smaller_viewport # -h mode!
 
-mobile_banner_ctrl: # npm run dandy -- -b B22_WMDE_Mobile_Test_14_ctrl -d -h mobile_banner_ctrl
-    description: "Features of mobile ctrl banner"
+mobile_banner:
+    description: "Features of mobile banner"
     features:
         - main_banner_slides_in
         - main_banner_has_text_highlight
@@ -32,28 +32,23 @@ mobile_banner_ctrl: # npm run dandy -- -b B22_WMDE_Mobile_Test_14_ctrl -d -h mob
         - mobile/full_page_banner_close_button_closes_the_banner
         - mobile/selecting_monthly_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type
         - mobile/selecting_annually_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type
-        - mobile/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
-        - mobile/yes_to_donate_yearly_upgrade_different_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
         - mobile/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
 
-mobile_banner_var: # npm run dandy -- -b B22_WMDE_Mobile_Test_14_var -d -h mobile_banner_var
-    description: "Features of mobile var banner"
+mobile_banner_ctrl: # npm run dandy -- -b B22_WMDE_Mobile_Test_14_ctrl -d -h mobile_banner_ctrl
+    description: "Features of mobile CTRL banner"
+    extends:
+        - mobile_banner
     features:
-        - main_banner_slides_in
-        - main_banner_has_text_highlight
-        - main_banner_closes_with_soft_close
-        - micro_banner_maybe_later_button_closes_the_banner
-        - micro_banner_close_button_closes_the_banner_and_sets_the_cookie
-        - micro_banner_disappears_after_15_seconds_without_user_interaction
-        - mobile/use_of_funds_link_is_working
-        - mobile/main_banner_action_button_leads_to_follow_up_banner
-        - mobile/full_page_banner_has_text_highlight
-        - mobile/full_page_banner_close_button_closes_the_banner
-        - mobile/selecting_monthly_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type
-        - mobile/selecting_annually_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type
+        - mobile/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
+        - mobile/yes_to_donate_yearly_upgrade_different_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
+
+mobile_banner_var: # npm run dandy -- -b B22_WMDE_Mobile_Test_14_var -d -h mobile_banner_var
+    description: "Features of mobile VAR banner"
+    extends:
+        - mobile_banner
+    features:
         - mobile/yes_to_donate_yearly_upgrade_different_amount_no_contact_details_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
         - mobile/no_to_donate_yearly_upgrade_no_contact_details_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - mobile/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
 
 mobile_english_banner: # npm run dandy -- -b B22_WMDE_Mobile_EN_Test_02_ctrl -d -h mobile_english_banner
     description: "Features of mobile english banner"
@@ -92,12 +87,11 @@ pad_banner: # npm run dandy -- -b B22_WMDE_ipad_Test_02_ctrl -d -h pad_banner
         - main_banner_is_not_shown_on_too_small_viewport
         - banner_is_shown_with_slider_on_smaller_viewport # -h mode!
 
-pad_en_banner: # npm run dandy -- -b B22_WMDE_ipad_en_02_ctrl -d -h pad_en_banner
+pad_en_banner:
     description: "Features of pad en banner"
     features:
         - main_banner_slides_in
         - main_banner_has_text_highlight
-        - main_banner_closes_directly_without_soft_close
         - use_of_funds_link_is_working
         - desktop/donation_form_values_get_passed_correctly_to_the_donation_page
         - desktop/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
@@ -108,24 +102,22 @@ pad_en_banner: # npm run dandy -- -b B22_WMDE_ipad_en_02_ctrl -d -h pad_en_banne
         - main_banner_is_not_shown_on_too_small_viewport
         - banner_is_shown_with_slider_on_smaller_viewport # -h mode!
 
-pad_en_banner_var: # npm run dandy -- -b B22_WMDE_ipad_en_02_var -d -h pad_en_banner_var
-    description: "Features of pad en banner"
+pad_en_banner_ctrl: # npm run dandy -- -b B22_WMDE_ipad_en_02_ctrl -d -h pad_en_banner_ctrl
+    description: "Features of pad en CTRL banner"
+    extends:
+        - pad_en_banner
     features:
-        - main_banner_slides_in
-        - main_banner_has_text_highlight
+        - main_banner_closes_directly_without_soft_close
+
+pad_en_banner_var: # npm run dandy -- -b B22_WMDE_ipad_en_02_var -d -h pad_en_banner_var
+    description: "Features of pad en VAR banner"
+    extends:
+        - pad_en_banner
+    features:
         - main_banner_closes_with_soft_close
         - micro_banner_maybe_later_button_closes_the_banner
         - micro_banner_close_button_closes_the_banner_and_sets_the_cookie
         - micro_banner_disappears_after_15_seconds_without_user_interaction
-        - use_of_funds_link_is_working
-        - desktop/donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
-        - desktop/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
-        - desktop/no_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/yes_to_donate_yearly_upgrade_custom_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/yes_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - main_banner_is_not_shown_on_too_small_viewport
-        - banner_is_shown_with_slider_on_smaller_viewport # -h mode!
 
 wikipedia_de_banner: # npm run dandy -- -b B22WPDE_02_ctrl -d -h wikipedia_de_banner
     description: "Features of wikipedia de banner"
@@ -198,5 +190,10 @@ english_banner: # npm run dandy -- -b B22_WMDE_Test_EN_07_ctrl -d -h english_ban
 
 test_banner: # npm run dandy -- -b B22_WMDE_Mobile_Test_14_ctrl -d -h test_banner
     description: "Features of test banner"
+    extends:
+        - english_banner
+        - desktop_banner
     features:
         - main_banner_slides_in
+        - main_banner_has_text_highlight
+        - main_banner_closes_with_soft_close

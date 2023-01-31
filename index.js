@@ -81,13 +81,13 @@ const cli = meow( `
 				continue;
 			}
 			logger.logBold( `Running: ${ configuration[ featureSet ].description }` );
-			const features = await loadFeatures( configuration[ featureSet ].features );
+			const features = await loadFeatures( configuration[ featureSet ] );
 			for ( let j = 0; j < features.length; j++ ) {
-				const test = features[j];
-				banner.dandy.logStep( `Feature ${j+1}: ${ test.description }` );
+				const feature = features[j];
+				banner.dandy.logStep( `Feature ${j+1}: ${ feature.description }` );
 				banner.resetEnvironment();
 				banner.waitForBanner();
-				test.steps( banner );
+				feature.steps( banner );
 			}
 			await banner.run();
 		}
