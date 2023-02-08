@@ -158,6 +158,11 @@ export default class DonationForm extends Page {
 		return this;
 	}
 
+	checkContactDetail( choice ) {
+		this.dandy.checkElementValue( formConfig.submit_values.contact_detail.selector, formConfig.submit_values.contact_detail[ choice ] );
+		return this;
+	}
+
 	checkPaymentType( paymentType ) {
 		this.dandy.checkElementValue( formConfig.submit_values.payment_type.selector, formConfig.submit_values.payment_type[ paymentType ] );
 		return this;

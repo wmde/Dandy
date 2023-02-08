@@ -10,8 +10,8 @@ export default {
 
 		banner.clickMainBannerCloseButton()
 			.captureScreenshot( `banners/${ banner.getBannerName() }/mini-banner_closed__test_soft_close_functionality.png` )
-			.waitForSoftClose()
-			.clickSoftCloseCloseButton()
+			.waitForMicroBanner()
+			.clickMicroBannerCloseButton()
 			.wait( 500 ) // Give the cookie time to get set
 			.checkBannerIsHidden()
 			.checkCookieExists( 'centralnotice_hide_fundraising' )

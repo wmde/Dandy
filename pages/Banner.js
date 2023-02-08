@@ -8,6 +8,7 @@ export default class Banner {
 	dandy;
 
 	parameters;
+
 	selectors;
 
 	defaultViewPort;
@@ -143,7 +144,7 @@ export default class Banner {
 		return this;
 	}
 
-	waitForSoftClose() {
+	waitForMicroBanner() {
 		this.dandy.waitForElement( this.selectors.banner_soft_close );
 		return this;
 	}
@@ -168,13 +169,13 @@ export default class Banner {
 		return this;
 	}
 
-	clickSoftCloseCloseButton() {
+	clickMicroBannerCloseButton() {
 		this.dandy.waitForElement( this.selectors.soft_close.close_button, { timeout: 10000 } );
 		this.dandy.click( this.selectors.soft_close.close_button );
 		return this;
 	}
 
-	clickSoftCloseMaybeLaterButton() {
+	clickMicroBannerMaybeLaterButton() {
 		this.dandy.waitForElement( this.selectors.soft_close.maybe_later_button, { timeout: 10000 } );
 		this.dandy.click( this.selectors.soft_close.maybe_later_button );
 		return this;
@@ -278,6 +279,12 @@ export default class Banner {
 
 	checkUseOfFundsIsVisible() {
 		this.dandy.waitForElement( this.selectors.use_of_funds.modal_container, { timeout: 1000 } );
+		return this;
+	}
+
+	clickUseOfFundsActionButton() {
+		this.dandy.waitForElement( this.selectors.use_of_funds.call_to_action, { timeout: 1000 } );
+		this.dandy.click( this.selectors.use_of_funds.call_to_action );
 		return this;
 	}
 

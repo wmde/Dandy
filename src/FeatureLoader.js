@@ -19,10 +19,12 @@ export default async function loadFeatures( featureSet ) {
 		}
 	}
 
-	for ( let i = 0; i < featureSet.features.length; i++ ) {
-		checkIfTestWasAlreadyAdded( uniqueTests, `../features/${featureSet.features[ i ]}.js` );
-		const feature = await import( `../features/${featureSet.features[ i ]}.js` );
-		uniqueTests[ `../features/${featureSet.features[ i ]}.js` ] = feature.default;
+	if ( 'features' in featureSet && featureSet.features !== null ) {
+		for ( let i = 0; i < featureSet.features.length; i++ ) {
+			checkIfTestWasAlreadyAdded( uniqueTests, `../features/${featureSet.features[ i ]}.js` );
+			const feature = await import( `../features/${featureSet.features[ i ]}.js` );
+			uniqueTests[ `../features/${featureSet.features[ i ]}.js` ] = feature.default;
+		}
 	}
 
 	return Object.values( uniqueTests );

@@ -4,7 +4,7 @@ export default {
 
 	steps: function ( banner ) {
 		banner.clickMainBannerCloseButton()
-			.waitForSoftClose()
+			.waitForMicroBanner()
 			.captureScreenshot( `banners/${ banner.getBannerName() }/banner_has_been_closed_with_soft_close_micro_banner_appears.png` );
 	},
 };

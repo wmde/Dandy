@@ -281,20 +281,25 @@ const formConfig = {
 		submitted_donation_form: '#laika-donation-personal-data-person',
 		selected_values: '.submit-values',
 		amount: {
-			selector: 'amount',
+			selector: '.submit-values input[name=amount]',
 			one_hundred: '10000',
 			five: '500',
 			twenty_five: '2500',
 		},
 		interval: {
-			selector: 'interval',
+			selector: '.submit-values input[name=interval]',
 			annually: '12',
 			monthly: '1',
 			single_payment: '0',
 		},
 		payment_type: {
-			selector: 'paymentType',
+			selector: '.submit-values input[name=paymentType]',
 			paypal: 'PPL',
+		},
+		contact_detail: {
+			selector: '.submit-values input[name=addressType]',
+			anonymous: 'anonym',
+			full: 'person',
 		},
 	},
 };
@@ -321,4 +326,9 @@ export const paymentType = {
 	// direct_debit: 'direct_debit',
 	// bank_transfer: 'bank_transfer',
 	// sofort: 'sofort',
+};
+
+export const contactDetail = {
+	anonymous: 'anonymous',
+	full: 'full',
 };
