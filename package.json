@@ -6,7 +6,8 @@
 	"main": "index.js",
 	"scripts": {
 		"dandy": "node index.js",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"lint": "eslint config/ features/ pages/ src/ tests/"
 	},
 	"keywords": [],
 	"author": "",
@@ -14,11 +15,14 @@
 	"engines": {
 		"node": ">=15.0"
 	},
-	"devDependencies": {},
-	"dependencies": {
+	"devDependencies": {
+		"@babel/eslint-parser": "^7.19.1",
 		"chalk": "^4.1.0",
+		"eslint": "^8.32.0",
+		"eslint-config-wikimedia": "^0.24.0",
 		"meow": "^10.0.0",
-		"puppeteer": "^11.0.0",
-		"wmde-fundraising-frontend-content": "wmde/fundraising-frontend-content#test"
+		"puppeteer": "^19.6.2",
+		"wmde-fundraising-frontend-content": "wmde/fundraising-frontend-content#test",
+		"yaml": "^2.2.1"
 	}
 }

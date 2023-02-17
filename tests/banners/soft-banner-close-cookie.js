@@ -9,9 +9,9 @@ const testConfig = buildBannerTestConfig( process.argv );
 	const banner = new Banner( testConfig.url, bannerConfig.selectors, testConfig.parameters, testConfig.options );
 
 	await banner.waitForBanner()
-		.clickDesktopCloseButton()
-		.waitForSoftClose()
-		.clickSoftCloseCloseButton()
+		.clickMainBannerCloseButton()
+		.waitForMicroBanner()
+		.clickMicroBannerCloseButton()
 		.wait( 500 ) // Give the cookie time to be set
 		.checkCookieExists( 'centralnotice_hide_fundraising' )
 		.captureScreenshot( `banners/${ testConfig.bannerName }/banner-loads.png` )

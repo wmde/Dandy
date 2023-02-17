@@ -1,8 +1,8 @@
-import { bannerConfig } from '../../config/banners.js';
 import Banner from '../../pages/Banner.js';
 import buildBannerTestConfig from '../../src/build_banner_test_config.js';
-
 const testConfig = buildBannerTestConfig( process.argv );
+
+import { bannerConfig } from '../../config/banners.js';
 
 ( async () => {
 

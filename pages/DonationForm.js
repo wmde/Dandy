@@ -6,11 +6,21 @@ export default class DonationForm extends Page {
 
 	form;
 
-	constructor( form, parameters = {}  ) {
-		super( parameters );
+	constructor( form, parameters = {}, loadPage = true, dandy = null ) {
+		super( parameters, dandy );
 		this.form = form;
-		this.dandy.goToPage( '/?' + this.parameters.toString() )
-			.waitForElement( config.app_selector );
+		if ( loadPage ) {
+			this.dandy.goToPage( '/?' + this.parameters.toString() )
+				.waitForElement( config.app_selector );
+		}
+	}
+
+	/**
+	 * @param { Banner } banner
+	 * @return { DonationForm }
+	 */
+	static createFromBanner( banner ) {
+		return new DonationForm( formConfig.forms.anonymous.selector, {}, false, banner.dandy );
 	}
 
 	formSelector() {
@@ -46,7 +56,7 @@ export default class DonationForm extends Page {
 
 	selectAddressTypeCompany() {
 		this.dandy.click( formConfig.fields.address_type.radios.full.selector )
-			.click( formConfig.fields.address_type_internal.radios.company.selector )
+			.click( formConfig.fields.address_type_internal.radios.company.selector );
 		return this;
 	}
 
@@ -118,6 +128,43 @@ export default class DonationForm extends Page {
 
 	checkIsOnSuccessPage() {
 		this.dandy.checkElementExists( formConfig.success.donation.selector );
+		return this;
+	}
+
+	checkIfSubmittingTheBannerDonationFormLeadsToDonationPageWithCorrectCorrespondingLanguage( bannerName ) {
+		this.dandy.checkElementExists( formConfig.forms.language.active );
+		if ( bannerName.toUpperCase().includes( 'EN' ) ) {
+			this.dandy.checkElementContainsText( formConfig.forms.language.active, 'en' );
+		} else {
+			this.dandy.checkElementContainsText( formConfig.forms.language.active, 'de' );
+		}
+		return this;
+	}
+
+	checkForSubmittedDonationForm() {
+		this.dandy.checkElementExists( formConfig.submit_values.donation_form );
+		this.dandy.checkElementExists( formConfig.submit_values.submitted_donation_form );
+		this.dandy.checkElementExists( formConfig.submit_values.selected_values );
+		return this;
+	}
+
+	checkInterval( intervalValue ) {
+		this.dandy.checkElementValue( formConfig.submit_values.interval.selector, formConfig.submit_values.interval[ intervalValue ] );
+		return this;
+	}
+
+	checkAmount( amount ) {
+		this.dandy.checkElementValue( formConfig.submit_values.amount.selector, formConfig.submit_values.amount[ amount ] );
+		return this;
+	}
+
+	checkContactDetail( choice ) {
+		this.dandy.checkElementValue( formConfig.submit_values.contact_detail.selector, formConfig.submit_values.contact_detail[ choice ] );
+		return this;
+	}
+
+	checkPaymentType( paymentType ) {
+		this.dandy.checkElementValue( formConfig.submit_values.payment_type.selector, formConfig.submit_values.payment_type[ paymentType ] );
 		return this;
 	}
 

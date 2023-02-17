@@ -9,40 +9,40 @@ const config = {
 	pages: [
 		{
 			name: 'Donation',
-			url: '/'
+			url: '/',
 		},
 		{
 			name: 'Membership',
-			url: '/apply-for-membership'
+			url: '/apply-for-membership',
 		},
 		{
 			name: 'FAQ',
-			url: '/faq'
+			url: '/faq',
 		},
 		{
 			name: 'Use of Funds',
-			url: '/use-of-funds'
+			url: '/use-of-funds',
 		},
 		{
 			name: 'Contact',
-			url: '/contact/get-in-touch'
+			url: '/contact/get-in-touch',
 		},
 		{
 			name: 'Impressum',
-			url: '/page/Impressum'
+			url: '/page/Impressum',
 		},
 		{
 			name: 'Datenschutz',
-			url: '/page/Datenschutz'
+			url: '/page/Datenschutz',
 		},
 		{
 			name: 'Hall of Fame',
-			url: '/page/hall-of-fame'
+			url: '/page/hall-of-fame',
 		},
 		{
 			name: 'List Comments',
-			url: '/list-comments.html'
-		}
+			url: '/list-comments.html',
+		},
 	],
 	user: {
 		first_name: 'The',
@@ -58,8 +58,8 @@ const config = {
 	},
 	fields: {
 		payment: {},
-		address: {}
-	}
+		address: {},
+	},
 };
 
 export default config;
