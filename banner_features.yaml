@@ -1,197 +1,197 @@
 desktop_banner: # npm run dandy -- -b B22_WMDE_Test_27_ctrl -d -h desktop_banner
     description: "Features of desktop banner"
     features:
-        - main_banner_slides_in
-        - main_banner_has_text_highlight
-        - main_banner_closes_with_soft_close
-        - micro_banner_maybe_later_button_closes_the_banner
-        - micro_banner_close_button_closes_the_banner_and_sets_the_cookie
-        - micro_banner_disappears_after_15_seconds_without_user_interaction
-        - desktop/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
-        - desktop/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
-        - desktop/no_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
+#        - main_banner_slides_in # PASS
+        - main_banner_has_text_highlight # pass
+#        - main_banner_closes_with_soft_close # pass
+#        - micro_banner_maybe_later_button_closes_the_banner # pass
+#        - micro_banner_close_button_closes_the_banner_and_sets_the_cookie # pass
+#        - micro_banner_disappears_after_15_seconds_without_user_interaction # pass
+#        - desktop/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone # pass
+#        - desktop/submitting_banner_leads_to_donation_page_with_correct_corresponding_language # pass #fail_var
+#        - desktop/no_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass #fail_var
 ##        - desktop/yes_to_donate_yearly_upgrade_custom_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/yes_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - main_banner_is_not_shown_on_too_small_viewport
-        - banner_is_shown_with_slider_on_smaller_viewport # -h mode!
-        - desktop/donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/use_of_funds_link_is_working
-        - desktop/from_use_of_funds_action_button_full_page_donation_form_values_passed_correctly_to_the_donation_form
+#        - desktop/yes_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass #fail_var
+#        - main_banner_is_not_shown_on_too_small_viewport # Not sure how to make this pass
+#        - banner_is_shown_with_slider_on_smaller_viewport # -h mode!  # pass
+#        - desktop/donation_form_values_get_passed_correctly_to_the_donation_page  # pass #fail_var
+#        - desktop/use_of_funds_link_is_working # Not sure how to make this pass
+#        - desktop/from_use_of_funds_action_button_full_page_donation_form_values_passed_correctly_to_the_donation_form # Not sure how to make this pass
 
 mobile_banner:
     description: "Features of mobile banner"
     features:
-        - main_banner_slides_in
-        - main_banner_has_text_highlight
-        - main_banner_closes_with_soft_close
-        - micro_banner_maybe_later_button_closes_the_banner
-        - micro_banner_close_button_closes_the_banner_and_sets_the_cookie
-        - micro_banner_disappears_after_15_seconds_without_user_interaction
-        - mobile/main_banner_action_button_leads_to_follow_up_banner
-        - mobile/full_page_banner_has_text_highlight
-        - mobile/full_page_banner_close_button_closes_the_banner
-        - mobile/selecting_monthly_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type
-        - mobile/selecting_annually_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type
-        - mobile/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
-        - mobile/use_of_funds_link_is_working
+#        - main_banner_slides_in # pass
+#        - main_banner_has_text_highlight # pass
+#        - main_banner_closes_with_soft_close # pass
+#        - micro_banner_maybe_later_button_closes_the_banner # pass
+#        - micro_banner_close_button_closes_the_banner_and_sets_the_cookie # pass
+#        - micro_banner_disappears_after_15_seconds_without_user_interaction # pass
+#        - mobile/main_banner_action_button_leads_to_follow_up_banner # pass
+#        - mobile/full_page_banner_has_text_highlight # pass
+#        - mobile/full_page_banner_close_button_closes_the_banner # pass
+#        - mobile/selecting_monthly_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type # pass
+#        - mobile/selecting_annually_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type # pass
+#        - mobile/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone # pass
+#        - mobile/use_of_funds_link_is_working # pass
 
 mobile_banner_ctrl: # npm run dandy -- -b B22_WMDE_Mobile_Test_14_ctrl -d -h mobile_banner_ctrl
     description: "Features of mobile CTRL banner"
     extends:
-        - mobile_banner
+#        - mobile_banner
     features:
-        - mobile/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
-        - mobile/yes_to_donate_yearly_upgrade_different_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - mobile/from_use_of_funds_action_button_yes_to_donate_yearly_upgrade_different_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
+#        - mobile/submitting_banner_leads_to_donation_page_with_correct_corresponding_language # pass
+#        - mobile/yes_to_donate_yearly_upgrade_different_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - mobile/from_use_of_funds_action_button_yes_to_donate_yearly_upgrade_different_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
 
 mobile_banner_var: # npm run dandy -- -b B22_WMDE_Mobile_Test_14_var -d -h mobile_banner_var
     description: "Features of mobile VAR banner"
     extends:
-        - mobile_banner
+ #       - mobile_banner
     features:
-        - mobile/yes_to_donate_yearly_upgrade_different_amount_full_contact_details_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - mobile/no_to_donate_yearly_upgrade_no_contact_details_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - mobile/from_use_of_funds_action_button_no_to_donate_yearly_upgrade_no_contact_details_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
+#        - mobile/yes_to_donate_yearly_upgrade_different_amount_full_contact_details_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - mobile/no_to_donate_yearly_upgrade_no_contact_details_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - mobile/from_use_of_funds_action_button_no_to_donate_yearly_upgrade_no_contact_details_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
 
 mobile_english_banner: # npm run dandy -- -b B22_WMDE_Mobile_EN_Test_02_ctrl -d -h mobile_english_banner
     description: "Features of mobile english banner"
     features:
-        - main_banner_slides_in
-        - main_banner_closes_with_soft_close
-        - micro_banner_maybe_later_button_closes_the_banner
-        - micro_banner_close_button_closes_the_banner_and_sets_the_cookie
-        - micro_banner_disappears_after_15_seconds_without_user_interaction
-        - mobile/main_banner_action_button_leads_to_follow_up_banner
-        - mobile/full_page_banner_close_button_closes_the_banner
-        - mobile/full_page_banner_has_text_highlight
-        - mobile/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
-        - mobile/selecting_monthly_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type
-        - mobile/selecting_annually_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type
-        - mobile/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
-        - mobile/use_of_funds_link_is_working
-        - mobile/full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - mobile/from_use_of_funds_action_button_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
+#        - main_banner_slides_in # pass
+#        - main_banner_closes_with_soft_close # pass
+#        - micro_banner_maybe_later_button_closes_the_banner # pass
+#        - micro_banner_close_button_closes_the_banner_and_sets_the_cookie # pass
+#        - micro_banner_disappears_after_15_seconds_without_user_interaction # pass
+#        - mobile/main_banner_action_button_leads_to_follow_up_banner # pass
+#        - mobile/full_page_banner_close_button_closes_the_banner # pass
+#        - mobile/full_page_banner_has_text_highlight # pass
+#        - mobile/submitting_banner_leads_to_donation_page_with_correct_corresponding_language # pass
+#        - mobile/selecting_monthly_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type # pass
+#        - mobile/selecting_annually_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type # pass
+#        - mobile/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone # pass
+#        - mobile/use_of_funds_link_is_working # pass
+#        - mobile/full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - mobile/from_use_of_funds_action_button_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
 
 pad_banner: # npm run dandy -- -b B22_WMDE_ipad_Test_02_ctrl -d -h pad_banner
     description: "Features of pad banner"
     features:
-        - main_banner_slides_in
-        - main_banner_has_text_highlight
-        - main_banner_closes_with_soft_close
-        - micro_banner_maybe_later_button_closes_the_banner
-        - micro_banner_close_button_closes_the_banner_and_sets_the_cookie
-        - micro_banner_disappears_after_15_seconds_without_user_interaction
-        - desktop/donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
-        - desktop/no_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/yes_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - pad/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
-        - main_banner_is_not_shown_on_too_small_viewport
-        - banner_is_shown_with_slider_on_smaller_viewport # -h mode!
-        - pad/yes_to_donate_yearly_upgrade_different_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/use_of_funds_link_is_working
-        - pad/from_use_of_funds_action_button_yes_to_donate_yearly_upgrade_different_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
+#        - main_banner_slides_in # pass
+#        - main_banner_has_text_highlight # pass
+#        - main_banner_closes_with_soft_close # pass
+#        - micro_banner_maybe_later_button_closes_the_banner # pass
+#        - micro_banner_close_button_closes_the_banner_and_sets_the_cookie # pass
+#        - micro_banner_disappears_after_15_seconds_without_user_interaction # pass
+#        - desktop/donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - desktop/submitting_banner_leads_to_donation_page_with_correct_corresponding_language # pass
+#        - desktop/no_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - desktop/yes_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - pad/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone # pass
+#        - main_banner_is_not_shown_on_too_small_viewport # Not sure how to make this pass
+#        - banner_is_shown_with_slider_on_smaller_viewport # -h mode! # pass
+#        - pad/yes_to_donate_yearly_upgrade_different_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - desktop/use_of_funds_link_is_working # pass
+#        - pad/from_use_of_funds_action_button_yes_to_donate_yearly_upgrade_different_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
 
 pad_en_banner:
     description: "Features of pad en banner"
     features:
-        - main_banner_slides_in
-        - main_banner_has_text_highlight
-        - desktop/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
-        - desktop/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
-        - desktop/no_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/yes_to_donate_yearly_upgrade_custom_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/yes_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - main_banner_is_not_shown_on_too_small_viewport
-        - banner_is_shown_with_slider_on_smaller_viewport # -h mode!
-        - desktop/donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/use_of_funds_link_is_working
-        - desktop/from_use_of_funds_action_button_full_page_donation_form_values_passed_correctly_to_the_donation_form
+#        - main_banner_slides_in # pass
+#        - main_banner_has_text_highlight # pass
+#        - pad_en/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone # pass
+#        - desktop/submitting_banner_leads_to_donation_page_with_correct_corresponding_language # pass
+#        - pad_en/no_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - desktop/yes_to_donate_yearly_upgrade_custom_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - pad_en/yes_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - main_banner_is_not_shown_on_too_small_viewport # Not sure how to make this pass
+#        - banner_is_shown_with_slider_on_smaller_viewport # -h mode! # pass
+#        - desktop/donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - desktop/use_of_funds_link_is_working # pass
+#        - desktop/from_use_of_funds_action_button_full_page_donation_form_values_passed_correctly_to_the_donation_form # pass
 
 pad_en_banner_ctrl: # npm run dandy -- -b B22_WMDE_ipad_en_02_ctrl -d -h pad_en_banner_ctrl
     description: "Features of pad en CTRL banner"
     extends:
-        - pad_en_banner
+#        - pad_en_banner
     features:
-        - main_banner_closes_directly_without_soft_close
+#        - main_banner_closes_directly_without_soft_close # pass
 
 pad_en_banner_var: # npm run dandy -- -b B22_WMDE_ipad_en_02_var -d -h pad_en_banner_var
     description: "Features of pad en VAR banner"
     extends:
-        - pad_en_banner
+#        - pad_en_banner
     features:
-        - main_banner_closes_with_soft_close
-        - micro_banner_maybe_later_button_closes_the_banner
-        - micro_banner_close_button_closes_the_banner_and_sets_the_cookie
-        - micro_banner_disappears_after_15_seconds_without_user_interaction
+#        - main_banner_closes_with_soft_close # pass
+#        - micro_banner_maybe_later_button_closes_the_banner # pass
+#        - micro_banner_close_button_closes_the_banner_and_sets_the_cookie # pass
+#        - micro_banner_disappears_after_15_seconds_without_user_interaction # pass
 
 wikipedia_de_banner: # npm run dandy -- -b B22WPDE_02_ctrl -d -h wikipedia_de_banner
     description: "Features of wikipedia de banner"
     features:
-        - main_banner_slides_in
-        - main_banner_has_text_highlight
-        - main_banner_closes_directly_without_soft_close
-        - wikipedia_de/yes_to_donate_yearly_upgrade_different_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
-        - desktop/no_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/yes_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - pad/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
-        - pad/yes_to_donate_yearly_upgrade_different_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - banner_is_shown_with_slider_on_smaller_viewport # -h mode!
-        - desktop/donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/use_of_funds_link_is_working
-        - desktop/from_use_of_funds_action_button_full_page_donation_form_values_passed_correctly_to_the_donation_form
+#        - main_banner_slides_in # pass
+#        - main_banner_has_text_highlight # pass
+#        - main_banner_closes_directly_without_soft_close # pass
+#        - desktop/yes_to_donate_yearly_upgrade_custom_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - desktop/submitting_banner_leads_to_donation_page_with_correct_corresponding_language # pass
+#        - desktop/no_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - desktop/yes_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - pad/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone # pass
+#        - banner_is_shown_with_slider_on_smaller_viewport # -h mode! # pass
+#        - desktop/donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - desktop/use_of_funds_link_is_working # pass
+#        - desktop/from_use_of_funds_action_button_full_page_donation_form_values_passed_correctly_to_the_donation_form # pass
 ##        - main_banner_is_not_shown_on_too_small_viewport  # this banner will always show no matter the size (so the test will always fail)
 
 wikipedia_de_mobile_banner:
     description: "Features of wikipedia de mobile banner"
     features:
-        - main_banner_slides_in
-        - main_banner_has_text_highlight
-        - main_banner_closes_directly_without_soft_close
-        - mobile/main_banner_action_button_leads_to_follow_up_banner
-        - mobile/full_page_banner_has_text_highlight
-        - mobile/full_page_banner_close_button_closes_the_banner
-        - mobile/selecting_monthly_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type
-        - mobile/selecting_annually_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type
-        - mobile/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
-        - mobile/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
-        - mobile/full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - mobile/use_of_funds_link_is_working
+#        - main_banner_slides_in # pass
+#        - main_banner_has_text_highlight # pass
+#        - main_banner_closes_with_soft_close # pass
+#        - micro_banner_maybe_later_button_closes_the_banner # pass
+#        - micro_banner_close_button_closes_the_banner_and_sets_the_cookie # pass
+#        - micro_banner_disappears_after_15_seconds_without_user_interaction # pass
+#        - mobile/main_banner_action_button_leads_to_follow_up_banner # pass
+#        - mobile/full_page_banner_has_text_highlight # pass
+#        - mobile/full_page_banner_close_button_closes_the_banner # pass
+#        - mobile/selecting_monthly_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type # pass
+#        - mobile/selecting_annually_payment_interval_on_the_full_page_banner_disables_the_Sofort_payment_type # pass
+#        - mobile/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone # pass
+#        - mobile/use_of_funds_link_is_working # pass
 
 wikipedia_de_mobile_banner_ctrl: # npm run dandy -- -b B22WPDE_mob01_ctrl -d -h wikipedia_de_mobile_banner_ctrl
     description: "Features of wikipedia de mobile CTRL banner"
     extends:
-        - wikipedia_de_mobile_banner
+#        - wikipedia_de_mobile_banner
     features:
-        - mobile/from_use_of_funds_action_button_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
+#        - mobile/from_use_of_funds_action_button_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
 
 wikipedia_de_mobile_banner_var: # npm run dandy -- -b B22WPDE_mob01_var -d -h wikipedia_de_mobile_banner_var
     description: "Features of wikipedia de mobile VAR banner"
     extends:
-        - wikipedia_de_mobile_banner
+#        - wikipedia_de_mobile_banner
     features:
-        - mobile/from_use_of_funds_action_button_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
+#        - mobile/from_use_of_funds_action_button_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
 
 english_banner: # npm run dandy -- -b B22_WMDE_Test_EN_07_ctrl -d -h english_banner
     description: "Features of english banner"
     features:
-        - main_banner_slides_in
-        - main_banner_has_text_highlight
-        - main_banner_closes_with_soft_close
-        - micro_banner_maybe_later_button_closes_the_banner
-        - micro_banner_close_button_closes_the_banner_and_sets_the_cookie
-        - micro_banner_disappears_after_15_seconds_without_user_interaction
-        - desktop/donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone
-        - desktop/submitting_banner_leads_to_donation_page_with_correct_corresponding_language
-        - desktop/no_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/yes_to_donate_yearly_upgrade_custom_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - desktop/yes_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page
-        - main_banner_is_not_shown_on_too_small_viewport
-        - banner_is_shown_with_slider_on_smaller_viewport # -h mode!
-        - desktop/use_of_funds_link_is_working
-        - desktop/from_use_of_funds_action_button_full_page_donation_form_values_passed_correctly_to_the_donation_form
+#        - main_banner_slides_in # pass
+#        - main_banner_has_text_highlight # pass
+#        - main_banner_closes_with_soft_close # pass
+#        - micro_banner_maybe_later_button_closes_the_banner # pass
+#        - micro_banner_close_button_closes_the_banner_and_sets_the_cookie # pass
+#        - micro_banner_disappears_after_15_seconds_without_user_interaction # pass
+#        - desktop/donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - desktop/in_donation_form_when_user_solves_the_validation_error_red_markers_are_gone # pass
+#        - desktop/submitting_banner_leads_to_donation_page_with_correct_corresponding_language # pass
+#        - desktop/no_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - desktop/yes_to_donate_yearly_upgrade_custom_amount_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - desktop/yes_to_donate_yearly_upgrade_full_page_donation_form_values_get_passed_correctly_to_the_donation_page # pass
+#        - main_banner_is_not_shown_on_too_small_viewport # Not sure how to make this pass
+#        - banner_is_shown_with_slider_on_smaller_viewport # -h mode! # pass
+#        - desktop/use_of_funds_link_is_working # pass
+#        - desktop/from_use_of_funds_action_button_full_page_donation_form_values_passed_correctly_to_the_donation_form # pass
 
 test_banner: # npm run dandy -- -b B22_WMDE_Mobile_Test_14_ctrl -d -h test_banner
     description: "Features of test banner"

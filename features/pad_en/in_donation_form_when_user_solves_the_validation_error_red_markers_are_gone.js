@@ -51,7 +51,26 @@ export default {
 //			.submitFullPageDonationFormAnnualUpgradeChoice()
 //			.checkIfMissingAnnualUpgradeChoiceErrorMsgIsShown()
 //			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_annual_upgrade_choice_missing_red_marker.png` )
-			.clickAnnualUpgradeOption( upgradeOptions.no )
-			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_after_annual_upgrade_choice_missing_red_marker_solved.png` );
+//			.clickAnnualUpgradeOption( upgradeOptions.no )
+//			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_after_annual_upgrade_choice_missing_red_marker_solved.png` )
+//
+// 			.wait( 2000 )
+// 			.reload()
+// 			.waitForBanner()
+
+//			.clickInterval( intervals.single_payment )
+//			.clickPaymentType( paymentTypes.paypal )
+//			.clickAmount( amounts.twenty_five )
+//			.submitFullPageDonationForm()
+//			.wait( 2000 )
+			.clickAnnualUpgradeOption( upgradeOptions.custom_amount )
+//			.submitFullPageDonationFormAnnualUpgradeChoice()
+			.wait( 2000 )
+			.submitFullPageDonationFormCustomAmount()
+			.checkIfMissingCustomAmountErrorMsgIsShown()
+			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_annual_upgrade_choice_missing_custom_amount_red_marker.png` )
+			.wait( 500 )
+			.enterAnnualUpgradeOptionCustomAmount( '5' )
+			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_after_annual_upgrade_choice_missing_custom_amount_red_marker_solved.png` );
 	},
 };

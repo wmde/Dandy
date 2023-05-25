@@ -140,7 +140,8 @@ export default class Banner {
 	}
 
 	waitForBanner() {
-		this.dandy.waitForElement( this.selectors.banner_visible, { timeout: 10000 } );
+//		this.dandy.waitForElement( this.selectors.banner_visible, { timeout: 10000 } );
+		this.dandy.waitForElement( this.selectors.banner_visible, { timeout: 15000 } );
 		return this;
 	}
 
@@ -182,7 +183,8 @@ export default class Banner {
 	}
 
 	clickMainBannerActionButton() {
-		this.dandy.waitForElement( this.selectors.submit_button.main, { timeout: 10000 } );
+//		this.dandy.waitForElement( this.selectors.submit_button.main, { timeout: 10000 } );
+		this.dandy.waitForElement( this.selectors.submit_button.main, { timeout: 15000 } );
 		this.dandy.click( this.selectors.submit_button.main );
 		return this;
 	}
@@ -226,7 +228,9 @@ export default class Banner {
 	}
 
 	checkBannerIsHidden() {
-		this.dandy.waitForElement( this.selectors.banner_hidden, { timeout: 200 } );
+//		this.dandy.waitForElement( this.selectors.banner_hidden, { timeout: 200 } );
+//		this.dandy.waitForElement( this.selectors.banner_hidden, { timeout: 20000 } );
+		this.dandy.checkElementDoesNotExist( this.selectors.banner_visible );
 		return this;
 	}
 

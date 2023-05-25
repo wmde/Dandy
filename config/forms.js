@@ -316,7 +316,7 @@ export const amount = {
 	five: 'five',
 	// fifteen: 'fifteen',
 	twenty_five: 'twenty_five',
-	// fifty: 'fifty',
+	fifty: 'fifty',
 	one_hundred: 'one_hundred',
 };
 
@@ -324,7 +324,7 @@ export const paymentType = {
 	paypal: 'paypal',
 	// credit_card: 'credit_card',
 	// direct_debit: 'direct_debit',
-	// bank_transfer: 'bank_transfer',
+	bank_transfer: 'bank_transfer',
 	// sofort: 'sofort',
 };
 

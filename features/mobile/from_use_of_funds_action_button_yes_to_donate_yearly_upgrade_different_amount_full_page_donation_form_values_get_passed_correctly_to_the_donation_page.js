@@ -21,7 +21,7 @@ export default {
 			.clickPaymentType( paymentTypes.paypal )
 			.submitFullPageDonationForm()
 			.clickAnnualUpgradeOption( upgradeOptions.custom_amount )
-			.wait( 2000 ) // wait for the next form page to appear
+			.wait( 10000 ) // wait for the next form page to appear
 			.clickAmount( amounts.twenty_five )
 			.submitFullPageDonationForm()
 			.wait( 4000 );

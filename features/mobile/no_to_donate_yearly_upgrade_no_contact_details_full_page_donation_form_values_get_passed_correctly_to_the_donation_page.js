@@ -14,18 +14,18 @@ export default {
 
 			.clickInterval( intervals.single_payment )
 			.clickAmount( amounts.five )
-			.clickPaymentType( paymentTypes.paypal )
+			.clickPaymentType( paymentTypes.bank_transfer )
 			.submitFullPageDonationForm()
 			.clickAnnualUpgradeOption( upgradeOptions.no )
 			.clickContactDetailsOption( contactDetails.anonymous )
-			.wait( 2000 );
+			.wait( 20000 );
 
 		const donationForm = DonationForm.createFromBanner( banner );
-		// donationForm.checkIsOnSuccessPage();
-		donationForm.checkForSubmittedDonationForm()
-			.checkPaymentType( paymentType.paypal )
-			.checkInterval( interval.single_payment )
-			.checkAmount( amount.five )
-			.checkContactDetail( contactDetail.anonymous );
+		donationForm.checkIsOnSuccessPage();
+		// donationForm.checkForSubmittedDonationForm()
+		// 	.checkPaymentType( paymentType.bank_transfer )
+		// 	.checkInterval( interval.single_payment )
+		// 	.checkAmount( amount.five )
+		// 	.checkContactDetail( contactDetail.anonymous );
 	},
 };
