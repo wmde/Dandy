@@ -6,6 +6,7 @@ export default {
 		banner.clickMainBannerActionButton()
 			.waitForFollowupBanner()
 			.captureScreenshot( `banners/${ banner.getBannerName() }/full-page-banner.png` )
+			.wait( 500 )
 			.clickFullBannerCloseButton()
 			.checkBannerIsHidden()
 			.captureScreenshot( `banners/${ banner.getBannerName() }/full-page-banner__has_been_closed.png` );
