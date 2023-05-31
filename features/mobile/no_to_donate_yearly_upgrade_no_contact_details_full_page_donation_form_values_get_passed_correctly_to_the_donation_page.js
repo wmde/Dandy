@@ -18,7 +18,7 @@ export default {
 			.submitFullPageDonationForm()
 			.clickAnnualUpgradeOption( upgradeOptions.no )
 			.clickContactDetailsOption( contactDetails.anonymous )
-			.wait( 20000 );
+			.wait( 5000 );
 
 		const donationForm = DonationForm.createFromBanner( banner );
 		donationForm.checkIsOnSuccessPage();

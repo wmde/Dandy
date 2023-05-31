@@ -148,9 +148,9 @@ export const bannerConfig = {
 				anonymous: '.t-submit-address-type-anonym',
 			},
 			AddressTypes: {
-				full: '.address-type-person',
-				emailOnly: '.address-type-email',
-				anonymous: '.address-type-none'
+				full: '.address-type-person label',
+				emailOnly: '.address-type-email label',
+				anonymous: '.address-type-none label'
 			}
 		},
 		soft_close: {

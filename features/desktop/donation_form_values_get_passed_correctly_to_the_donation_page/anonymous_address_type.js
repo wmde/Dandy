@@ -1,6 +1,6 @@
-import {addressTypes, amounts, intervals, paymentTypes} from '../../config/banners.js';
-import { amount, interval, paymentType } from '../../config/forms.js';
-import DonationForm from '../../pages/DonationForm.js';
+import {addressTypes, amounts, intervals, paymentTypes} from '../../../config/banners.js';
+import { amount, interval, paymentType } from '../../../config/forms.js';
+import DonationForm from '../../../pages/DonationForm.js';
 
 export default {
 
@@ -16,7 +16,7 @@ export default {
 			.clickAddressTypesOption( addressTypes.anonymous )
 			.submitFullPageDonationFormAddressType()
 
-			.wait( 20000 ); // wait for page to go to donation form
+			.wait( 5000 ); // wait for page to go to donation form
 
 		const donationForm = DonationForm.createFromBanner( banner );
 		donationForm.checkIsOnSuccessPage();

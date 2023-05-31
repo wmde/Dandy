@@ -14,21 +14,21 @@ export default {
 
 			.clickInterval( intervals.single_payment )
 			.clickAmount( amounts.fifty )
-			.clickPaymentType( paymentTypes.paypal )
+			.clickPaymentType( paymentTypes.bank_transfer )
 			.submitFullPageDonationForm()
 			.clickAnnualUpgradeOption( upgradeOptions.custom_amount )
 			.wait( 20000 ) // wait for the next form page to appear
 			.clickAmount( amounts.twenty_five )
 			.submitFullPageDonationForm()
 			.clickContactDetailsOption( contactDetails.full )
-			.wait( 2000 );
+			.wait( 5000 );
 
 		const donationForm = DonationForm.createFromBanner( banner );
-		donationForm.checkIsOnSuccessPage();
-		// donationForm.checkForSubmittedDonationForm()
-		// 	.checkPaymentType( paymentType.bank_transfer )
-		// 	.checkInterval( interval.annually )
-		// 	.checkAmount( amount.twenty_five )
-		// 	.checkContactDetail( contactDetail.full );
+//		donationForm.checkIsOnSuccessPage();
+		donationForm.checkForSubmittedDonationForm()
+			.checkPaymentType( paymentType.bank_transfer )
+			.checkInterval( interval.annually )
+			.checkAmount( amount.twenty_five )
+			.checkContactDetail( contactDetail.full );
 	},
 };

@@ -1,5 +1,5 @@
-import DonationForm from '../../pages/DonationForm.js';
-import { amounts, intervals, paymentTypes } from '../../config/banners.js';
+import DonationForm from '../../../pages/DonationForm.js';
+import { amounts, intervals, paymentTypes } from '../../../config/banners.js';
 
 export default {
 
