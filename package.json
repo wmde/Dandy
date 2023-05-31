@@ -7,7 +7,7 @@
 	"scripts": {
 		"dandy": "node index.js",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"lint": "eslint config/ features/ pages/ src/ tests/"
+		"lint": "eslint index.js config/ features/ pages/ src/ tests/"
 	},
 	"keywords": [],
 	"author": "",

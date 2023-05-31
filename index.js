@@ -8,8 +8,8 @@ import logger from './src/logger.js';
 
 import Banner from './pages/Banner.js';
 import buildBannerTestConfig from './src/build_banner_test_config_param.js';
-import {bannerConfig} from "./config/banners.js";
-import loadFeatures from "./src/FeatureLoader.js";
+import { bannerConfig } from './config/banners.js';
+import loadFeatures from './src/FeatureLoader.js';
 
 process.env.FORCE_COLOR = '1';
 
@@ -50,19 +50,19 @@ const cli = meow( `
 	flags: {
 		banner: {
 			type: 'string',
-			alias: 'b'
+			alias: 'b',
 		},
 		dev: {
 			type: 'boolean',
 			alias: 'd',
-			default: false
+			default: false,
 		},
 		headed: {
 			type: 'boolean',
 			alias: 'h',
-			default: false
-		}
-	}
+			default: false,
+		},
+	},
 } );
 
 ( async () => {
@@ -70,21 +70,21 @@ const cli = meow( `
 
 	if ( isBanner ) {
 		const featureSets = cli.input;
-		const configuration = yaml.parse( fs.readFileSync( 'banner_features.yaml', { encoding:'utf8' } ) );
+		const configuration = yaml.parse( fs.readFileSync( 'banner_features.yaml', { encoding: 'utf8' } ) );
 		const environment = cli.flags.dev ? 'dev' : 'production';
 		const testConfig = buildBannerTestConfig( cli.flags.banner, environment, cli.flags.headed );
 		const banner = new Banner( testConfig.url, bannerConfig.selectors, testConfig.parameters, testConfig.options );
-		for( let index = 0; index < featureSets.length; index++ ) {
+		for ( let index = 0; index < featureSets.length; index++ ) {
 			const featureSet = featureSets[ index ];
-			if( !configuration[ featureSet ] ) {
+			if ( !configuration[ featureSet ] ) {
 				logger.logError( `${ featureSet } NOT found` );
 				continue;
 			}
 			logger.logBold( `Running: ${ configuration[ featureSet ].description }` );
 			const features = await loadFeatures( configuration[ featureSet ] );
 			for ( let j = 0; j < features.length; j++ ) {
-				const feature = features[j];
-				banner.dandy.logStep( `Feature ${j+1}: ${ feature.description }` );
+				const feature = features[ j ];
+				banner.dandy.logStep( `Feature ${j + 1}: ${ feature.description }` );
 				banner.resetEnvironment();
 				banner.waitForBanner();
 				feature.steps( banner );
@@ -96,14 +96,14 @@ const cli = meow( `
 		let files = fs.readdirSync( config.tests_directory )
 			.filter( file => extname( file ) === '.js' );
 
-		if( cli.input.length > 0 ) {
+		if ( cli.input.length > 0 ) {
 			files = files.filter( file => cli.input.includes( basename( file, extname( file ) ) ) );
 		}
 
-		for( let index = 0; index < files.length; index++ ) {
+		for ( let index = 0; index < files.length; index++ ) {
 			logger.logBold( `Running: ${ files[ index ] }` );
 			const output = await runTest( `${ config.tests_directory }/${ files[ index ] }` );
-			console.log( output );
+			logger.log( output );
 		}
 	}
 
