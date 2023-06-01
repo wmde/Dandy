@@ -12,9 +12,12 @@ export default {
 			.clickAmount( amounts.one_hundred )
 			.clickPaymentType( paymentTypes.paypal )
 			.submitFullPageDonationForm()
+
+			.wait( 500 )
+
 			.clickAnnualUpgradeOption( upgradeOptions.yes )
 			.submitFullPageDonationFormAnnualUpgradeChoice()
-			.wait( 2000 );
+			.wait( 5000 );
 
 		const donationForm = DonationForm.createFromBanner( banner );
 		donationForm.checkForSubmittedDonationForm()

@@ -1,6 +1,5 @@
-import { amounts, contactDetails, intervals, paymentTypes, upgradeOptions } from '../../config/banners.js';
-import { amount, interval, paymentType, contactDetail } from '../../config/forms.js';
-import DonationForm from '../../pages/DonationForm.js';
+import { amounts, contactDetails, intervals, paymentTypes, upgradeOptions } from '../../../config/banners.js';
+import DonationForm from '../../../pages/DonationForm.js';
 
 export default {
 
@@ -20,16 +19,17 @@ export default {
 			.clickAmount( amounts.five )
 			.clickPaymentType( paymentTypes.bank_transfer )
 			.submitFullPageDonationForm()
+
+			.wait( 500 )
+
 			.clickAnnualUpgradeOption( upgradeOptions.no )
+
+			.wait( 500 )
+
 			.clickContactDetailsOption( contactDetails.anonymous )
 			.wait( 5000 );
 
 		const donationForm = DonationForm.createFromBanner( banner );
 		donationForm.checkIsOnSuccessPage();
-		// donationForm.checkForSubmittedDonationForm()
-		// 	.checkPaymentType( paymentType.bank_transfer )
-		// 	.checkInterval( interval.single_payment )
-		// 	.checkAmount( amount.five )
-		// 	.checkContactDetail( contactDetail.anonymous );
 	},
 };

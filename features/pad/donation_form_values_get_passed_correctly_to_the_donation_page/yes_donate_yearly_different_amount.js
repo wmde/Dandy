@@ -1,6 +1,6 @@
-import { amounts, intervals, paymentTypes, upgradeOptions } from '../../config/banners.js';
-import { amount, interval, paymentType } from '../../config/forms.js';
-import DonationForm from '../../pages/DonationForm.js';
+import { amounts, intervals, paymentTypes, upgradeOptions } from '../../../config/banners.js';
+import { amount, interval, paymentType } from '../../../config/forms.js';
+import DonationForm from '../../../pages/DonationForm.js';
 
 export default {
 
@@ -12,12 +12,17 @@ export default {
 			.clickAmount( amounts.five )
 			.clickPaymentType( paymentTypes.paypal )
 			.submitFullPageDonationForm()
-			.wait( 2000 ) // wait for the next form page to appear
+
+			.wait( 500 ) // wait for the next form page to appear
+
 			.clickAnnualUpgradeOption( upgradeOptions.custom_amount )
-			.wait( 2000 ) // wait for the next form page to appear
+
+			.wait( 500 ) // wait for the next form page to appear
+
 			.clickAmount( amounts.one_hundred )
 			.submitFullPageDonationForm()
-			.wait( 2000 );
+
+			.wait( 5000 );
 
 		const donationForm = DonationForm.createFromBanner( banner );
 		donationForm.checkForSubmittedDonationForm()

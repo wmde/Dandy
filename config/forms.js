@@ -295,7 +295,7 @@ const formConfig = {
 		payment_type: {
 			selector: '.submit-values input[name=paymentType]',
 			paypal: 'PPL',
-			bank_transfer: 'UEB'
+			bank_transfer: 'UEB',
 		},
 		contact_detail: {
 			selector: '.submit-values input[name=addressType]',

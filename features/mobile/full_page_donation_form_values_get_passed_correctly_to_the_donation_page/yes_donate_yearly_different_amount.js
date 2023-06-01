@@ -4,30 +4,32 @@ import DonationForm from '../../../pages/DonationForm.js';
 
 export default {
 
-	description: 'Yes to donate yearly upgrade with custom amount, full page donation form values get passed' +
-		'correctly to the donation page',
+	description: 'Do you want to donate yearly? YES with different amount :Check if submitting the full page' +
+		'donation form values: interval, payment type and donation amount gets passed correctly to the' +
+		'spenden.wikimedia.de page',
 
 	steps: function ( banner ) {
-		banner.clickInterval( intervals.single_payment )
-			.clickAmount( amounts.five )
+		banner.clickMainBannerActionButton()
+			.waitForFollowupBanner()
+
+			.clickInterval( intervals.single_payment )
+			.clickAmount( amounts.fifty )
 			.clickPaymentType( paymentTypes.paypal )
 			.submitFullPageDonationForm()
 
 			.wait( 500 )
 
 			.clickAnnualUpgradeOption( upgradeOptions.custom_amount )
-
-			.wait( 2000 ) // wait for the next form page to appear
-
-			.enterAnnualUpgradeOptionCustomAmount( '100' )
-			.submitFullPageDonationFormCustomAmount()
-			// .captureScreenshot( `banners/${ banner.getBannerName() }/upgrade-to-donate-yearly-custom-amount.png` )
+			.wait( 4000 ) // wait for the next form page to appear
+			.clickAmount( amounts.twenty_five )
+			.wait( 500 )
+			.submitFullPageDonationForm()
 			.wait( 5000 );
 
 		const donationForm = DonationForm.createFromBanner( banner );
 		donationForm.checkForSubmittedDonationForm()
 			.checkPaymentType( paymentType.paypal )
 			.checkInterval( interval.annually )
-			.checkAmount( amount.one_hundred );
+			.checkAmount( amount.twenty_five );
 	},
 };

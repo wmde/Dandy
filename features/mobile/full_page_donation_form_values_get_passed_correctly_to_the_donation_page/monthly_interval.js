@@ -1,6 +1,6 @@
-import { amounts, intervals, paymentTypes } from '../../config/banners.js';
-import { amount, interval, paymentType } from '../../config/forms.js';
-import DonationForm from '../../pages/DonationForm.js';
+import { amounts, intervals, paymentTypes } from '../../../config/banners.js';
+import { amount, interval, paymentType } from '../../../config/forms.js';
+import DonationForm from '../../../pages/DonationForm.js';
 
 export default {
 
@@ -15,7 +15,7 @@ export default {
 			.clickAmount( amounts.one_hundred )
 			.clickPaymentType( paymentTypes.paypal )
 			.submitFullPageDonationForm()
-			.wait( 4000 )
+			.wait( 5000 )
 			.captureScreenshot( `banners/${ banner.getBannerName() }/reached_to_donation_form.png` );
 
 		const donationForm = DonationForm.createFromBanner( banner );

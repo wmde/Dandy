@@ -302,7 +302,7 @@ class Dandy {
 			const elementValue = await this.page.$eval( selector, el => el.getAttribute( 'value' ) );
 
 			if ( elementValue === value ) {
-				logger.logSuccess( 'Element value is as expected' );
+				logger.logSuccess( `Element value (${ elementValue }) is as expected` );
 			} else {
 				await Promise.reject( new Error( `Element value: ${ elementValue } is NOT as expected: ${ value }` ) );
 			}

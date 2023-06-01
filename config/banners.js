@@ -33,17 +33,12 @@ export const bannerConfig = {
 		banner_language: '.navbar-language',
 		banner_language_active: '.active.navbar-item',
 		banner_error_msg: '.wmde-banner-error-icon',
-//		banner_hidden: '.wmde-banner--hidden',
 		banner_hidden: '.wmde-banner--not-shown',
-//		banner_soft_close: '.wmde-banner--soft-closing',
 		banner_soft_close: '.wmde-banner-wrapper--soft-closing',
-//		followup_visible: '.wmde-banner-followup-banner-position--state-finished',
 		followup_visible: '.wmde-banner-wrapper.wmde-banner-wrapper--full-page',
 		use_of_funds_link: '.t-use-of-funds-link',
 		animated_text_highlight: {
-//			main_slider: '.wmde-banner-slider-text-animated-highlight',
 			main_slider: '.wmde-banner-slider .wmde-banner-text-animated-highlight',
-//			full: '.wmde-banner-text-animated-highlight',
 			full: '.wmde-banner-message .wmde-banner-text-animated-highlight',
 		},
 		message: {
@@ -62,22 +57,17 @@ export const bannerConfig = {
 		},
 		submit_button: {
 			main: '.wmde-banner-mini-button',
-			// form: '.wmde-banner-form-button',
 			form: '.t-submit-main-donation',
 			form_step_1: '.wmde-banner-form-step-1 .wmde-banner-form-button',
 			form_step_2: '.wmde-banner-form-step-2 .wmde-banner-form-button',
-//			annual_upgrade_choice: '.form-step-2-button .wmde-banner-form-button',
-			annual_upgrade_choice: '.upgrade-to-yearly-button .wmde-banner-form-button', // redundant because of line 74
 			custom_amount: '.t-submit-custom-amount',
 			address_type: '.t-submit-address-type',
 			main_donation: '.t-submit-main-donation',
-			upgrade_to_yearly: '.t-submit-upgrade-to-yearly'
+			upgrade_to_yearly: '.t-submit-upgrade-to-yearly',
 		},
 		use_of_funds: {
 			modal_is_open: '.banner_modal.is-visible',
-//			modal_container: '.banner_modal__container',
 			modal_container: '.banner-modal-container',
-//			call_to_action: '.use_of_funds__button',
 			call_to_action: '.use-of-funds-button',
 			elements: {
 				top_section: '.use_of_funds__section',
@@ -91,11 +81,8 @@ export const bannerConfig = {
 		},
 		donation_form: {
 			interval: {
-//				single_payment: '.select-interval-0 label',
 				single_payment: '.interval-0 label',
-//				monthly: '.select-interval-1 label',
 				monthly: '.interval-1 label',
-//				annually: '.select-interval-12 label',
 				annually: '.interval-12 label',
 				disabled: {
 					single_payment: '.select-interval-0.wmde-banner-disabled input[disabled]',
@@ -106,32 +93,21 @@ export const bannerConfig = {
 				error_msg_container: '.select-interval.wmde-banner-select-group-container.wmde-banner-select-group-container--with-error',
 			},
 			amount: {
-//				five: '.select-amount-5 label',
 				five: '.amount-5 label',
-//				fifteen: '.select-amount-15 label',
 				fifteen: '.amount-15 label',
-//				twenty_five: '.select-amount-25 label',
 				twenty_five: '.amount-25 label',
-//				fifty: '.select-amount-50 label',
 				fifty: '.amount-50 label',
-//				one_hundred: '.select-amount-100 label',
 				one_hundred: '.amount-100 label',
 				custom_amount: '.t-custom-amount',
 				error_msg_container: '.select-amount.wmde-banner-select-group-container.wmde-banner-select-group-container--with-error',
 			},
 			payment_type: {
-//				paypal: '.select-payment-method-PPL label',
 				paypal: '.payment-ppl label',
-//				credit_card: '.select-payment-method-MCP label',
 				credit_card: '.payment-mcp label',
-//				direct_debit: '.select-payment-method-BEZ label',
 				direct_debit: '.payment-bez label',
-//				bank_transfer: '.select-payment-method-UEB label',
 				bank_transfer: '.payment-ueb label',
-//				sofort: '.select-payment-method-SUB label',
 				sofort: '.payment-sub label',
 				disabled: {
-//					sofort: '.select-payment-method-SUB.wmde-banner-disabled',
 					sofort: '.payment-sub.wmde-banner-disabled',
 				},
 				error_msg_container: '.select-payment-method.wmde-banner-select-group-container.wmde-banner-select-group-container--with-error',
@@ -150,13 +126,11 @@ export const bannerConfig = {
 			AddressTypes: {
 				full: '.address-type-person label',
 				emailOnly: '.address-type-email label',
-				anonymous: '.address-type-none label'
-			}
+				anonymous: '.address-type-none label',
+			},
 		},
 		soft_close: {
-//			maybe_later_button: '.wmde-banner-soft-close-buttons .wmde-banner-soft-close-button:first-child',
 			maybe_later_button: '.wmde-banner-soft-close-button-maybe-later',
-//			close_button: '.wmde-banner-soft-close-buttons .wmde-banner-soft-close-button:last-child',
 			close_button: '.wmde-banner-soft-close-button-close',
 		},
 	},
@@ -198,5 +172,5 @@ export const contactDetails = {
 export const addressTypes = {
 	full: 'full',
 	emailOnly: 'emailOnly',
-	anonymous: 'anonymous'
+	anonymous: 'anonymous',
 };
