@@ -71,14 +71,20 @@ export default class Banner {
 	}
 
 	submitFullPageDonationFormAnnualUpgradeChoice() {
-		this.dandy.waitForElement( this.selectors.submit_button.annual_upgrade_choice, { timeout: 200 } );
-		this.dandy.click( this.selectors.submit_button.annual_upgrade_choice );
+		this.dandy.waitForElement( this.selectors.submit_button.upgrade_to_yearly, { timeout: 200 } );
+		this.dandy.click( this.selectors.submit_button.upgrade_to_yearly );
 		return this;
 	}
 
 	submitFullPageDonationFormCustomAmount() {
 		this.dandy.waitForElement( this.selectors.submit_button.custom_amount, { timeout: 200 } );
 		this.dandy.click( this.selectors.submit_button.custom_amount );
+		return this;
+	}
+
+	submitFullPageDonationFormAddressType() {
+		this.dandy.waitForElement( this.selectors.submit_button.address_type, { timeout: 200 } );
+		this.dandy.click( this.selectors.submit_button.address_type );
 		return this;
 	}
 
@@ -91,6 +97,12 @@ export default class Banner {
 	clickContactDetailsOption( choice ) {
 		this.dandy.waitForElement( this.selectors.donation_form.contactDetails[ choice ], { timeout: 200 } );
 		this.dandy.click( this.selectors.donation_form.contactDetails[ choice ] );
+		return this;
+	}
+
+	clickAddressTypesOption( choice ) {
+		this.dandy.waitForElement( this.selectors.donation_form.AddressTypes[ choice ], { timeout: 200 } );
+		this.dandy.click( this.selectors.donation_form.AddressTypes[ choice ] );
 		return this;
 	}
 
@@ -140,7 +152,7 @@ export default class Banner {
 	}
 
 	waitForBanner() {
-		this.dandy.waitForElement( this.selectors.banner_visible, { timeout: 10000 } );
+		this.dandy.waitForElement( this.selectors.banner_visible, { timeout: 15000 } );
 		return this;
 	}
 
@@ -182,7 +194,7 @@ export default class Banner {
 	}
 
 	clickMainBannerActionButton() {
-		this.dandy.waitForElement( this.selectors.submit_button.main, { timeout: 10000 } );
+		this.dandy.waitForElement( this.selectors.submit_button.main, { timeout: 15000 } );
 		this.dandy.click( this.selectors.submit_button.main );
 		return this;
 	}
@@ -226,7 +238,7 @@ export default class Banner {
 	}
 
 	checkBannerIsHidden() {
-		this.dandy.waitForElement( this.selectors.banner_hidden, { timeout: 200 } );
+		this.dandy.checkElementDoesNotExist( this.selectors.banner_visible );
 		return this;
 	}
 

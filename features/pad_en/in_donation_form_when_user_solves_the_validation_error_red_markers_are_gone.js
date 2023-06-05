@@ -48,7 +48,15 @@ export default {
 			.clickAmount( amounts.twenty_five )
 			.submitFullPageDonationForm()
 			.wait( 2000 )
-			.clickAnnualUpgradeOption( upgradeOptions.no )
-			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_after_annual_upgrade_choice_missing_red_marker_solved.png` );
+
+			.clickAnnualUpgradeOption( upgradeOptions.custom_amount )
+
+			.wait( 2000 )
+			.submitFullPageDonationFormCustomAmount()
+			.checkIfMissingCustomAmountErrorMsgIsShown()
+			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_annual_upgrade_choice_missing_custom_amount_red_marker.png` )
+			.wait( 500 )
+			.enterAnnualUpgradeOptionCustomAmount( '5' )
+			.captureScreenshot( `banners/${ banner.getBannerName() }/donation_page_after_annual_upgrade_choice_missing_custom_amount_red_marker_solved.png` );
 	},
 };

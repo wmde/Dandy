@@ -295,6 +295,7 @@ const formConfig = {
 		payment_type: {
 			selector: '.submit-values input[name=paymentType]',
 			paypal: 'PPL',
+			bank_transfer: 'UEB',
 		},
 		contact_detail: {
 			selector: '.submit-values input[name=addressType]',
@@ -316,7 +317,7 @@ export const amount = {
 	five: 'five',
 	// fifteen: 'fifteen',
 	twenty_five: 'twenty_five',
-	// fifty: 'fifty',
+	fifty: 'fifty',
 	one_hundred: 'one_hundred',
 };
 
@@ -324,7 +325,7 @@ export const paymentType = {
 	paypal: 'paypal',
 	// credit_card: 'credit_card',
 	// direct_debit: 'direct_debit',
-	// bank_transfer: 'bank_transfer',
+	bank_transfer: 'bank_transfer',
 	// sofort: 'sofort',
 };
 
